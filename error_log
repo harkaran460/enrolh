@@ -1,0 +1,32 @@
+[22-Aug-2022 07:42:04 UTC] PHP Warning:  require(/home/enrolhere/public_html/college/vendor/composer/../../App/permission.php): Failed to open stream: No such file or directory in /home/enrolhere/public_html/college/vendor/composer/autoload_real.php on line 78
+[22-Aug-2022 07:42:04 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/enrolhere/public_html/college/vendor/composer/../../App/permission.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home/enrolhere/public_html/college/vendor/composer/autoload_real.php:78
+Stack trace:
+#0 /home/enrolhere/public_html/college/vendor/composer/autoload_real.php(61): composerRequire8c2b3a3e25bfc2be1cd2968353a7a3e9('a8e73d20a1ea636...', '/home/enrolhere...')
+#1 /home/enrolhere/public_html/college/vendor/autoload.php(7): ComposerAutoloaderInit8c2b3a3e25bfc2be1cd2968353a7a3e9::getLoader()
+#2 /home/enrolhere/public_html/college/artisan(18): require('/home/enrolhere...')
+#3 {main}
+  thrown in /home/enrolhere/public_html/college/vendor/composer/autoload_real.php on line 78
+[22-Aug-2022 07:42:35 UTC] PHP Warning:  require(/home/enrolhere/public_html/college/vendor/composer/../../App/permission.php): Failed to open stream: No such file or directory in /home/enrolhere/public_html/college/vendor/composer/autoload_real.php on line 78
+[22-Aug-2022 07:42:35 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/enrolhere/public_html/college/vendor/composer/../../App/permission.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home/enrolhere/public_html/college/vendor/composer/autoload_real.php:78
+Stack trace:
+#0 /home/enrolhere/public_html/college/vendor/composer/autoload_real.php(61): composerRequire8c2b3a3e25bfc2be1cd2968353a7a3e9('a8e73d20a1ea636...', '/home/enrolhere...')
+#1 /home/enrolhere/public_html/college/vendor/autoload.php(7): ComposerAutoloaderInit8c2b3a3e25bfc2be1cd2968353a7a3e9::getLoader()
+#2 /home/enrolhere/public_html/college/artisan(18): require('/home/enrolhere...')
+#3 {main}
+  thrown in /home/enrolhere/public_html/college/vendor/composer/autoload_real.php on line 78
+[22-Aug-2022 07:50:56 UTC] PHP Warning:  require(/home/enrolhere/public_html/college/vendor/composer/../../App/permission.php): Failed to open stream: No such file or directory in /home/enrolhere/public_html/college/vendor/composer/autoload_real.php on line 78
+[22-Aug-2022 07:50:56 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/enrolhere/public_html/college/vendor/composer/../../App/permission.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home/enrolhere/public_html/college/vendor/composer/autoload_real.php:78
+Stack trace:
+#0 /home/enrolhere/public_html/college/vendor/composer/autoload_real.php(61): composerRequire8c2b3a3e25bfc2be1cd2968353a7a3e9('a8e73d20a1ea636...', '/home/enrolhere...')
+#1 /home/enrolhere/public_html/college/vendor/autoload.php(7): ComposerAutoloaderInit8c2b3a3e25bfc2be1cd2968353a7a3e9::getLoader()
+#2 /home/enrolhere/public_html/college/artisan(18): require('/home/enrolhere...')
+#3 {main}
+  thrown in /home/enrolhere/public_html/college/vendor/composer/autoload_real.php on line 78
+[22-Aug-2022 07:58:09 UTC] PHP Warning:  require(/home/enrolhere/public_html/college/vendor/composer/../../App/permission.php): Failed to open stream: No such file or directory in /home/enrolhere/public_html/college/vendor/composer/autoload_real.php on line 78
+[22-Aug-2022 07:58:09 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/enrolhere/public_html/college/vendor/composer/../../App/permission.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home/enrolhere/public_html/college/vendor/composer/autoload_real.php:78
+Stack trace:
+#0 /home/enrolhere/public_html/college/vendor/composer/autoload_real.php(61): composerRequire8c2b3a3e25bfc2be1cd2968353a7a3e9('a8e73d20a1ea636...', '/home/enrolhere...')
+#1 /home/enrolhere/public_html/college/vendor/autoload.php(7): ComposerAutoloaderInit8c2b3a3e25bfc2be1cd2968353a7a3e9::getLoader()
+#2 /home/enrolhere/public_html/college/artisan(18): require('/home/enrolhere...')
+#3 {main}
+  thrown in /home/enrolhere/public_html/college/vendor/composer/autoload_real.php on line 78

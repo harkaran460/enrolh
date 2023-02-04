@@ -1,0 +1,712 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+:root {
+    --color: #2a3c4a;
+}
+
+body#main {
+    padding: 25px;
+    background: var(--color);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.login {
+    background-color: #f1f5fa;
+}
+
+a {
+    text-decoration: none;
+    color: #0064e1;
+}
+
+h4,
+h4 button.dropdown-toggle {
+    font-size: 19px;
+    font-weight: 500;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color);
+    border-radius: 10px;
+}
+
+.btn {
+    font-size: 15px;
+}
+
+.dropdown .dropdown-menu .dropdown-item {
+    font-size: 17px;
+    padding: 8px 10px;
+}
+
+.dropdown .dropdown-menu .dropdown-item.active {
+    background-color: #f1f5fa;
+    color: #000;
+}
+
+.btn-check:focus+.btn,
+.btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0 rgb(13 110 253 / 25%);
+    border: 0;
+}
+
+.bg {
+    background-color: #0064e1;
+    color: #fff;
+}
+
+.form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: none;
+    outline: 0;
+    box-shadow: 0 0 0 0 rgb(13 110 253 / 25%);
+}
+
+.login small {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.login input,
+.login textarea {
+    font-size: 18px;
+}
+
+.form-check-input:checked {
+    background-color: #0064e1;
+    border-color: #0064e1;
+}
+
+.login .btn {
+    font-size: 18px;
+}
+
+.gfa li {
+    display: inline-block;
+}
+
+section .content h2 {
+    font-size: 48px;
+    font-weight: 500;
+    color: #323847;
+    padding-bottom: 18px;
+}
+
+section .content p {
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+section .card1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section .card1 .img-box {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section .card1 h3 {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+section .card1 p {
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.logins .container {
+    background-color: #f1f5fa;
+    padding: 50px;
+}
+
+.logins h4 {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 39px;
+    display: flex;
+    align-items: center;
+}
+
+#main .side-menu {
+    height: 100vh;
+    width: 85px;
+}
+
+#main .side-menu .main-menu {
+    position: fixed;
+    background-color: #fff;
+    width: 80px;
+    z-index: 99;
+    transition: 0.2s;
+    overflow: hidden;
+    z-index: 910;
+}
+
+#main .side-menu .main-menu:hover {
+    width: 300px;
+}
+
+#main .side-menu .main-menu .top-menu-bar .img-box {
+    width: 50px;
+    height: 50px;
+}
+
+#main .side-menu .main-menu .log-out {
+    display: none;
+    font-size: 22px;
+    opacity: 0;
+    transition: 0.2s;
+}
+
+#main .side-menu .main-menu:hover .log-out {
+    display: block;
+    opacity: 1;
+}
+
+#main .side-menu nav ul li {
+    list-style: none;
+    background-color: #f1f5fa;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 5px 2px;
+    border-radius: 10px;
+}
+
+#main .side-menu nav ul li a {
+    font-size: 22px;
+    padding-left: 10px;
+    position: relative;
+    width: 100%
+}
+
+#main .side-menu nav ul li a span {
+    position: absolute;
+    width: 400px;
+    opacity: 0;
+    font-size: 19px;
+    transition: 0.2s;
+}
+
+#main .side-menu .main-menu:hover nav ul li a span {
+    opacity: 1
+}
+
+#main .side-menu .main-menu nav ul li.active {
+    background-color: #0064e1;
+}
+
+#main .side-menu .main-menu nav ul li:hover {
+    background-color: #0064e1;
+}
+
+#main .side-menu .main-menu nav ul li:hover a {
+    color: #fff;
+}
+
+#main .side-menu .main-menu nav ul li.active a {
+    color: #fff;
+}
+
+a.notif-bell::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background-color: #0080ff;
+    position: absolute;
+    border-radius: 50px;
+    right: -4px;
+    top: -4px;
+}
+
+a.notif-bell {
+    position: relative;
+}
+
+header .dropdown-menu ul li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+header .dropdown-menu ul li a {
+    font-size: 16px;
+    color: #000;
+}
+
+header .dropdown-menu ul li a i {
+    font-size: 20px;
+}
+
+.vertical-menu.mm-active.darkHeader {
+    position: fixed;
+    animation: smoothScroll 1s forwards;
+    -webkit-animation: smoothScroll 1s forwards;
+}
+
+@keyframes smoothScroll {
+    0% {
+        transform: translateY(-40px)
+    }
+
+    100% {
+        transform: translateY(0)
+    }
+}
+
+ul.breadcrum li {
+    display: inline-block;
+    font-size: 18px;
+    margin-right: 15px;
+}
+
+ul.breadcrum li a {
+    font-size: 19px;
+}
+
+ul.breadcrum li:last-child {
+    margin-right: 0;
+}
+
+table {
+    white-space: nowrap;
+    background: #fff;
+    padding: 5px;
+    margin: 0 !important;
+}
+
+table th,
+table td {
+    font-size: 15px;
+    font-weight: 600 !important;
+    color: dimgrey
+}
+
+table input {
+    border-radius: 60px !important;
+}
+
+.slide-logo h5 {
+    font-size: 26px;
+    height: 60px;
+    line-height: 100px;
+    color: #fff;
+    margin: 0;
+    padding: 0 30px;
+}
+
+#sidebar-menu ul li:nth-child(1)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(1 * 0.1s);
+    animation-delay: calc(1 * 0.1s);
+}
+
+#sidebar-menu ul li:nth-child(2)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(2 * 0.1s);
+    animation-delay: calc(2 * 0.1s);
+}
+
+#sidebar-menu ul li:nth-child(3)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(3 * 0.1s);
+    animation-delay: calc(3 * 0.1s);
+}
+
+#sidebar-menu ul li:nth-child(4)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(4 * 0.1s);
+    animation-delay: calc(4 * 0.1s);
+}
+
+#sidebar-menu ul li:nth-child(5)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(5 * 0.1s);
+    animation-delay: calc(5 * 0.1s);
+}
+
+#sidebar-menu ul li:nth-child(6)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(6 * 0.1s);
+    animation-delay: calc(6 * 0.1s);
+}
+
+#sidebar-menu ul li:nth-child(7)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(7 * 0.1s);
+    animation-delay: calc(7 * 0.1s);
+}
+
+#sidebar-menu ul li:nth-child(8)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(8 * 0.1s);
+    animation-delay: calc(8 * 0.1s);
+}
+
+#sidebar-menu ul li:nth-child(9)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(9 * 0.1s);
+    animation-delay: calc(9 * 0.1s);
+}
+
+#sidebar-menu ul li:nth-child(10)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(10 * 0.1s);
+    animation-delay: calc(10 * 0.1s);
+}
+
+#sidebar-menu ul li:nth-child(11)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(11 * 0.1s);
+    animation-delay: calc(11 * 0.1s);
+}
+
+#sidebar-menu ul li:nth-child(12)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(12 * 0.1s);
+    animation-delay: calc(12 * 0.1s);
+}
+
+#sidebar-menu ul li:nth-child(13)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(13 * 0.1s);
+    animation-delay: calc(13 * 0.1s);
+}
+
+#sidebar-menu ul li:nth-child(14)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(14 * 0.1s);
+    animation-delay: calc(14 * 0.1s);
+}
+
+#sidebar-menu ul li:nth-child(15)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(15 * 0.1s);
+    animation-delay: calc(15 * 0.1s);
+}
+
+#sidebar-menu ul li:nth-child(16)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(16 * 0.1s);
+    animation-delay: calc(16 * 0.1s);
+}
+
+#sidebar-menu ul li:nth-child(17)>a {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    animation: 0.2s intro-submenu-animation ease-in-out 0.33333s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: calc(17 * 0.1s);
+    animation-delay: calc(17 * 0.1s);
+}
+
+@-webkit-keyframes intro-submenu-animation {
+    to {
+        opacity: 1
+    }
+
+    to {
+        transform: translate(0)
+    }
+}
+
+@keyframes intro-submenu-animation {
+    to {
+        opacity: 1
+    }
+
+    to {
+        transform: translate(0)
+    }
+}
+
+#sidebar-menu ul li a.active::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px #f0f4f9;
+    pointer-events: none;
+    transition: all .4s;
+}
+
+#sidebar-menu ul li a.active::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0 10px #f1f5f9;
+    pointer-events: none;
+    transition: all .4s;
+}
+
+#vertical-menu-btn {
+    display: none;
+}
+
+ol.breadcrumb {
+    margin: 0;
+}
+
+.breadcrumb-item>a {
+    color: var(--color);
+}
+
+.bg-primary {
+    background-color: var(--color) !important;
+}
+
+.upload__inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.upload__btn {
+    display: inline-block;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    min-width: 116px;
+    padding: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid;
+    background-color: var(--color);
+    border-color: var(--color);
+    border-radius: 10px;
+}
+
+.upload__btn:hover {
+    background-color: unset;
+    color: #4045ba;
+    transition: all 0.3s ease;
+}
+
+.upload__btn-box {
+    margin-bottom: 10px;
+}
+
+.upload__img-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+.upload__img-box {
+    width: 130px;
+    padding: 0 5px;
+    margin-bottom: 5px;
+}
+
+.upload__img-close {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-align: center;
+    line-height: 24px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.upload__img-close:after {
+    content: "\f00d";
+    font-size: 14px;
+    color: white;
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-ligatures: normal;
+    font-weight: 900;
+    height: 16px;
+    line-height: 16px;
+    text-rendering: auto;
+    width: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.img-bg {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    padding-bottom: 100%;
+}
+
+.upload__btn p {
+    margin: 0;
+}
+
+.page-content label {
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.page-content input,
+.page-content select {
+    /*height: 40px;*/
+    line-height: 25px;
+    border-radius: 0;
+    font-size: 16px;
+}
+
+/*.card .card-body label {*/
+/*    font-weight: 600;*/
+/*}*/
+
+.files .fade.in {
+    opacity: 1;
+}
+
+.main-index .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 100%;
+}
+
+.select2-search__field {
+    height: 25px !important;
+}
+
+.select2-container {
+    width: 100% !important;
+}
+
+.select2-container--default .select2-selection--multiple { 
+    padding: 0 10px;
+}
+
+.requirement-page .form-check-input {
+    height: 25px;
+    width: 25px;
+    margin: 1px;
+    margin-right: 5px;
+    border-radius: 0;
+    font-size: 20px;
+}
+
+.requirement-page .form-check-input:checked {
+    background-color: var(--color);
+    border-color: var(--color);
+}
+
+.requirement-page .form-check-input:focus { 
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+}

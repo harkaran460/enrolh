@@ -1,0 +1,9 @@
+<svg class="recharts-surface" width="140" height="140" viewBox="0 0 140 140" version="1.1"><defs><clipPath id="recharts2-clip"><rect x="5" y="5" height="130" width="130"></rect></clipPath></defs><g class="recharts-layer recharts-pie"><g class="recharts-layer"><g class="recharts-layer recharts-pie-sector"><path stroke="#0064E1" fill="#0064E1" color="#0064E1" class="recharts-sector" d="M 70,5
+    A 65,65,0,
+    1,1,
+    6.448849576966225,83.64739095611077
+  L 70,70 Z"></path></g><g class="recharts-layer recharts-pie-sector"><path stroke="#3590FF" fill="#3590FF" color="#3590FF" class="recharts-sector" d="M 6.448849576966225,83.64739095611077
+    A 65,65,0,
+    0,1,
+    69.99999999999999,5
+  L 70,70 Z"></path></g></g></g></svg>

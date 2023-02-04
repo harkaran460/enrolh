@@ -1,0 +1,366 @@
+@media (min-width:320px) and (max-width:600px) {
+    .timeline {
+        display: unset;
+    }
+    .timeline li {
+        display: contents;
+    }
+    .timeline li.current img,
+    .timeline li.completed img,
+    .timeline li.upcoming img {
+        display: none;
+    }
+    .timeline li.completed+li:after {
+        background: #ffffff;
+    }
+    .timeline li:after {
+        top: 35px;
+    }
+    .timeline li.completed .card,
+    .timeline li.current .card,
+    .timeline li.upcoming .card {
+        margin-top: 10px !important;
+    }
+    .form-Program-set .dropdown-select.wide {
+        width: 100%;
+        border: 1px solid #a79f9f;
+        border-radius: 50px;
+        margin-bottom: 10px;
+    }
+    .form-Program-set form {
+        border: 0 solid #b7bbb9;
+    }
+    .mt-xs-5 {
+        margin-top: 50px;
+    }
+    .btn-programs {
+        border-radius: 50px;
+        min-width: 100%;
+    }
+    .contact-list.style li {
+        margin: 0 5px 0 0;
+    }
+    .profile-info-holder .profile-info-box {
+        display: block;
+    }
+    .profile-info-holder .info-list li {
+        font-size: 13px;
+    }
+    .contact-list.style li {
+        margin: 0 0 15px 0;
+        width: 100%;
+        display: block;
+    }
+    .contact-list.style {
+        display: block;
+    }
+    .contact-list i {
+        top: 0;
+        left: 0;
+        position: relative;
+    }
+    .contact-list li a {
+        font-size: 14px;
+    }
+    .profile-info-holder .button {
+        min-width: 100px;
+    }
+    .profile-info-holder .button .text {
+        font-size: 14px;
+    }
+    .profile-info-holder {
+        margin: 0 0 10px;
+    }
+    .my-profile {
+        display: block;
+    }
+    .shadow-md {
+        left: 0;
+        right: unset !important;
+        padding: 3px 10px;
+    }
+    .shadow-md ul {
+        padding-left: 5px;
+    }
+    .page-content.h-100 {
+        height: unset;
+    }
+    .form-Program-set {
+        padding: 10px 20px;
+        margin-bottom: 120px;
+    }
+    .btn-programs {
+        border-radius: 30px;
+    }
+    #vertical-menu-btn {
+        display: block;
+    }
+    ol.breadcrumb {
+        padding: 0.75rem 0;
+        margin: auto;
+    }
+    body#main {
+        padding: 10px;
+    }
+    .shadow-md1 {
+        padding: 3px 10px;
+    }
+    .heading-dark {
+        padding-right: 10px;
+    }
+    .color-layout {
+        height: 20px;
+        width: 20px;
+        margin-right: 5px;
+    }
+    .navbar-header .dropdown .dropdown-menu {
+        left: unset !important;
+        top: 1% !important;
+    }
+    .navbar-header .dropdown .dropdown-menu .p-3 {
+        padding: 10px !important;
+    }
+    .notification-item .d-flex {
+        padding: 10px;
+    }
+    .vertical-menu {
+        left: 0;
+    }
+    .institution-details h4,
+    .top-disciplines h4 {
+        padding: 10px 10px 10px !important;
+    }
+    .nav-college-list .nav-menu li a {
+        padding: 5px 10px;
+    }
+    .right-side-filter button.btn.btn-primary {
+        margin-right: 5px;
+    }
+    .programs-form-search .form-group {
+        margin-bottom: 10px;
+    }
+    .programs-form-search .form-group.mt-3 {
+        margin-top: 0 !important;
+    }
+    .program-card-heading p {
+        margin-bottom: 10px;
+    }
+    .program-card-main {
+        display: block;
+    }
+    .program-card-img img {
+        margin: 10px 30px 15px 0px;
+    }
+    .program-card-heading ul li {
+        width: 49%;
+    }
+    .program-card-heading ul {
+        margin-bottom: 10px;
+    }
+    .program-card,
+    .program-list {
+        margin-top: 10px;
+    }
+    .select-bar-program {
+        top: 0.2%;
+    }
+    .program-list button {
+        margin-bottom: 10px;
+    }
+    .page-header-search-dropdown {
+        display: none;
+    }
+    .program .input-group.d-flex.justify-content-center .w-25 {
+        width: 35% !important;
+    }
+    .main-programs-img {
+        align-items: center;
+    }
+    .college-location-way li {
+        padding: 0 10px 10px 0;
+    }
+    .college-location-way li:nth-child(1) {
+        border-right: none;
+    }
+    .main-programs-img {
+        padding: 5px 0px;
+    }
+    .m-60 {
+        margin-top: 20px;
+    }
+    .college-details .mt-5 {
+        margin-top: 1rem !important;
+    }
+    .d-none-custom {
+        display: none;
+    }
+    .nav-college-list .mt-5 {
+        margin-top: 1rem !important;
+    }
+    .main-college-about p {
+        margin-bottom: 10px;
+    }
+    .stepwizard-step {
+        padding: 0;
+        display: block;
+        text-align: left;
+    }
+    .stepwizard .btn-default {
+        margin-bottom: 0px;
+        padding: 10px 0;
+    }
+    .heading-registration {
+        margin: 5px 0;
+        padding: 0;
+    }
+    .setup-content .card-body {
+        padding: 10px;
+    }
+    .main-student-profile .btn-next {
+        padding: 7px 20px;
+        margin: 10px 0;
+    }
+    .personal-information h4,
+    .address-detail h4 {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+    .personal-information h5 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    .main-student-profile .form-group {
+        margin-bottom: 10px;
+    }
+    .discover-programs {
+        padding: 7px 17px;
+        font-size: 17px;
+        float: left !important;
+        margin-top: 15px;
+    }
+}
+
+@media (min-width:601px) and (max-width:992px) {
+    .timeline {
+        display: unset;
+    }
+    .timeline li {
+        display: contents;
+    }
+    .timeline li.current img,
+    .timeline li.completed img,
+    .timeline li.upcoming img {
+        display: none;
+    }
+    .timeline li.completed+li:after {
+        background: #ffffff;
+    }
+    .timeline li:after {
+        top: 35px;
+    }
+    .timeline li.completed .card,
+    .timeline li.current .card,
+    .timeline li.upcoming .card {
+        margin-top: 10px !important;
+    }
+    .form-Program-set .dropdown-select.wide {
+        width: 100%;
+        border: 1px solid #a79f9f;
+        border-radius: 50px;
+        margin-bottom: 10px;
+    }
+    .form-Program-set form {
+        border: 0 solid #b7bbb9;
+    }
+    .mt-xs-5 {
+        margin-top: 50px;
+    }
+    .btn-programs {
+        border-radius: 50px;
+        min-width: 100%;
+    }
+    .contact-list.style li {
+        margin: 0 5px 0 0;
+    }
+    .profile-info-holder .profile-info-box {
+        display: block;
+    }
+    .profile-info-holder .info-list li {
+        font-size: 13px;
+    }
+    .contact-list.style li {
+        margin: 0 0 15px 0;
+        width: 100%;
+        display: block;
+    }
+    .contact-list.style {
+        display: block;
+    }
+    .contact-list i {
+        top: 0;
+        left: 0;
+        position: relative;
+    }
+    .contact-list li a {
+        font-size: 14px;
+    }
+    .profile-info-holder .button {
+        min-width: 100px;
+    }
+    .profile-info-holder .button .text {
+        font-size: 14px;
+    }
+    .profile-info-holder {
+        margin: 0 0 10px;
+    }
+    .my-profile {
+        display: block;
+    }
+}
+
+@media (min-width:993px) and (max-width:1200px) {
+    .form-Program-set .dropdown-select.wide {
+        width: 100%;
+        border: 1px solid #a79f9f;
+        border-radius: 50px;
+        margin-bottom: 10px;
+    }
+    .form-Program-set form {
+        border: 0 solid #b7bbb9;
+    }
+    .mt-xs-5 {
+        margin-top: 50px;
+    }
+    .btn-programs {
+        border-radius: 50px;
+        min-width: 100%;
+    }
+}
+
+@media (min-width:1201px) and (max-width:1300px) {
+    .form-Program-set .dropdown-select.wide {
+        width: 37%;
+    }
+    .btn-programs {
+        min-width: 175px;
+    }
+}
+
+@media (min-width:1301px) and (max-width:1400px) {
+    .form-Program-set .dropdown-select.wide {
+        width: 38%;
+    }
+    .btn-programs {
+        min-width: 175px;
+    }
+   
+}
+
+@media (min-width:1401px) and (max-width:1900px) {
+    .form-Program-set .dropdown-select.wide {
+        width: 40%;
+    }
+    .btn-programs {
+        min-width: 190px;
+    }
+}
