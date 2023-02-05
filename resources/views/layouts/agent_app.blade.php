@@ -31,13 +31,14 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assetsAgent/css/jquery.fancybox.min.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('assetsAgent/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assetsAgent/css/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assetsAgent/css/responsive.css') }}">
 
 </head>
 
-<body data-sidebar="dark" id="main">
+<body>
 
-    <div id="loading">
+    <div id="loading" class="d-none">
         <div id="loading-center">
             <div id="loading-center-absolute">
                 <div class="object" id="object_one"></div>
@@ -48,134 +49,39 @@
             </div>
         </div>
     </div>
-
-    <!-- Begin page -->
-    <div id="layout-wrapper">
-
-        <div class="vertical-menu">
-            <div data-simplebar class="h-100">
-                <div class="close-nav">
-                    <i class="bi bi-x"></i>
-                </div>
-                <div class="slide-logo">
-                    <!-- <img src=""> -->
-                    <h5 class="hide_logo">E</h5>
-                    <h5 class="full_logo">Enrolhere</h5>
-                </div>
-                <div id="sidebar-menu">
-                    <ul class="metismenu list-unstyled" id="side-menu">
-                        <?php $permissions = check_permission()
-                        ?>
-                        @foreach ($permissions as $permission)
-                    
-                        <li><a href="/{{$permission->slug}}"><?php echo $permission->icon;?><span>{{$permission->page_title}}</span></a></li>
-                        @endforeach
-
-                    </ul>
-                </div>
-                
-                 <div class="side-profile">
-                    <div class="profile-login d-inline-block">
-                     
-                        <div class="dropdown" style="display: flex;padding-left: 15px;">
-                          
-        
-                            <img class="rounded-circle header-profile-user" src="/assetsAgent/img/profile-icon.png" alt="Header Avatar">
-                            <a class="user-name custom" href="javascript::"> 
-                                <span class="font-size-14">Hello</span>
-                                <span class="font-size-14"><b> Sukhwinder Singh</b></span> 
-                            </a>
-         
-                        </div>
-                      
-                    </div>
-        
-                </div>
-                
+    
+    <header class="mainHeader">
+        <a href="javascript:void(0)" class="brandName"><img src="assetsAgent/img/Enrolhere.png"><img src="assetsAgent/img/eh.png"></a>
+        <a href="javascript:void(0)" class="toggleSide"><img src="assetsAgent/img/bars.png"></a>
+        <span class="pageTitle">Dashboard</span>
+        <a class="mainHeaderNotify" href="/important_notice"><img src="assetsAgent/img/bell.png"></a>
+        <div class="dropdown profileLogin">
+            <img src="assetsAgent/img/profile.png">
+            <a type="button" data-bs-toggle="dropdown">{{Auth::user()->name}} <strong>{{Auth::user()->email}}</strong></a>
+            <div class="dropdown-menu dropdown-menu-end"> 
+                <a class="dropdown-item" href="/recruitment_partner_id">Profile</a> 
+                <a class="dropdown-item" href="/logout"><span key="t-logout">Logout</span></a>
             </div>
-        </div>
-        <div class="container-fluid" style="background: #FFFFFF;box-shadow: 0px 1px 0px #E6EDFE;padding: 10px 0 10px 0;"> 
-            <div class="row">
-                <div class="col-12">
-                    <div class="d-flex align-items-center justify-content-between me-4">
-                        <h4 class="mb-sm-0 font-size-18 ms-5 ps-5 top-heading-text">Dashboard</h4>
-        
-                        <div class="d-flex">
-                            
-                            <div class="dropdown d-inline-block phone-noti">
-        
-                                <a href="/important_notice"  class="btn header-item noti-icon waves-effect">
-                                    <img class="header-profile-user" style="border-radius: 10px;" src="assetsAgent/img/well-icon.png" alt="Header Avatar">
-                                    <!--<span class="badge bg-danger rounded-pill">3</span> -->
-                                </a> 
-                            </div>
-        <?php //echo "<pre>";print_r(Auth::user());?>
-                            <div class="dropdown profile-login d-inline-block  d-flex">
-                                <img class="header-profile-user" style="border-radius: 10px;" src="assetsAgent/img/profile.png" alt="Header Avatar">
-                                <button type="button" class="btn header-item waves-effect ps-0 ms-2" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="d-block">
-                                        <h4 class="mb-0 pt-1">Niraj</h4>
-                                        <p>hello_agent@gmail.com</p>
-                                    </span>
-                                    <img class="header-profile-user mt-2" style="height:15px;width: 15px;padding: 3px;" src="assetsAgent/img/dropdown.png" alt="Header Avatar">
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-end"> 
-                                    <a class="dropdown-item user-name" href="/recruitment_partner_id"> 
-                                        <span class=" font-size-14"><b> {{Auth::user()->name}}</b></span>
-                                        <span class=" font-size-12 opacity-50">{{Auth::user()->email}}</span>
-                                    </a> 
-                                     <a class="dropdown-item" href="/logout">
-                                        <i class="bx bx-power-off font-size-16 align-middle me-1"></i> 
-                                        <span key="t-logout">Logout</span>
-                                    </a>
-                                </div>
-                            </div> 
-                             
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div> 
+    </header>
 
-        <div class="main-content">
-            
+    <section class="mainWrapper">
+        <aside class="leftSide">
+            <?php $permissions = check_permission()?>
+            @foreach ($permissions as $permission)
+            <a href="/{{$permission->slug}}"><?php echo $permission->icon;?><span>{{$permission->page_title}}</span></a>
+            @endforeach
+        </aside>
+        <section class="wrapperInner">
             @yield('content')
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>© Enrollhere 2022 All Rights Reserved.</p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+        </section>
+        <footer class="mainFooter">© Enrollhere 2022 All Rights Reserved.</footer>
+    </section>
 
-        </div>
-
-        <!-- END layout-wrapper -->
-
-        <div class="shadow-md d-none">
-            <div class="color_change">Color Scheme</div>
-            <ul class="plaette-colors">
-                <li class="color-layout" id="blue" data-color="#2a50ed"></li>
-                <li class="color-layout" id="yellow" data-color="#064e3b"></li>
-                <li class="color-layout" id="dark-green" data-color="#164e63"></li>
-                <li class="color-layout" id="green" data-color="#312e81"></li>
-            </ul>
-        </div>
-
-        <div class="shadow-md1 d-none">
-            <div class="heading-dark">Dark Mode</div>
-            <label class="switch">
-                <input type="checkbox" class="checkbox" id="checkbox">
-                <span class="slider"></span>
-            </label>
-        </div>
         <script>
             var base_path = '{{ url('/') }}';
         </script>
         
-
         <!-- Javascript -->
         <script src="{{ asset('assetsAgent/js/jquery.min.js') }}"></script>
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.3.2/ckeditor.js"></script>-->
@@ -222,6 +128,11 @@
         <script src="{{ asset('assetsAgent/js/agent_custom.js') }}"></script>
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            $(document).on('click', '.toggleSide', function(){
+                $(".mainWrapper, .mainHeader").toggleClass("mini");
+            })
+        </script>
         <script>
             $('body').on('click','#rzp-button1',function(e){
                 e.preventDefault();

@@ -1,0 +1,29 @@
+.btn{
+    background-color: $primary;
+    height: 36px;
+    padding: 0 20px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: $primary solid 2px;
+    font-size: 13px;
+    font-weight: 500;
+    @include borderRadius(8px);
+    &:hover{
+        background-color: $dark;
+        border-color: $dark;
+    }
+    &:focus{
+        box-shadow: none !important;
+    }
+}
+.btn-secondary{
+    color: $primary !important;
+    background-color: transparent !important;
+    border-color: $primary !important;
+    &:hover{
+        background-color: $primary !important;
+        color: $white !important;
+    }
+}

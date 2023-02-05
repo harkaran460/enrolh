@@ -1,0 +1,393 @@
+*{outline: none !important;}
+html{
+    height: 100%;
+    scroll-behavior: smooth;
+    body{
+        height: 100%;
+        background-color: $bgColor;
+    }
+}
+
+.mainHeader{
+    height: 60px;
+    width: 100%;
+    border: $primaryLight solid 1px;
+    background-color: $white;
+    display: flex;
+    align-items: center;
+    z-index: 9;
+    position: fixed;
+    top: 0;
+    .brandName{
+        width: 219px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: $primaryLight solid 1px;
+        @include transition(0.3s all linear);
+        img{
+            height: 18px;
+            &:nth-child(2){
+                display: none;
+            }
+        }
+    }
+    &.mini{
+        .brandName{
+            width: 60px;
+            img{
+                &:first-child{
+                    display: none !important;
+                }
+                &:nth-child(2){
+                    display: block;
+                }
+            }
+        }
+    }
+    .toggleSide{
+        margin:0 15px;
+        img{
+            width: 18px;
+        }
+    }
+    .pageTitle{
+        font-size: 18px;
+        font-weight: 600;
+        color: $dark;
+    }
+    .mainHeaderNotify{
+        margin-left: auto;
+        background-color: #F2F6FE;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        margin-right: 15px;
+        @include borderRadius(10px);
+        img{
+            width: 20px;
+        }
+    }
+    .profileLogin{
+        display: flex;
+        margin-right: 15px;
+        align-items: center;
+        >a{
+            display: flex;
+            flex-direction: column;
+            color: $dark;
+            font-weight: 600;
+            margin-left: 10px;
+            line-height: 16px;
+            strong{
+                color: #737D98;
+                font-weight: normal;
+            }
+        }
+    }
+}
+.mainWrapper{
+    padding-top: 60px;
+    padding-left: 220px;
+    @include transition(0.3s padding linear);
+    .leftSide{
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 220px;
+        border: $primaryLight solid 1px;
+        background-color: $white;
+        z-index: 9;
+        height: calc(100vh - 59px);
+        padding: 0 10px;
+        display: flex;
+        flex-direction: column;
+        @include transition(0.3s all linear);
+        a{
+            min-height: 38px !important;
+            font-size: 13px;
+            font-weight: 500;
+            color: #76879F;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            @include borderRadius(5px);
+            &:first-child{
+                margin-top: 15px;
+            }
+            i{
+                min-width: 40px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 !important;
+                font-size: 14px;
+            }
+            &.active, &:hover{
+                background-color: $primary;
+                color: $white;
+            }
+        }
+    }
+    &.mini{
+        padding-left: 60px;
+        .leftSide{
+            width: 60px;
+            a{
+                &:hover{
+                    width: 200px;
+                }
+            }
+        }
+    }
+}
+.mainTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 15px 0;
+    .h4{
+        font-size: 17px;
+        font-weight: 600;
+        color: $dark;
+        margin: 0;
+    }
+}
+.agentProgramView{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    .filtersOptions{
+        min-width: 400px;
+        max-width: 400px;
+    }
+    .agentProgramData{
+        width: calc(100% - 415px);
+    }
+}
+.panel{
+    background-color: $white;
+    margin-top: 15px;
+    @include borderRadius(10px);
+    display: flex;
+    flex-direction: column;
+    .pHead{
+        padding:0 15px;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: #EFF4FF solid 1px;
+        min-width: 100%;
+        .h5{
+            font-size: 14px;
+            font-weight: 600;
+            color: $dark;
+            margin: 0;
+        }
+        .control{
+            display: flex;
+            align-items: center;
+            padding: 16px 0;
+            .form-group{
+                margin: 0;
+            }
+            .form-select{
+                border: 1px solid #ced4da;
+                height: 36px;
+                font-size: 12px;
+                font-weight: 500;
+                z-index: 1;
+                position: relative;
+                background-color: transparent;
+                @include borderRadius(8px);
+            }
+            .search{
+                margin-right: 15px;
+                input{
+                    border: 1px solid #ced4da;
+                    height: 36px;
+                    font-size: 12px;
+                    font-weight: 500;
+                    padding-left: 32px;
+                    z-index: 1;
+                    position: relative;
+                    background-color: transparent;
+                    @include borderRadius(8px);
+                }
+                >i{
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    height: 36px;
+                    padding: 0;
+                    width: 36px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+    .pBody{
+        padding: 15px;
+        min-width: 100%;
+    }
+    .btnGroup{
+        display: flex;
+        margin-top: 15px;
+        justify-content: flex-end;
+        button{
+            &:last-child{
+                margin-left: 15px;
+            }
+        }
+    }
+}
+.form-group{
+    label{
+        font-size: 12px;
+        font-weight: 600;
+        color: $dark;
+        margin: 0;
+    }
+    &.checkbox{
+        margin: 0;
+        .col{
+            margin-top: 15px;
+        }
+        .form-check-input + .form-check-label{
+            margin-top: 4px;
+        }
+    }
+}
+.customTabs{
+    border-bottom: #EFF4FF solid 1px;
+    li{
+        button{
+            border: none !important;
+            @include borderRadius(0 !important);
+            color: $dark !important;
+            font-weight: 500;
+            &.active{
+                border-bottom: $primary solid 2px !important;
+                color: $primary !important;
+            }
+        }
+    }
+}
+.agentProgramsList{
+    border: $primaryLight solid 1px;
+    margin-top: 15px;
+    @include borderRadius(10px);
+    overflow: hidden;
+    .agentProgramsListHead{
+        background-color: $bgColor;
+        border-bottom: $primaryLight solid 1px;
+        padding: 15px;
+        display: flex;
+        width: 100%;
+        position: relative;
+        padding-left: 60px;
+        min-height: 65px;
+        flex-direction: column;
+        color: $dark;
+        font-size: 11px;
+        line-height: 16px;
+        justify-content: center;
+        strong{
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .thumb{
+            width: 35px;
+            height: 35px;
+            @include borderRadius(100%);
+            overflow: hidden;
+            position: absolute;
+            left: 15px;
+            border: $primaryLight solid 1px;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+    .agentProgramsListTitle{
+        font-size: 13px;
+        font-weight: 600;
+        margin: 0;
+        padding: 15px 15px 0;
+        display: flex;
+        width: 100%;
+        color: $dark !important;
+    }
+    .agentProgramsListView{
+        display: flex;
+        padding: 15px;
+        .programsListView{
+            display: flex;
+            position: relative;
+            height: 35px;
+            padding-left: 45px;
+            width: calc(100% / 3);
+            .thumb{
+                width: 35px;
+                height: 35px;
+                @include borderRadius(100%);
+                overflow: hidden;
+                position: absolute;
+                left: 0;
+                background-color: $bgColor;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img{
+                    height: 15px;
+                }
+            }
+            .title{
+                flex-direction: column;
+                display: flex;
+                color: $dark;
+                font-size: 11px;
+                line-height: 16px;
+                strong{
+                    font-size: 12px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+    .expandBtn{
+        border-top: $primaryLight solid 1px;
+        width: 100%;
+        padding:8px 15px;
+        font-size: 12px;
+        color: $primary !important;
+        font-weight: 600;
+        align-items: center;
+        display: flex !important;
+        &.hide1{
+            display: none !important;
+        }
+        i{
+            margin-left: 5px;
+        }
+    }
+}
+.mainFooter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    color: #74788d;
+    font-size: 13px;
+}
