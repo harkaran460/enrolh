@@ -158,6 +158,12 @@ html{
         color: $dark;
         margin: 0;
     }
+    .controls{
+        display: flex;
+        .btn{
+            margin-left: 7px;
+        }
+    }
 }
 .agentProgramView{
     display: flex;
@@ -238,6 +244,15 @@ html{
     .pBody{
         padding: 15px;
         min-width: 100%;
+        .form-group{
+            position: relative;
+            .search i{
+                z-index: 1;
+            }
+        }
+        .select2-container .select2-search--inline .select2-search__field{
+            margin-top: 3px;
+        }
     }
     .btnGroup{
         display: flex;
@@ -256,6 +271,16 @@ html{
         font-weight: 600;
         color: $dark;
         margin: 0;
+    }
+    .form-control, .form-select{
+        border: 1px solid #ced4da;
+        height: 36px;
+        font-size: 12px;
+        font-weight: 500;
+        z-index: 1;
+        position: relative;
+        background-color: transparent;
+        @include borderRadius(8px);
     }
     &.checkbox{
         margin: 0;
@@ -390,4 +415,229 @@ html{
     padding: 20px 0;
     color: #74788d;
     font-size: 13px;
+}
+.studentSection{
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+    margin-top: 15px;
+}
+.tableGridView{
+    background-color: $white;
+    @include borderRadius(10px);
+    overflow: hidden;
+    .tableCustomStudent{
+        thead{
+            tr{
+                th{
+                    color: $dark;
+                    font-size: 12px;
+                    font-weight: 600;
+                    vertical-align: middle !important;
+                    padding: 5px ;
+                    border-color: #DEE7FA;
+                    &:not(:first-child){
+                        border-left:solid 1px #DEE7FA;
+                    }
+                    &:first-child{
+                        padding-left: 15px;
+                    }
+                    &:last-child{
+                        padding-right: 15px;
+                    }
+                    .form-control{
+                        padding: 0 0 0 5px;
+                        color: #828EA4;
+                        font-size: 11px;
+                        height: 32px;
+                    }
+                    .form-select{
+                        color: #828EA4;
+                        height: 32px;
+                        font-size: 11px;
+                        padding: 0 5px;
+                        background-position: right 5px center;
+                    }
+                    &.size{width: 45px;}
+                    &.size1{width: 60px;}
+                    &.size2{width: 80px;}
+                    &.size3{width: 100px;}
+                    &.size4{width: 160px;}
+                    &.size5{width: 150px;}
+                    &.size6{width: 200px;}
+                }
+                &:nth-child(2){
+                    th{
+                        &:nth-child(2){
+                            padding-left: 15px;
+                            border-left: none;
+                        }
+                    }
+                }
+            }
+        }
+        tbody{
+            tr{
+                &:nth-child(odd){
+                    td{
+                        background-color: #f6f9fe;
+                    }
+                }
+                td{
+                    text-align: left;
+                    vertical-align: middle !important;
+                    font-size: 11px;
+                    font-weight: 500;
+                    padding: 5px;
+                    border-color: #DEE7FA;
+                    &:not(:first-child){
+                        border-left:solid 1px #DEE7FA;
+                    }
+                    &:first-child{
+                        padding-left: 15px;
+                    }
+                    &:last-child{
+                        padding-right: 15px;
+                    }
+                    >a{
+                        // max-width: 200px;
+                        display: block;
+                        overflow: hidden;
+                        color: $primary;
+                        text-overflow: ellipsis;
+                    }
+                    .text{
+                        display: flex;
+                        max-width: 200px;
+                        white-space: normal;
+                        align-items: flex-start;
+                        i{
+                            margin-top: 4px;
+                            margin-right: 5px;
+                        }
+                    }
+                    .scoreView{
+                        width: 30px;
+                        height: 30px;
+                        background-color: $bgColor;
+                        font-size: 12px;
+                        color: $dark;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin: auto;
+                        @include borderRadius(100%);
+                    }
+                    &.action{
+                        .dropdown{
+                            float: right;
+                            >button{
+                                border: none !important;
+                                outline: none;
+                                background-color: transparent !important;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+                &:last-child{
+                    td{
+                        border-bottom-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+    .tableFooter{
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        border-top:solid 1px #DEE7FA;
+        .controls{
+            display: flex;
+            align-items: center;
+            select{
+                height: 36px;
+                padding: 0 8px;
+                width: 60px;
+                margin-left: 8px;
+            }
+            >nav{
+                >div{
+                    position: relative !important;
+                    align-items: center;
+                    >div{
+                        margin-left: 10px;
+                        >span{
+                            box-shadow: none !important;
+                            display: flex;
+                            >*{
+                                padding:5px 10px !important;
+                                background-color: #fff !important;
+                                border:solid 1px #DEE7FA !important;
+                                margin: 0 2px;
+                                @include borderRadius(5px);
+                                width: 30px;
+                                &:hover{
+                                    background-color: $bgColor !important;
+                                }
+                                &[aria-current="page"]{
+                                    background-color: $primary !important;
+                                    color: $white;
+                                }
+                                *{
+                                    padding: 0 !important;
+                                    border: none !important;
+                                    box-shadow: none !important;
+                                    background-color: transparent !important;
+                                }
+                            }
+                        }
+                    }
+                    p{
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
+.customModalView{
+    p{
+        &.text{
+            display: flex;
+        }
+    }
+    label{
+        &.text{
+            margin-left: 10px;
+        }
+    }
+    .text{
+        font-size: 12px;
+        line-height: 20px;
+        font-weight: 500;
+        color: $dark;
+    }
+    .h5{
+        font-size: 12px;
+        font-weight: 600;
+        color: $dark;
+        display: flex;
+        margin: 15px 0 5px;
+    }
+}
+.columnFilter{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    span{
+        margin-right: auto;
+        font-size: 12px;
+        font-weight: 600;
+        color: $dark;
+    }
+    label{
+        margin: 0;
+    }
 }
