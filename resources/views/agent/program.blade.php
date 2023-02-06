@@ -75,7 +75,7 @@
     <div class="mainTitle">
         <span class="h4">Programs & School</span>
         <div class="controls">
-            <button class="btn btn-secondary">Filter</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewStudent"><i class="fa-solid fa-plus me-1"></i>Add new Student</button>
         </div>
     </div>
     <div class="agentProgramView">
@@ -465,158 +465,78 @@
     </div>
 
 
-
-<div class="modal fade" id="addNewStudent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade customModalView" id="addNewStudent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 600px;">
-        
-<!--        <form class="row bg-white g-3 needs-validation" novalidate>-->
-<!--  <div class="col-md-4">-->
-<!--    <label for="validationCustom01" class="form-label">First name</label>-->
-<!--    <input type="text" class="form-control" id="validationCustom01" value="Mark" required>-->
-<!--    <div class="valid-feedback">-->
-<!--      Looks good!-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="col-md-4">-->
-<!--    <label for="validationCustom02" class="form-label">Last name</label>-->
-<!--    <input type="text" class="form-control" id="validationCustom02" value="Otto" required>-->
-<!--    <div class="valid-feedback">-->
-<!--      Looks good!-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="col-md-4">-->
-<!--    <label for="validationCustomUsername" class="form-label">Username</label>-->
-<!--    <div class="input-group has-validation">-->
-<!--      <span class="input-group-text" id="inputGroupPrepend">@</span>-->
-<!--      <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>-->
-<!--      <div class="invalid-feedback">-->
-<!--        Please choose a username.-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="col-md-6">-->
-<!--    <label for="validationCustom03" class="form-label">City</label>-->
-<!--    <input type="text" class="form-control" id="validationCustom03" required>-->
-<!--    <div class="invalid-feedback">-->
-<!--      Please provide a valid city.-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="col-md-3">-->
-<!--    <label for="validationCustom04" class="form-label">State</label>-->
-<!--    <select class="form-select" id="validationCustom04" required>-->
-<!--      <option selected disabled value="">Choose...</option>-->
-<!--      <option>...</option>-->
-<!--    </select>-->
-<!--    <div class="invalid-feedback">-->
-<!--      Please select a valid state.-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="col-md-3">-->
-<!--    <label for="validationCustom05" class="form-label">Zip</label>-->
-<!--    <input type="text" class="form-control" id="validationCustom05" required>-->
-<!--    <div class="invalid-feedback">-->
-<!--      Please provide a valid zip.-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="col-12">-->
-<!--    <div class="form-check">-->
-<!--      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>-->
-<!--      <label class="form-check-label" for="invalidCheck">-->
-<!--        Agree to terms and conditions-->
-<!--      </label>-->
-<!--      <div class="invalid-feedback">-->
-<!--        You must agree before submitting.-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="col-12">-->
-<!--    <button class="btn btn-primary" type="submit">Submit form</button>-->
-<!--  </div>-->
-<!--</form>-->
-
-        <form action="" method="POST" id="student_regi"  class="needs-validation" novalidate>
+        <form action="" method="POST" id="student_regi" style="pointer-events:auto;">
             @csrf
-            <div class="modal-content" id="new-students">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add New Student</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="panel m-0">
+                <div class="pHead">
+                    <span class="h5">Add New Student</span>
+                    <div class="control"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
                 </div>
-                <div id="error"></div>
-                <div id="success"></div>
-                <div class="modal-body " style="height: 600px; overflow-Y: scroll;">
-                    <p>Please provide a legitimate email address for your student that is actively monitored by them.
-                        Their country is required to forward applications to our partner schools. Note: ApplyBoard will
-                        not communicate with your student via email or other methods.</p>
-
-                    <div class="mb-3">
-                       
-                        <label for="validationCustom01" class="form-label">CONTACT INFORMATION</label>
-                        <input type="email" name="email" class="form-control" value="" id="validationCustom01" placeholder="email" required>
-                        <input type="tel" name="phone" class="form-control mt-3" id="validationCustom02" placeholder="Phone Number" required>
-                       
-                        <div class="valid-feedback">
-                          Looks good!
+                <div class="pBody">
+                    <div id="error"></div>
+                    <div id="success"></div>
+                    <span class="text">Please provide a legitimate email address for your student that is actively monitored by them. Their country is required to forward applications to our partner schools. Note: ApplyBoard will not communicate with your student via email or other methods.</span>
+                    <span class="h5">CONTACT INFORMATION</span>
+                    <div class="row">
+                        <div class="form-group col">
+                            <input type="email" name="email" class="form-control" placeholder="Email">
                         </div>
-                        
-
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">PERSONAL INFORMATION</label>
-                        <input type="text" class="form-control mb-3" name="fname" placeholder="Given Name" required>
-                        <input type="text" class="form-control mb-3" name="lname" placeholder="Last Name" required>
-                        <input type="text" class="form-control mb-3" name="family_name"
-                            placeholder="Family Name">
-                        <input type="date" class="form-control mb-3" name="dob" placeholder="Birth Date" required>
-                        <select class="form-select " name="citizenship" aria-label="Default select example">
-                            <option selected>Country of Citizenship</option>
-                            @foreach ($countries as $country)
-                                <option value="{{ $country->id }}">
-                                    {{ $country->country }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-3 gndr-ads">
-                        <label class="form-label">Gender</label>
-                        <div class="d-flex flex-row sg">
-                            <div class="w-100 me-3 d-flex align-items-center">
-                                <input class="mt-1 d-none" type="radio" name="gender" id="radiomale"
-                                    value="male" checked>
-                                <label class="w-100 pt-3 ps-2" for="radiomale">Male</label>
-                            </div>
-                            <div class="w-100 d-flex align-items-center">
-                                <input class="mt-1 d-none" type="radio" name="gender" value="female"
-                                    id="radiofemale" required>
-                                <label class="w-100 pt-3 ps-2" for="radiofemale">Female</label>
-                            </div>
-
+                        <div class="form-group col">
+                            <input type="tel" name="phone" class="form-control" placeholder="Phone Number">
                         </div>
                     </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" name="term_conditions" type="checkbox" value="1" required
-                            id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            I confirm that I have received express written consent from the student whom I am creating
-                            this profile for and I can provide proof of their consent upon request. To learn more please
-                            refer to the <a href="#">Personal Data Consent</a> article.
-                        </label>
+                    <span class="h5">PERSONAL INFORMATION</span>
+                    <div class="row">
+                        <div class="form-group col">
+                            <input type="text" class="form-control" name="fname" placeholder="Given Name">
+                        </div>
+                        <div class="form-group col">
+                            <input type="text" class="form-control" name="lname" placeholder="Last Name">
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn px-4" style="background-color: #FFE5E4;"
-                        data-bs-dismiss="modal">Cancel</button>
-                    <input type="hidden" id="agent_id" name="agent_id" value="{{ Auth::user()->id }}">
-                    <button type="button" class="btn btn-primary px-4 bg float-end"
-                        onclick="student_regi_agent();">Create Student</button>
+                    <div class="row">
+                        <div class="form-group col">
+                            <input type="text" class="form-control" name="family_name" placeholder="Family Name">
+                        </div>
+                        <div class="form-group col">
+                            <input type="text" id="datepicker" name="dob" class="form-control"  placeholder="Birth Date">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <select class="form-select " name="citizenship" aria-label="Default select example">
+                                <option selected>Country of Citizenship</option>
+                                @foreach ($countries as $country)<option value="{{ $country->id }}">{{ $country->country }}</option>@endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col d-flex align-items-center">
+                            <label class="form-label">Gender</label>
+                            <div class="form-check d-flex align-items-center">
+                                <input class="form-check-input m-0" type="radio" name="gender" id="radiomale" value="male" checked>
+                                <label class="form-check-label ms-1" for="radiomale">Male</label>
+                            </div>
+                            <div class="form-check d-flex align-items-center">
+                                <input class="form-check-input m-0" type="radio" name="gender" value="female" id="radiofemale">
+                                <label class="form-check-label ms-1" for="radiofemale">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                   <div class="form-check">
+                       <input class="form-check-input" name="term_conditions" type="checkbox" value="1" id="flexCheckDefault">
+                       <label class="form-check-label text" for="flexCheckDefault">I confirm that I have received express written consent from the student whom I am creating this profile for and I can provide proof of their consent upon request. To learn more please refer to the <a href="#">Personal Data Consent</a> article.</label>
+                   </div>
+                    <div class="btnGroup">
+                        <input type="hidden" id="agent_id" name="agent_id" value="{{ Auth::user()->id }}">
+                        <button type="button" class="btn btn-secondary" style="background-color: #FFE5E4;" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="student_regi_agent();">Create Student</button>
+                    </div>
                 </div>
             </div>
         </form>
     </div>
 </div>
-
-
-
 <style>
     #range-slider {max-width: 95%; margin: 0 auto;}
 #slider-range { background-color: #D4D4D4;  height:5px;}
