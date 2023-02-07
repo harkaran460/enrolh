@@ -4,7 +4,7 @@ $("#country").on("change", function (e) {
         .map(function () {
             return $(this).data("id");
         })
-        .get();
+        .get(); 
 
     let token = $("input[name=_token]").val();
     if (ids != "") {
