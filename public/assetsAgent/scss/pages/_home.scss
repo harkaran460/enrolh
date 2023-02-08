@@ -465,6 +465,15 @@ html{
                     &.size4{width: 160px;}
                     &.size5{width: 150px;}
                     &.size6{width: 200px;}
+                    .fromToDate{
+                        display: flex;
+                        >.calendar{
+                            width: 90px;
+                            >.input{
+                                width: 100%;
+                            }
+                        }
+                    }
                 }
                 &:nth-child(2){
                     th{
@@ -522,11 +531,39 @@ html{
                         background-color: $bgColor;
                         font-size: 12px;
                         color: $dark;
-                        display: flex;
+                        display: inline-flex;
                         align-items: center;
                         justify-content: center;
                         margin: auto;
                         @include borderRadius(100%);
+                    }
+                    &.status{
+                        .bg-warning{
+                            background-color: #FFEDEC !important;
+                            color: #D10B00 !important;
+                            padding:0 15px !important;
+                            @include borderRadius(20px);
+                            height: 22px;
+                            display: flex;
+                            align-items: center;
+                            font-size: 11px;
+                            font-weight: 600;
+                        }
+                    }
+                    .schoolView{
+                        max-width: 100px;
+                        img{
+                            width: 20px;
+                            height: 20px;
+                            margin-right: 5px;
+                            @include borderRadius(100%);
+                        }
+                    }
+                    &.scoreHere{
+                        .scoreView:nth-child(1){background-color: #FFB661;color: #fff;margin: 0 3px;}
+                        .scoreView:nth-child(2){background-color: #339AF9;color: #fff;margin: 0 3px;}
+                        .scoreView:nth-child(3){background-color: #FF6365;color: #fff;margin: 0 3px;}
+                        .scoreView:nth-child(4){background-color: #24D049;color: #fff;margin: 0 3px;}
                     }
                     &.action{
                         .dropdown{
@@ -627,10 +664,27 @@ html{
         margin: 15px 0 5px;
     }
 }
+.filtersViewRight{
+    overflow-y: auto;
+    .tab-pane{
+        padding:15px 0 0 !important;
+        >.form-group{
+            margin-top: 10px;
+        }
+    }
+}
 .columnFilter{
     display: flex;
     align-items: center;
     margin-top: 10px;
+    input{
+        margin: 0;
+        margin-right: 10px;
+    }
+    a{
+        font-size: 12px;
+        font-weight: 600;
+    }
     span{
         margin-right: auto;
         font-size: 12px;
@@ -639,5 +693,8 @@ html{
     }
     label{
         margin: 0;
+        &:first-child{
+            margin-right: 10px;
+        }
     }
 }
