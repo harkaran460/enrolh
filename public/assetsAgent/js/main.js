@@ -254,6 +254,10 @@ $("#recruitfmentPartner_app").click(function(){
 $("#paymentDate_app").click(function(){
     $(".paymentDate_hide_app").toggle();
 });
+
+$("#action_app").click(function(){
+    $(".action_app_hide").toggle();
+});
  
  $("#application_all_hide").click(function(){
      $(".appId_hide_app, .studentId_hide_app, .applyDate_hide_app, .firstName_hide_app, .lastName_hide_app, .status_hide_app, .requirements_hide_app, .currentStage_hide_app, .program_hide_app, .school_hide_app, .startDate_hide_app, .recruitmentPartner_hide_app, .paymentDate_hide_app").toggle();

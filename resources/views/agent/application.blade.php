@@ -179,21 +179,56 @@
                     </div>
                 </div>
                 <div class="tab-pane fade column-check" id="columnsTabPane" role="tabpanel" aria-labelledby="columnsTabPane">
-                    <div class="columnFilter"><span>COLUMN HEADER</span> <a href="javacsript:;" id="application_all_hide">hide all</a></div>
-                    <div class="columnFilter"><span>App ID</span> <input class="form-check-input" type="checkbox" value="" id="appId_app"><label class="form-check-label" for="appId_app"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Student ID</span> <input class="form-check-input" type="checkbox" value="" id="studentId_app"><label class="form-check-label" for="studentId_app"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Apply Date</span> <input class="form-check-input" type="checkbox" value="" id="applyDate_app"><label class="form-check-label" for="applyDate_app"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>First Name</span> <input class="form-check-input" type="checkbox" value="" id="firstName_app"><label class="form-check-label" for="firstName_app"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Last Name</span> <input class="form-check-input" type="checkbox" value="" id="lastName_app"><label class="form-check-label" for="lastName_app"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Status</span> <input class="form-check-input" type="checkbox" value="" id="status_app"><label class="form-check-label" for="status_app"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Recruitments</span> <input class="form-check-input" type="checkbox" value="" id="recruitments_app"><label class="form-check-label" for="recruitments_app"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Current Stage</span> <input class="form-check-input" type="checkbox" value="" id="currentStage_app"><label class="form-check-label" for="currentStage_app"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Program</span> <input class="form-check-input" type="checkbox" value="" id="program_app"><label class="form-check-label" for="program_app"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>School</span> <input class="form-check-input" type="checkbox" value="" id="school_app"><label class="form-check-label" for="school_app"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Start Date</span> <input class="form-check-input" type="checkbox" value="" id="startDate_app"><label class="form-check-label" for="startDate_app"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Recruitment Partner</span> <input class="form-check-input" type="checkbox" value="" id="recruitfmentPartner_app"><label class="form-check-label" for="recruitfmentPartner_app"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Payment Date</span> <input class="form-check-input" type="checkbox" value="" id="paymentDate_app"><label class="form-check-label" for="paymentDate_app"><i class="fa-solid fa-eye"></i></label></div>
-                </div>
+                    
+                <ul class="p-0 m-0 column-check"> 
+                                        <li><span>COLUMN HEADER</span> <a href="javacsript:;" id="application_all_hide">hide all</a></li>
+                                        <li>
+                                            <hr class="w-100 my-0">
+                                        </li>
+                                        <li><span>App ID</span> <input class="form-check-input" type="checkbox" value="" id="appId_app"><label class="form-check-label" for="appId_app">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                             <li><span>Student ID</span> <input class="form-check-input" type="checkbox" value="" id="studentId_app"><label class="form-check-label" for="studentId_app">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li><span>Apply Date</span> <input class="form-check-input" type="checkbox" value="" id="applyDate_app"><label class="form-check-label" for="applyDate_app">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li><span>First Name</span> <input class="form-check-input" type="checkbox" value="" id="firstName_app"><label class="form-check-label" for="firstName_app">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li><span>Last Name</span> <input class="form-check-input" type="checkbox" value="" id="lastName_app"><label class="form-check-label" for="lastName_app">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li><span>Status</span> <input class="form-check-input" type="checkbox" value="" id="status_app"><label class="form-check-label" for="status_app">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li><span>Recruitments</span> <input class="form-check-input" type="checkbox" value="" id="recruitments_app"><label class="form-check-label" for="recruitments_app">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li><span>Current Stage</span> <input class="form-check-input" type="checkbox" value="" id="currentStage_app"><label class="form-check-label" for="currentStage_app">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li><span>Program</span> <input class="form-check-input" type="checkbox" value="" id="program_app"><label class="form-check-label" for="program_app">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li><span>School</span> <input class="form-check-input" type="checkbox" value="" id="school_app"><label class="form-check-label" for="school_app">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li><span>Start Date</span> <input class="form-check-input" type="checkbox" value="" id="startDate_app"><label class="form-check-label" for="startDate_app">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li><span>Recruitment Partner</span> <input class="form-check-input" type="checkbox" value="" id="recruitfmentPartner_app"><label class="form-check-label" for="recruitfmentPartner_app">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                            <li><span>Payment Date</span> <input class="form-check-input" type="checkbox" value="" id="paymentDate_app"><label class="form-check-label" for="paymentDate_app">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                            <li><span>Action</span> <input class="form-check-input" type="checkbox" value="" id="action_app"><label class="form-check-label" for="action_app">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                    </ul>
+            </div>
             </div>
         </div>
     </div>
@@ -204,20 +239,20 @@
             <table class="table tableCustomStudent">
                 <thead>
                     <tr>
-                        <th>App ID</th>
-                        <th>Student ID</th>
-                        <th>Apply Date</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Status</th>
-                        <th>Requirements</th>
-                        <th>Current Stage</th>
-                        <th>Program</th>
-                        <th>School</th>
-                        <th>Start Date</th>
-                        <th>Recruitment Partner</th>
-                        <th>Payment Date</th>
-                        <th>View</th>
+                        <th class="appId_hide_app">App ID</th>
+                        <th class="studentId_hide_app">Student ID</th>
+                        <th class="applyDate_hide_app">Apply Date</th>
+                        <th class="firstName_hide_app">First Name</th>
+                        <th class="lastName_hide_app">Last Name</th>
+                        <th class="status_hide_app">Status</th>
+                        <th class="requirements_hide_app">Requirements</th>
+                        <th class="currentStage_hide_app">Current Stage</th>
+                        <th class="program_hide_app">Program</th>
+                        <th class="school_hide_app">School</th>
+                        <th class="startDate_hide_app">Start Date</th>
+                        <th class="recruitmentPartner_hide_app">Recruitment Partner</th>
+                        <th class="paymentDate_hide_app">Payment Date</th>
+                        <th class="action_app_hide">View</th>
                         <th></th>
                     </tr>
                     <form method="GET" action="/agentApplication" id="frmApplicationFilter">
@@ -254,25 +289,25 @@
                     @if(!empty($application_list))
                     @foreach ($application_list as $applicationlist)
                     <tr class="{{$applicationlist->status_title}} {{$applicationlist->status_name}}" id="{{$applicationlist->status_name}}">                        
-                        <td><a href="/student-application-review/{{$applicationlist->app_id}}">{{$applicationlist->app_id}}</a></td>
-                        <td><a href="/agent_student_profile/{{ $applicationlist->user_id }}">{{$applicationlist->user_id}}</a></td>
-                        <td>{{date('d-M-Y', strtotime($applicationlist->created_at))}}</td>
-                        <td>{{$applicationlist->first_name}}</td>
-                        <td>{{$applicationlist->last_name}}</td>
-                        <td class="status"><span class="{{$applicationlist->bgcolor}}">{{$applicationlist->status_name}}</span></td>
-                        <td class="scoreHere"><div class="scoreView" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Requirements">1</div><div class="scoreView" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Requirements">2</div><div class="scoreView" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Requirements">3</div></td> 
-                        <td><span class="bg-light px-3 py-1 rounded-pill">Cancelled</span></td>
-                        <td><a href="/agent-program-details/{{$applicationlist->pid}}">{{$applicationlist->programs_name}}</a></td>
-                        <td><a class="schoolView" href="/agent-college-details/{{$applicationlist->cid}}"><img src="{{ url('/images/' . $applicationlist->college_logo) }}" alt="Logo" />{{$applicationlist->program_college_name}}</a></td>
-                        <td class="text-center">{{date('d-M-Y', strtotime($applicationlist->earliest_intake_date))}}</td>
+                        <td class="appId_hide_app"><a href="/student-application-review/{{$applicationlist->app_id}}">{{$applicationlist->app_id}}</a></td>
+                        <td class="studentId_hide_app"><a href="/agent_student_profile/{{ $applicationlist->user_id }}">{{$applicationlist->user_id}}</a></td>
+                        <td class="applyDate_hide_app">{{date('d-M-Y', strtotime($applicationlist->created_at))}}</td>
+                        <td class="firstName_hide_app">{{$applicationlist->first_name}}</td>
+                        <td class="lastName_hide_app">{{$applicationlist->last_name}}</td>
+                        <td class="status status_hide_app"><span class="{{$applicationlist->bgcolor}}">{{$applicationlist->status_name}}</span></td>
+                        <td class="scoreHere requirements_hide_app"><div class="scoreView" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Requirements">1</div><div class="scoreView" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Requirements">2</div><div class="scoreView" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Requirements">3</div></td> 
+                        <td class="currentStage_hide_app"><span class="bg-light px-3 py-1 rounded-pill">Cancelled</span></td>
+                        <td class="program_hide_app"><a href="/agent-program-details/{{$applicationlist->pid}}">{{$applicationlist->programs_name}}</a></td>
+                        <td class="school_hide_app"><a class="schoolView" href="/agent-college-details/{{$applicationlist->cid}}"><img src="{{ url('/images/' . $applicationlist->college_logo) }}" alt="Logo" />{{$applicationlist->program_college_name}}</a></td>
+                        <td class="text-center startDate_hide_app">{{date('d-M-Y', strtotime($applicationlist->earliest_intake_date))}}</td>
                         @if(!empty($agent_email))
                         @foreach($agent_email as $agentemail)
-                        <td><a href="#">{{$agentemail->email}}</a></td>
+                        <td class="recruitmentPartner_hide_app"><a href="#">{{$agentemail->email}}</a></td>
                         @endforeach
-                        <td class="text-center"><a href="#"> NA</a></td>
+                        <td class="text-center paymentDate_hide_app"><a href="#"> NA</a></td>
                         @endif
-                        <td class="text-center"><a href="#">View</a></td>
-                        <td class="action"> 
+                        <td class="text-center action_app_hide"><a href="#">View</a></td>
+                        <td class="action action_app_hide"> 
                             <div class="dropdown dropstart">
                                 <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
