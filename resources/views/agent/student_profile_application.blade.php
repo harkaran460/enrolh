@@ -218,8 +218,9 @@
                                             </tr>
                                         </tfoot>
                                        
-                                    </table>
-                                    <div class="cpagination"> {{ $aplication_details->links() }} </div> 
+                                    </table><br>
+                                    <div class="pagination"> {{ $aplication_details->links() }} </div> 
+                                    <br><br>
                                 </div>
                             </div>
                         </div>

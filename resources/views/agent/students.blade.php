@@ -157,11 +157,12 @@
                 Row: 
                 <form method="GET" action="/students" id="students">
                     <select class="form-select form-select-sm" name="studentqty" onchange="this.form.submit()">
-                        <option value="20">20</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
+                        <option value="20" @php if(isset($_GET['studentqty']) && $_GET['studentqty'] == '20'){echo "selected";} @endphp >20</option>
+                        <option value="50" @php if(isset($_GET['studentqty']) && $_GET['studentqty'] == '50'){echo "selected";} @endphp >50</option>
+                        <option value="100" @php if(isset($_GET['studentqty']) && $_GET['studentqty'] == '100'){echo "selected";} @endphp >100</option>
                     </select>
                 </form>
+                
             </div>
             <div class="controls">{{ $student_list->links() }}</div>
         </div>

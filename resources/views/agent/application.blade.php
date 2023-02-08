@@ -327,9 +327,9 @@
                 Row: 
                 <form method="GET" action="/agentApplication" id="agentApplication">
                     <select class="form-select form-select-sm" name="qty" onchange="this.form.submit()">
-                        <option value="20">20</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
+                        <option value="20" @php if(isset($_GET['qty']) && $_GET['qty'] == '20'){echo "selected";} @endphp>20</option>
+                        <option value="50" @php if(isset($_GET['qty']) && $_GET['qty'] == '50'){echo "selected";} @endphp>50</option>
+                        <option value="100" @php if(isset($_GET['qty']) && $_GET['qty'] == '100'){echo "selected";} @endphp>100</option>
                     </select>
                 </form>
             </div>

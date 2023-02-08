@@ -857,8 +857,9 @@ class AgentHome extends Controller
             ->join('payment_status as b', 'b.id', '=', 'a.payment_status')
             ->join('college_programs as c', 'c.id', '=', 'a.program_id')
             ->join('current_status as d', 'd.id', '=', 'a.application_status')
-            ->where('a.student_id', $student_id)->where('a.status', 1)
-            ->paginate('5');
+            ->where('a.student_id', $student_id)->where('a.status', 1) 
+            ->paginate(15, ['*'], 'newpage');
+  
         return view('agent.student_profile_application', $data);
     }
 
