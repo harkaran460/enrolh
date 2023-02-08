@@ -1016,7 +1016,7 @@ class AgentHome extends Controller
             }
             $fname = $name . ' ' . $mname . ' ' . $lname;
 
-            Mail::to(users: "nirajkumar11288@gmail.com")->send(new StudentNotes($title, $notes, $appid, $fname));
+            // Mail::to(users: "nirajkumar11288@gmail.com")->send(new StudentNotes($title, $notes, $appid, $fname));
             //return $sdata;
             return "success";
         } else {
