@@ -88,30 +88,30 @@
             <table class="table tableCustomStudent">
                 <thead>
                     <tr>
-                        <th>Student ID</th>
-                        <th>Student Email</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Nationality</th>
-                        <th>Recruitment Partner</th>
-                        <th>Recruiter Type</th>
-                        <th>Education</th>
-                        <th class="text-center">Applications</th>
-                        <th class="text-center">View</th>
-                        <th></th>
+                        <th class="studentid_hide">Student ID</th>
+                        <th class="studentemail_hide">Student Email</th>
+                        <th class="fname_hide">First Name</th>
+                        <th class="lname_name">Last Name</th>
+                        <th class="nationality_hide">Nationality</th>
+                        <th class="recruitmentp_hide">Recruitment Partner</th>
+                        <th class="recuiter_t_hide">Recruiter Type</th>
+                        <th class="education_hide">Education</th>
+                        <th class="text-center appplication_hide">Applications</th>
+                        <th class="text-center action_hide">View</th>
+                        <th class=""></th>
                     </tr>
                     <tr>
                         <form method="GET" action="/students" id="frmStudentFilter">
-                            <th class="size1"><input type="text" name="student_id" class="form-control"></th>
-                            <th class="size6"><input type="text" name="email" class="form-control"></th>
-                            <th class="size2"><input type="text" name="fname" class="form-control"></th>
-                            <th class="size2"><input type="text" name="lname" class="form-control"></th>
-                            <th class="size3"><select class="form-select" name="nationality" id="nationality" onchange="this.form.submit()"><option value="">-- Select --</option>@foreach ($countries as $country)<option value="{{ $country->id }}">{{ $country->country }}</option>@endforeach</select></th>
-                            <th class="size4"><input type="text"name="rpartner" class="form-control"></th>
-                            <th class="size3"><select type="select" name="recruiter_type" class="form-select" onchange="this.form.submit()"><option value="">None</option><option value="5">Owner</option><option value="8">Sub Agent</option><option value="11">Team</option><option value="12">Staff</option></select></th>
-                            <th class="size6"><select type="text" name="education" class="form-select" onchange="this.form.submit()"><option value=""> None</option>@foreach ($getEducations as $getEducation)<option value="{{ $getEducation->id }}">{{ $getEducation->title }}</option>@endforeach</select></th>
-                            <th class="size3"></th>
-                            <th class="size1"></th>
+                            <th class="size1 studentid_hide"><input type="text" name="student_id" class="form-control"></th>
+                            <th class="size6 studentemail_hide"><input type="text" name="email" class="form-control"></th>
+                            <th class="size2 fname_hide"><input type="text" name="fname" class="form-control"></th>
+                            <th class="size2 lname_name"><input type="text" name="lname" class="form-control"></th>
+                            <th class="size3 nationality_hide"><select class="form-select" name="nationality" id="nationality" onchange="this.form.submit()"><option value="">-- Select --</option>@foreach ($countries as $country)<option value="{{ $country->id }}">{{ $country->country }}</option>@endforeach</select></th>
+                            <th class="size4 recruitmentp_hide"><input type="text"name="rpartner" class="form-control"></th>
+                            <th class="size3 recuiter_t_hide"><select type="select" name="recruiter_type" class="form-select" onchange="this.form.submit()"><option value="">None</option><option value="5">Owner</option><option value="8">Sub Agent</option><option value="11">Team</option><option value="12">Staff</option></select></th>
+                            <th class="size6 education_hide"><select type="text" name="education" class="form-select" onchange="this.form.submit()"><option value=""> None</option>@foreach ($getEducations as $getEducation)<option value="{{ $getEducation->id }}">{{ $getEducation->title }}</option>@endforeach</select></th>
+                            <th class="size3 appplication_hide"></th>
+                            <th class="size1 action_hide"></th>
                         </form>
                         <th class="size"></th>
                     </tr>
@@ -120,17 +120,17 @@
                     @if (count($student_list) >0)
                         @foreach ($student_list as $studentlist)
                             <tr>
-                                <td><a href="/agent-student-profile/{{ $studentlist->id }}">{{ $studentlist->id }}</a></td>
-                                <td><a href="/agent-student-profile/{{ $studentlist->id }}">{{ $studentlist->email }}</a></td>
-                                <td class="text-center"><span>{{ $studentlist->name }}</span></td>
-                                <td class="text-center"><span>{{ $studentlist->last_name }}</span></td>
-                                <td class="text-center"><span>{{ $studentlist->country_of_citizenship }}</span></td>
-                                <td><span>{{ $studentlist->recruitment_partner }}</span></td>
-                                <td class="text-center"><span><?php if($studentlist->recruiter_type ==5){echo "Owner"; }else if($studentlist->recruiter_type ==8){echo "Sub Agent";}else if($studentlist->recruiter_type ==11){echo "Team";}else{echo "Staff";}?></span></td>
-                                <td><span class="text"><i class="fa-solid fa-check"></i>{{ $studentlist->highes_education_name }} ({{ $studentlist->country_of_citizenship }})</span></td>
-                                <td class="text-center">@if (!empty($total_apply_count)) @foreach ($total_apply_count as $totalcount) @if ($totalcount->student_id == $studentlist->id)<div class="scoreView" data-bs-toggle="tooltip" data-bs-placement="left" title="score of application">{{ $totalcount->count }}</div> @endif @endforeach @endif</td>
-                                <td class="text-center">@if (!empty($total_apply_count)) @foreach ($total_apply_count as $totalcount) @if ($totalcount->student_id == $studentlist->id) @if($totalcount->count >0) <a href="/student-profile-application/{{$studentlist->id}}">View </a> @endif @endif @endforeach @endif</td>
-                                <td class="action">
+                                <td class="studentid_hide"><a href="/agent-student-profile/{{ $studentlist->id }}">{{ $studentlist->id }}</a></td>
+                                <td class="studentemail_hide"><a href="/agent-student-profile/{{ $studentlist->id }}">{{ $studentlist->email }}</a></td>
+                                <td class="text-center fname_hide"><span>{{ $studentlist->name }}</span></td>
+                                <td class="text-center lname_name"><span>{{ $studentlist->last_name }}</span></td>
+                                <td class="text-center nationality_hide"><span>{{ $studentlist->country_of_citizenship }}</span></td>
+                                <td class="recruitmentp_hide"><span>{{ $studentlist->recruitment_partner }}</span></td>
+                                <td class="text-center recuiter_t_hide"><span><?php if($studentlist->recruiter_type ==5){echo "Owner"; }else if($studentlist->recruiter_type ==8){echo "Sub Agent";}else if($studentlist->recruiter_type ==11){echo "Team";}else{echo "Staff";}?></span></td>
+                                <td class="education_hide"><span class="text"><i class="fa-solid fa-check"></i>{{ $studentlist->highes_education_name }} ({{ $studentlist->country_of_citizenship }})</span></td>
+                                <td class="text-center appplication_hide">@if (!empty($total_apply_count)) @foreach ($total_apply_count as $totalcount) @if ($totalcount->student_id == $studentlist->id)<div class="scoreView" data-bs-toggle="tooltip" data-bs-placement="left" title="score of application">{{ $totalcount->count }}</div> @endif @endforeach @endif</td>
+                                <td class="text-center action_hide">@if (!empty($total_apply_count)) @foreach ($total_apply_count as $totalcount) @if ($totalcount->student_id == $studentlist->id) @if($totalcount->count >0) <a href="/student-profile-application/{{$studentlist->id}}">View </a> @endif @endif @endforeach @endif</td>
+                                <td class="action action_hide">
                                     <div class="dropdown dropstart">
                                         <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                                         <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
@@ -182,26 +182,118 @@
             </ul>    
             <div class="tab-content" id="student-filters-tabs">
                 <div class="tab-pane fade show active column-check" id="columnsTabPane" role="tabpanel" aria-labelledby="columnsTabPane">
-                    <div class="columnFilter"><span>Student ID</span><input class="form-check-input" type="checkbox" value="" id="studentId"><label id="studentId_click" class="form-check-label" for="studentId"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Student Email</span><input class="form-check-input" type="checkbox" value="" id="studentEmail"><label id="studentemail_click" class="form-check-label" for="studentEmail"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>First Name</span><input class="form-check-input" type="checkbox" value="" id="fName"><label id="fname_click" class="form-check-label" for="fName"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Last Name</span><input class="form-check-input" type="checkbox" value="" id="lName"><label id="lname_click" class="form-check-label" for="lName"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Nationality</span><input class="form-check-input" type="checkbox" value="" id="nationlty"><label id="nationlty_click" class="form-check-label" for="nationlty"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Recruitment Partner</span><input class="form-check-input" type="checkbox" value="" id="recuPart"><label id="recruitmentp_click" class="form-check-label" for="recuPart"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Recruiter Type</span><input class="form-check-input" type="checkbox" value="" id="recuType"><label id="recruiter_click" class="form-check-label" for="recuType"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Education</span><input class="form-check-input" type="checkbox" value="" id="education"><label id="education_click" class="form-check-label" for="education"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter"><span>Applications</span><input class="form-check-input" type="checkbox" value="" id="application"><label id="application_click" class="form-check-label" for="application"><i class="fa-solid fa-eye"></i></label></div>
+                <ul class="p-0 m-0 column-check">
+                                        <!--<li><span>COLUMN HEADER</span> <a href="javacsript:;" id="student_all_hide">hide all</a></li>-->
+                                        <li>
+                                            <hr class="w-100 my-0">
+                                        </li> 
+                                        <li><span>Student ID</span> <input class="form-check-input" type="checkbox"
+                                                value="" id="studentId"><label id="studentId_click" class="form-check-label"
+                                                for="studentId">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li><span>Student Email</span> <input class="form-check-input" type="checkbox"
+                                                value="" id="studentEmail"><label id="studentemail_click" class="form-check-label"
+                                                for="studentEmail">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li><span>First Name</span> <input class="form-check-input" type="checkbox"
+                                                value="" id="fName"><label id="fname_click" class="form-check-label"
+                                                for="fName">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li><span>Last Name</span> <input class="form-check-input" type="checkbox"
+                                                value="" id="lName"><label id="lname_click" class="form-check-label"
+                                                for="lName">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li><span>Nationality</span> <input class="form-check-input" type="checkbox"
+                                                value="" id="nationlty"><label id="nationlty_click" class="form-check-label"
+                                                for="nationlty">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li><span>Recruitment Partner</span> <input class="form-check-input"
+                                                type="checkbox" value="" id="recuPart"><label id="recruitmentp_click"
+                                                class="form-check-label" for="recuPart">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li>
+                                            <span>Recruiter Type</span> 
+                                            <input class="form-check-input" type="checkbox" value="" id="recuType">
+                                            <label id="recruiter_click" class="form-check-label" for="recuType">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label>
+                                            
+                                        </li>
+                                        <li><span>Education</span> <input class="form-check-input" type="checkbox"
+                                                value="" id="education"><label id="education_click" class="form-check-label"
+                                                for="education">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li><span>Applications</span> <input class="form-check-input" type="checkbox"
+                                                value="" id="application"><label id="application_click" class="form-check-label"
+                                                for="application">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li> 
+                                            <li><span>Action</span> <input class="form-check-input" type="checkbox"
+                                                value="" id="action"><label id="action_click" class="form-check-label"
+                                                for="action">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                    </ul>
                 </div>
                 <div class="tab-pane fade column-check disabled-section" id="disabledTabPane" role="tabpanel" aria-labelledby="disabledTabPane-tab">
-                    <div class="columnFilter studentid_hide" style="display:none"><span>Student ID</span> <input class="form-check-input" type="checkbox" value="" id="studentId"><label id="studentId_click" class="form-check-label" for="studentId"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter studentemail_hide" style="display:none"><span>Student Email</span> <input class="form-check-input" type="checkbox" value="" id="studentEmail"><label id="studentemail_click" class="form-check-label" for="studentEmail"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter fname_hide" style="display:none"><span>First Name</span> <input class="form-check-input" type="checkbox" value="" id="fName"><label id="fname_click" class="form-check-label" for="fName"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter lname_name" style="display:none"><span>Last Name</span> <input class="form-check-input" type="checkbox" value="" id="lName"><label id="lname_click" class="form-check-label" for="lName"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter nationality_hide" style="display:none"><span>Nationality</span> <input class="form-check-input" type="checkbox" value="" id="nationlty"><label id="nationlty_click" class="form-check-label" for="nationlty"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter recruitmentp_hide" style="display:none"><span>Recruitment Partner</span> <input class="form-check-input" type="checkbox" value="" id="recuPart"><label id="recruitmentp_click" class="form-check-label" for="recuPart"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter recuiter_t_hide" style="display:none"><span>Recruiter Type</span><input class="form-check-input" type="checkbox" value="" id="recuType"><label id="recruiter_click" class="form-check-label" for="recuType"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter education_hide" style="display:none"><span>Education</span> <input class="form-check-input" type="checkbox" value="" id="education"><label id="education_click" class="form-check-label" for="education"><i class="fa-solid fa-eye"></i></label></div>
-                    <div class="columnFilter appplication_hide" style="display:none"><span>Applications</span> <input class="form-check-input" type="checkbox" value="" id="application"><label id="application_click" class="form-check-label" for="application"><i class="fa-solid fa-eye"></i></label></div>
+                <ul class="p-0 m-0 column-check disabled-section" id="disabled-section">
+                                          <li class="studentid_hide" style="display:none"><span>Student ID</span> <input class="form-check-input" type="checkbox"
+                                                value="" id="studentId"><label id="studentId_click" class="form-check-label"
+                                                for=" ">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                             
+                                        <li class="studentemail_hide" style="display:none"><span>Student Email</span> <input class="form-check-input" type="checkbox"
+                                                value="" id="studentEmail"><label id="studentemail_click" class="form-check-label"
+                                                for=" ">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li class="fname_hide" style="display:none"><span>First Name</span> <input class="form-check-input" type="checkbox"
+                                                value="" id="fName"><label id="fname_click" class="form-check-label"
+                                                for=" ">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li class="lname_name" style="display:none"><span>Last Name</span> <input class="form-check-input" type="checkbox"
+                                                value="" id="lName"><label id="lname_click" class="form-check-label"
+                                                for=" ">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li class="nationality_hide" style="display:none"><span>Nationality</span> <input class="form-check-input" type="checkbox"
+                                                value="" id="nationlty"><label id="nationlty_click" class="form-check-label"
+                                                for=" ">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li class="recruitmentp_hide" style="display:none"><span>Recruitment Partner</span> <input class="form-check-input"
+                                                type="checkbox" value="" id="recuPart"><label id="recruitmentp_click"
+                                                class="form-check-label" for=" ">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li class="recuiter_t_hide" style="display:none">
+                                            <span>Recruiter Type</span> 
+                                            <input class="form-check-input" type="checkbox" value="" id="recuType">
+                                            <label id="recruiter_click" class="form-check-label" for=" ">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label> 
+                                        </li>
+                                        <li class="education_hide" style="display:none"><span>Education</span>
+                                         <input class="form-check-input" type="checkbox"
+                                                value="" id="education"><label id="education_click" class="form-check-label"
+                                                for=" ">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                        <li class="appplication_hide" style="display:none"><span>Applications</span> <input class="form-check-input" type="checkbox"
+                                                value="" id="application"><label id="application_click" class="form-check-label"
+                                                for=" ">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </label></li>
+                                           </ul>
                 </div>
             </div>
         </div>

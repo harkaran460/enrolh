@@ -114,63 +114,63 @@
                         <label class="form-check-label ">No</label>
                     </div>
                     <div class="columnFilter"> 
-                        <input class="form-check-input " type="radio" name="payment_statues" id="notpaid_true" value="option1">
-                        <input class="form-check-input " type="radio" name="payment_statues" id="notpaid_false" value="option2">
+                        <input class="form-check-input " type="radio" name="payment_statues" id="payYes" value="option1">
+                        <input class="form-check-input " type="radio" name="payment_statues" id="payNo" value="option2">
                         <label class="form-label">Paid</label>
                     </div>
                     <div class="columnFilter"><span>APPLICATION STATUS</span><a href="#">Clear</a></div>
                     <div class="columnFilter">
-                        <label class="form-check-label " for="inlineRadio1">Yes</label>
-                        <label class="form-check-label ">No</label>
+                        <label class="form-check-label" for="inlineRadio1">Yes</label>
+                        <label class="form-check-label">No</label>
                     </div>
                     <div class="columnFilter">
-                        <input class="form-check-input" type="radio" name="appplication_status_accepted" id="accepted_true" value="option1">
-                        <input class="form-check-input" type="radio" name="appplication_status_accepted" id="accepted_false" value="option2">
-                        <label class="form-label">Accepted</label>
+                        <input class="form-check-input" type="radio" name="appplication_status_accepted" id="prepareApplication_t" value="option1">
+                        <input class="form-check-input" type="radio" name="appplication_status_accepted" id="prepareApplication_f" value="option2">
+                        <label class="form-label">Prepare Application</label>
                     </div>
                     <div class="columnFilter"> 
-                        <input class="form-check-input" type="radio" name="appplication_status_rejected" id="rejected_true" value="option1">
-                        <input class="form-check-input" type="radio" name="appplication_status_rejected" id="rejected_false" value="option2">
-                        <label class="form-label">Rejected</label>
+                        <input class="form-check-input" type="radio" name="appplication_status_rejected" id="submissionInProg_t" value="option1">
+                        <input class="form-check-input" type="radio" name="appplication_status_rejected" id="submissionInProg_f" value="option2">
+                        <label class="form-label">Submission In Progress</label>
                     </div>
                     <div class="columnFilter">
-                        <input class="form-check-input" type="radio" name="appplication_status_canceled" id="cancelled_true" value="option1">
-                        <input class="form-check-input" type="radio" name="appplication_status_canceled" id="cancelled_false" value="option2">
-                        <label class="form-label">Canceled</label>
+                        <input class="form-check-input" type="radio" name="appplication_status_canceled" id="decision_t" value="option1">
+                        <input class="form-check-input" type="radio" name="appplication_status_canceled" id="decision_f" value="option2">
+                        <label class="form-label">Decision</label>
                     </div>
                     <div class="columnFilter">
-                        <input class="form-check-input" type="radio" name="appplication_status_withdrawn" id="inlineRadio1" value="option1">
-                        <input class="form-check-input" type="radio" name="appplication_status_withdrawn" id="inlineRadio2" value="option2">
-                        <label class="form-label">Withdrawn</label>
+                        <input class="form-check-input" type="radio" name="appplication_status_withdrawn" id="postDecisionReq_t" value="option1">
+                        <input class="form-check-input" type="radio" name="appplication_status_withdrawn" id="postDecisionReq_f" value="option2">
+                        <label class="form-label">Post-Decision Requirements</label>
                     </div>
                     <div class="columnFilter">
-                        <input class="form-check-input" type="radio" name="appplication_status_refundprogress" id="inlineRadio1" value="option1">
-                        <input class="form-check-input" type="radio" name="appplication_status_refundprogress" id="inlineRadio2" value="option2">
-                        <label class="form-label">Refund In Progress</label>
+                        <input class="form-check-input" type="radio" name="appplication_status_refundprogress" id="readyToSubmit_t" value="option1">
+                        <input class="form-check-input" type="radio" name="appplication_status_refundprogress" id="readyToSubmit_f" value="option2">
+                        <label class="form-label">Ready to Submit</label>
                     </div>
                     <div class="columnFilter">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                        <label class="form-label">Program Closed</label>
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="submittedToSchool_t" value="option1">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="submittedToSchool_f" value="option2">
+                        <label class="form-label">Submitted To School</label>
                     </div>
                     <div class="columnFilter">
-                        <input class="form-check-input" type="radio" name="appplication_status_program_closed" id="inlineRadio1" value="option1">
-                        <input class="form-check-input" type="radio" name="appplication_status_program_closed" id="inlineRadio2" value="option2">
-                        <label class="form-label">Deferral In Progress</label>
+                        <input class="form-check-input" type="radio" name="appplication_status_program_closed" id="readyForVisa_t" value="option1">
+                        <input class="form-check-input" type="radio" name="appplication_status_program_closed" id="readyForVisa_f" value="option2">
+                        <label class="form-label">Ready for Visa</label>
                     </div>
                     <div class="columnFilter">
-                        <input class="form-check-input" type="radio" name="appplication_status_deferralprogress" id="inlineRadio1" value="option1">
-                        <input class="form-check-input" type="radio" name="appplication_status_deferralprogress" id="inlineRadio2" value="option2">
-                        <label class="form-label">Waitlisted</label>
-                    </div>
-                    <div class="columnFilter">
-                        <input class="form-check-input" type="radio" name="appplication_status_waitlisted" id="inlineRadio1" value="option1">
-                        <input class="form-check-input" type="radio" name="appplication_status_waitlisted" id="inlineRadio2" value="option2">
+                        <input class="form-check-input" type="radio" name="appplication_status_deferralprogress" id="ReadyToEnroll_t" value="option1">
+                        <input class="form-check-input" type="radio" name="appplication_status_deferralprogress" id="ReadyToEnroll_f" value="option2">
                         <label class="form-label">Ready to Enroll</label>
                     </div>
                     <div class="columnFilter">
-                        <input class="form-check-input " type="radio" name="appplication_status_readyenroll" id="inlineRadio1" value="option1">
-                        <input class="form-check-input " type="radio" name="appplication_status_readyenroll" id="inlineRadio2" value="option2">
+                        <input class="form-check-input" type="radio" name="appplication_status_waitlisted" id="applicationCancelled_t" value="option1">
+                        <input class="form-check-input" type="radio" name="appplication_status_waitlisted" id="applicationCancelled_f" value="option2">
+                        <label class="form-label">Application Cancelled</label>
+                    </div>
+                    <div class="columnFilter">
+                        <input class="form-check-input " type="radio" name="appplication_status_readyenroll" id="enrollmentconf_t" value="option1">
+                        <input class="form-check-input " type="radio" name="appplication_status_readyenroll" id="enrollmentconf_f" value="option2">
                         <label class="form-label">Enrollment Confirmed</label>
                     </div>
                     <div class="btnGroup">
@@ -253,7 +253,7 @@
                 <tbody>
                     @if(!empty($application_list))
                     @foreach ($application_list as $applicationlist)
-                    <tr class="{{$applicationlist->status_name}}">                        
+                    <tr class="{{$applicationlist->status_title}} {{$applicationlist->status_name}}" id="{{$applicationlist->status_name}}">                        
                         <td><a href="/student-application-review/{{$applicationlist->app_id}}">{{$applicationlist->app_id}}</a></td>
                         <td><a href="/agent_student_profile/{{ $applicationlist->user_id }}">{{$applicationlist->user_id}}</a></td>
                         <td>{{date('d-M-Y', strtotime($applicationlist->created_at))}}</td>

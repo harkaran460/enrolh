@@ -70,21 +70,22 @@ class AgentHome extends Controller
         }
         //paid application
         $tempMonthArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        $monthNameArr = array();
-        for ($i = 0; $i < 12; $i++) {
-            if ($i < date('m')) {
-                $monthNameArr[] = $tempMonthArr[$i];
-            }
-        }
+        $yearName = date("Y"); 
+        // $monthNameArr = array();
+        // for ($i = 0; $i < 12; $i++) {
+        //     if ($i < date('m')) {
+        //         $monthNameArr[] = $tempMonthArr[$i];
+        //     }
+        // }
 
         $dataSetArr = array();
-        $dataSetArr['labels'] = $monthNameArr;
+        $dataSetArr['labels'] = $tempMonthArr;
 
         $counter = 0;
         foreach ($this->getColleges() as $key => $collage) {
             $dataSetArr['datasets'][$key]['label'] = $collage->program_college_name;
             $dataSetArr['datasets'][$key]['backgroundColor'] = $this->colorarry()[$counter];
-            $dataSetArr['datasets'][$key]['data'] = $this->collageWiseMonthLyDataCount($collage->college_id, $monthNameArr);
+            $dataSetArr['datasets'][$key]['data'] = $this->collageWiseMonthLyDataCount($collage->college_id, $tempMonthArr, $yearName);
             if ($counter == 6) {
                 $counter = 0;
             } else {
@@ -105,6 +106,31 @@ class AgentHome extends Controller
         $data['notice_board'] =  DB::table('notice_board')->select('id','notice_text')->get();
         return view('agent.dashboard', $data);
     }
+
+    /*--------------------------------------- change year and update the chart from ajax request start-------------------------------------------*/
+    public function getYearData(){
+        if(isset($_GET['year'])){
+             $tempMonthArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+         //   return $_GET['year'];
+         $yearName = $_GET['year'];
+           $dataSetArr = array();
+     $dataSetArr['labels'] = $tempMonthArr;
+
+     $counter = 0;
+     foreach ($this->getColleges() as $key => $collage) {
+         $dataSetArr['datasets'][$key]['label'] = $collage->program_college_name;
+         $dataSetArr['datasets'][$key]['backgroundColor'] = $this->colorarry()[$counter];
+         $dataSetArr['datasets'][$key]['data'] = $this->collageWiseMonthLyDataCount($collage->college_id, $tempMonthArr, $yearName);
+         if ($counter == 6) {
+             $counter = 0;
+         } else {
+             $counter++;
+         }
+     } 
+      return ($dataSetArr);
+     }
+ }
+/*--------------------------------------- change year and update the chart from ajax request end-------------------------------------------*/
 
     public function getGroupbystatusCount($id)
     {
@@ -130,18 +156,18 @@ class AgentHome extends Controller
     {
         return $paid_student = DB::select(DB::raw("SELECT COUNT(payments.id) as total from payments WHERE MONTHNAME(CAST(payments.created_at AS DATE)) = '" . $month_name . "'"));
     }
-    public function collageWiseMonthLyDataCount($college_id, $monthNameArr)
+    public function collageWiseMonthLyDataCount($college_id, $monthNameArr, $yearName)
     {
         $monthlyArr = array();
         foreach ($monthNameArr as $monthName) {
-            $monthlyArr[] = $this->getMonthData($college_id, $monthName);
+            $monthlyArr[] = $this->getMonthData($college_id, $monthName, $yearName);
         }
         return $monthlyArr;
     }
 
-    public function getMonthData($college_id, $monthName)
+    public function getMonthData($college_id, $monthName, $yearName)
     {
-        $student_applications = DB::select(DB::raw("SELECT COUNT(student_applications.id) as total from student_applications WHERE MONTHNAME(CAST(student_applications.created_at AS DATE)) = '" . $monthName . "' AND program_id  = " . $college_id));
+        $student_applications = DB::select(DB::raw("SELECT COUNT(student_applications.id) as total from student_applications WHERE MONTHNAME(CAST(student_applications.created_at AS DATE)) = '" . $monthName . "' AND YEAR(student_applications.created_at) = '". $yearName ."' AND  program_id  = " . $college_id ));
         if (isset($student_applications) && $student_applications[0]->total > 0) {
             return $student_applications[0]->total;
         }
@@ -287,7 +313,7 @@ class AgentHome extends Controller
         $application_end_date   = $request->input('application_end_date');
         $requirement_partner    = $request->input('requirement_partner');
         $requirements           = $request->input('requirements');
-        $current_status         = $request->input('current_status');
+        $current_status         = $request->input('c  rrent_status');
         $current_date = date('Y-m-d H:i:s');
 
         $qty = $request->input('qty');
@@ -313,7 +339,7 @@ class AgentHome extends Controller
         array_push($ids, $agent);
 
 
-        $data1 =  DB::table('users as a')->select('b.user_id', 'b.first_name', 'b.last_name', 'd.program_college_name', 'd.programs_name', 'd.earliest_intake_date', 'd.id as pid', 'c.student_id', 'c.app_id', 'c.status', 'c.agent_id', 'c.created_at', 'c.id', 'e.college_logo', 'e.id as cid', 'f.status_name', 'f.bgcolor')
+        $data1 =  DB::table('users as a')->select('b.user_id', 'b.first_name', 'b.last_name', 'd.program_college_name', 'd.programs_name', 'd.earliest_intake_date', 'd.id as pid', 'c.student_id', 'c.app_id', 'c.status', 'g.status_title', 'c.agent_id', 'c.created_at', 'c.id', 'e.college_logo', 'e.id as cid', 'f.status_name', 'f.bgcolor')
             ->whereIn('a.agent_id', $ids)
             ->whereIn('a.user_type', ['5', '6', '8', '11', '12']);
 
@@ -348,6 +374,7 @@ class AgentHome extends Controller
         $data1 = $data1->join('college_programs as d', 'd.id', '=', 'c.program_id');
         $data1 = $data1->join('colleges  as e', 'e.id', '=', 'd.college_id');
         $data1 = $data1->join('payment_status as f', 'f.id', '=', 'c.payment_status');
+        $data1 = $data1->join('current_status as g', 'g.id', '=', 'c.application_status');
         $data1 = $data1->orderBy('c.id', 'DESC');
         $data1 = $data1->paginate($limit);
         $data['agent_email']    =  DB::table('users')->select('id', 'name', 'user_type', 'email')->where('id', Auth::user()->id)->get();
@@ -1016,7 +1043,7 @@ class AgentHome extends Controller
             }
             $fname = $name . ' ' . $mname . ' ' . $lname;
 
-            Mail::to(users: "nirajkumar11288@gmail.com")->send(new StudentNotes($title, $notes, $appid, $fname));
+            // Mail::to(users: "nirajkumar11288@gmail.com")->send(new StudentNotes($title, $notes, $appid, $fname));
             //return $sdata;
             return "success";
         } else {

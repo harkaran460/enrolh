@@ -163,18 +163,19 @@
                                     <div class="heading-title border-bottom d-flex"> 
                                         <h5 class="font-size-18"><b>Summary</b></h5>
                                         <div class="ms-auto">
-                                            <ul class="nav nav-pills border rounded" style="margin: 2px; margin-bottom: 15px;">
-                                                
-                                                <li class="nav-item">
-                                                    <a class="btn1-primary" href="#">2022</a>
-                                                </li>
-                                                <!-- <li class="nav-item">
-                                                    <a class="nav-link" href="#">2022</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="#">2023</a>
-                                                </li> -->
-                                            </ul>
+                                        <?php 
+                                            echo '<select name="years" id="year">' . PHP_EOL;
+                                            $start_from="2022";
+                                                for($i = $start_from; $i <=date("Y"); $i++){
+                                                    
+                                                    echo '<option id="year"'.PHP_EOL;
+                                                    if($i==date("Y")){
+                                                        echo 'selected'.PHP_EOL;
+                                                    }
+                                                    echo 'value="' . $i . '">' . $i . '</option>' . PHP_EOL;
+                                                }
+                                                echo '</select>';
+                                            ?>
                                         </div>
                                     </div>
                                     <ul class="nav nav-pills border-bottom mb-2 paid-all-detalis" id="pills-tab" role="tablist">
@@ -702,7 +703,28 @@
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js"></script>-->
     <script>
     
- 
+    $(document).ready(function() {
+            $('#year').change(function(){
+            var year=$('#year').val(); 
+                 $.ajax({ 
+                    type: "GET", 
+                    url: "yearChartReq",  
+                    data: { year: year},
+                    success: function(val){  
+                         myChartsd.data = val;
+                         myChartsd.update();
+                        //  console.log(val);
+                    try{     
+                    }catch(e) {     
+                        alert('Exception while request..');
+                        }   
+                    },
+                    error: function(){                      
+                        alert('Error while request..');
+                    }
+                });
+        });
+    });
     
         const ctx11 = document.getElementById('myChartsd').getContext('2d');
         

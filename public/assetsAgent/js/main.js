@@ -160,6 +160,10 @@ $("#application_click").click(function(){
    $(".appplication_hide").toggle(); 
 });
 
+$("#action_click").click(function(){
+    $(".action_hide").toggle(); 
+ });
+
 $("#student_all_hide").click(function(){
    $(".studentid_hide, .studentemail_hide, .fname_hide, .lname_name, .nationality_hide, .recruitmentp_hide, .recuiter_t_hide, .education_hide, .appplication_hide").toggle(); 
 }); 
@@ -259,37 +263,210 @@ $("#paymentDate_app").click(function(){
  
 
 function filtercheck(){
-     if(document.getElementById('notpaid_true').checked) {
-                const collection = document.getElementsByClassName("Not Paid");
-                // collection[0].style.display="inline-block";
-                for(var i=0; i<collection.length; i++){
-                    collection[i].style.display="";
-                }
-                 console.log(collection.length);
-            }else if(document.getElementById('notpaid_false').checked) {
-                const collection = document.getElementsByClassName("Not Paid");
-                // collection[0].style.display="none";
-                  console.log(collection[0]);
-                for(var i=0; i<collection.length; i++){
-                    collection[i].style.display="none";
-                } 
-            }
+    if(document.getElementById('prepareApplication_t').checked) {
+               const collection = document.getElementsByClassName("Prepare Application"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="";
+               }
+                console.log(collection.length);
+           }else if(document.getElementById('prepareApplication_f').checked) {
+               const collection = document.getElementsByClassName("Prepare Application"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="none";
+               } 
+           }
+           
+           if(document.getElementById('submissionInProg_t').checked) {
+               const collection = document.getElementsByClassName("Submission In Progress"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="";
+               }
+                console.log(collection.length);
+           }else if(document.getElementById('submissionInProg_f').checked) {
+               const collection = document.getElementsByClassName("Submission In Progress"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="none";
+               } 
+           }
+           
+           if(document.getElementById('decision_t').checked) {
+               const collection = document.getElementsByClassName("Decision"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="";
+               }
+                console.log(collection.length);
+           }else if(document.getElementById('decision_f').checked) {
+               const collection = document.getElementsByClassName("Decision"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="none";
+               } 
+           }
+           
+           if(document.getElementById('postDecisionReq_t').checked) {
+               const collection = document.getElementsByClassName("Post-Decision Requirements"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="";
+               }
+                console.log(collection.length);
+           }else if(document.getElementById('postDecisionReq_f').checked) {
+               const collection = document.getElementsByClassName("Post-Decision Requirements"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="none";
+               } 
+           }
+           if(document.getElementById('readyToSubmit_t').checked) {
+               const collection = document.getElementsByClassName("Ready to Submit"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="";
+               }
+                console.log(collection.length);
+           }else if(document.getElementById('readyToSubmit_f').checked) {
+               const collection = document.getElementsByClassName("Ready to Submit"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="none";
+               } 
+           }
+           
+           if(document.getElementById('submittedToSchool_t').checked) {
+               const collection = document.getElementsByClassName("Submitted to School"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="";
+               }
+                console.log(collection.length);
+           }else if(document.getElementById('submittedToSchool_f').checked) {
+               const collection = document.getElementsByClassName("Submitted to School"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="none";
+               } 
+           }
+           
+           if(document.getElementById('readyForVisa_t').checked) {
+               const collection = document.getElementsByClassName("Ready for Visa"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="";
+               }
+                console.log(collection.length);
+           }else if(document.getElementById('readyForVisa_f').checked) {
+               const collection = document.getElementsByClassName("Ready for Visa"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="none";
+               } 
+           }
+           
+           if(document.getElementById('ReadyToEnroll_t').checked) {
+               const collection = document.getElementsByClassName("Ready to Enroll"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="";
+               }
+                console.log(collection.length);
+           }else if(document.getElementById('ReadyToEnroll_f').checked) {
+               const collection = document.getElementsByClassName("Ready to Enroll"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="none";
+               } 
+           }
+           
+           if(document.getElementById('applicationCancelled_t').checked) {
+               const collection = document.getElementsByClassName("Application Cancelled"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="";
+               }
+                console.log(collection.length);
+           }else if(document.getElementById('applicationCancelled_f').checked) {
+               const collection = document.getElementsByClassName("Application Cancelled"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="none";
+               } 
+           }
+           
+           if(document.getElementById('enrollmentconf_t').checked) {
+               const collection = document.getElementsByClassName("Enrollment Confirmed"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="";
+               }
+                console.log(collection.length);
+           }else if(document.getElementById('enrollmentconf_f').checked) {
+               const collection = document.getElementsByClassName("Enrollment Confirmed"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="none";
+               } 
+           }
+           
+          /* if(document.getElementById('payYes').checked) {
+               const collection = document.getElementsByClassName("Pay Application Fee"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="";
+               }
+                console.log(collection.length);
+           }else if(document.getElementById('payNo').checked) {
+               const collection = document.getElementsByClassName("Pay Application Fee"); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="none";
+               } 
+           }*/
+           
+          if(document.getElementById('payNo').checked) {
+               
+               const collection = document.getElementsByClassName("Not Paid"); 
+               const collection1 = document.getElementsByClassName("Processing"); 
+               const collection2 = document.getElementsByClassName("Accepted"); 
+               const collection3 = document.getElementsByClassName("Cancelled"); 
+               const collection4 = document.getElementsByClassName("Submitted"); 
+               console.log(collection.length); 
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="";
+               } 
+               for(var i=0; i<collection1.length; i++){
+                   collection1[i].style.display="none";
+               } 
+               if(collection2 != null){
+               for(var i=0; i<collection2.length; i++){
+                   collection2[i].style.display="none";
+               }
+               }
+               if(collection3 != null){
+               for(var i=0; i<collection3.length; i++){
+                   collection3[i].style.display="none";
+               } 
+               }
+               if(collection4 != null){
+               for(var i=0; i<collection4.length; i++){
+                   collection4[i].style.display="none";
+               } 
+               }
+               
+           }else if(document.getElementById('payYes').checked) {
+               const collection = document.getElementsByClassName("Not Paid"); 
+               const collection1 = document.getElementsByClassName("Processing"); 
+               const collection2 = document.getElementsByClassName("Accepted"); 
+               const collection3 = document.getElementsByClassName("Cancelled"); 
+               const collection4 = document.getElementsByClassName("Submitted"); 
+               // console.log(collection.length);
+               for(var i=0; i<collection.length; i++){
+                   collection[i].style.display="none";
+               }  
+               
+               for(var i=0; i<collection1.length; i++){
+                   collection1[i].style.display="";
+               } 
+               if(collection2 != null){
+               for(var i=0; i<collection2.length; i++){
+                   collection2[i].style.display="";
+               }
+               }
+               if(collection3 != null){
+               for(var i=0; i<collection3.length; i++){
+                   collection3[i].style.display="";
+               } 
+               }
+               if(collection4 != null){
+               for(var i=0; i<collection4.length; i++){
+                   collection4[i].style.display="";
+               } 
+               }
+           }  
             
-         if(document.getElementById('processing_true').checked) {
-                const collection = document.getElementsByClassName("Processing");
-                // collection[0].style.display="inline-block";
-                for(var i=0; i<collection.length; i++){
-                    collection[i].style.display="";
-                }
-                 console.log(collection.length);
-            }else if(document.getElementById('processing_false').checked){
-                const collection = document.getElementsByClassName("Processing");
-                // collection[0].style.display="none";
-                  console.log(collection[0]);
-                for(var i=0; i<collection.length; i++){
-                    collection[i].style.display="none";
-                } 
-            }
+       
 }
 
  $( function() {
