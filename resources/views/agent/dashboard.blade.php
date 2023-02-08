@@ -163,19 +163,7 @@
                                     <div class="heading-title border-bottom d-flex"> 
                                         <h5 class="font-size-18"><b>Summary</b></h5>
                                         <div class="ms-auto">
-                                        <?php 
-                                            echo '<select name="years" id="year">' . PHP_EOL;
-                                            $start_from="2022";
-                                                for($i = $start_from; $i <=date("Y"); $i++){
-                                                    
-                                                    echo '<option id="year"'.PHP_EOL;
-                                                    if($i==date("Y")){
-                                                        echo 'selected'.PHP_EOL;
-                                                    }
-                                                    echo 'value="' . $i . '">' . $i . '</option>' . PHP_EOL;
-                                                }
-                                                echo '</select>';
-                                            ?>
+                                            
                                         </div>
                                     </div>
                                     <ul class="nav nav-pills border-bottom mb-2 paid-all-detalis" id="pills-tab" role="tablist">
