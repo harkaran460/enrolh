@@ -1,9 +1,9 @@
 @extends('layouts.agent_app')
 @section('content')
 <?php //echo "<pre>";print_r($payment_details);?>
-    
+
     <div class="page-content p-15 mx-1">
-        <div class="container-fluid mt-4"> 
+        <div class="container-fluid mt-4">
             <div class="row">
                 <div class="col-md-12">
                     <div class="bg-white p-4 mb-md-3">
@@ -11,21 +11,21 @@
                             <div class="css-1y75kwg css-1jlq0r60">
                                 <div class="css-q6cz2y css-1jlq0r62">
                                     <div class="css-1jlq0r65 css-gqqadv">
-    
+
                                         @php $firstcaracter = substr($student_details->first_name, 0, 1); @endphp
-    
+
                                         <div data-testid="student-profile-{{ $student_details->id }}-initials-avatar"
                                             class="css-m8p8pp">{{ $firstcaracter }}</div>
                                     </div>
                                 </div>
                                 <div class="css-1ca1ag7 css-1jlq0r61">
-    
-                                    <div class="css-1yyj7dd css-1jlq0r63"><?php echo ucfirst($student_details->first_name);?> 
+
+                                    <div class="css-1yyj7dd css-1jlq0r63"><?php echo ucfirst($student_details->first_name);?>
                                     <?php echo ucfirst($student_details->middle_name);?>
                                      <?php echo ucfirst($student_details->last_name);?></div>
- 
+
                                  <div>
-    
+
                                     <div>
                                         <span class="css-1ai5g3s css-1jlq0r64">{{ $student_details->id }}</span>
                                         <span class="css-1ai5g3s css-1jlq0r64">|</span>
@@ -59,7 +59,7 @@
                     </div>
 
                     <h3 class="mt-md-4 mb-md-4"><b> Account Balances</b></h3>
-    
+
                     <div class="main-account-balances">
                         <div class="muiBox-root-heading">
                             <h5><b>Commissions</b></h5>
@@ -72,77 +72,77 @@
                                 <div class="muiListItemAvatar-root">
                                     <div class="muiAvatar-circular">$</div>
                                 </div>
-                                <div class="muiListItemText-multiline ms-3"> 
-                                    <div class="d-flex justify-content"> 
-                                        <h4>USD</h4> 
+                                <div class="muiListItemText-multiline ms-3">
+                                    <div class="d-flex justify-content">
+                                        <h4>USD</h4>
                                         <h5 class="ms-auto"><b> $0.00</b></h5>
-                                    </div> 
+                                    </div>
                                     <h5>United States Dollar</h5>
-                                </div> 
-                            </li> 
-                            <li>
-                                <div class="muiListItemAvatar-root">
-                                    <div class="muiAvatar-circular">$</div>
                                 </div>
-                                <div class="muiListItemText-multiline ms-3"> 
-                                    <div class="d-flex justify-content"> 
-                                        <h4>USD</h4> 
-                                        <h5 class="ms-auto"><b> $0.00</b></h5>
-                                    </div> 
-                                    <h5>United States Dollar</h5>
-                                </div> 
                             </li>
                             <li>
                                 <div class="muiListItemAvatar-root">
                                     <div class="muiAvatar-circular">$</div>
                                 </div>
-                                <div class="muiListItemText-multiline ms-3"> 
-                                    <div class="d-flex justify-content"> 
-                                        <h4>USD</h4> 
+                                <div class="muiListItemText-multiline ms-3">
+                                    <div class="d-flex justify-content">
+                                        <h4>USD</h4>
                                         <h5 class="ms-auto"><b> $0.00</b></h5>
-                                    </div> 
+                                    </div>
                                     <h5>United States Dollar</h5>
-                                </div> 
+                                </div>
                             </li>
                             <li>
                                 <div class="muiListItemAvatar-root">
                                     <div class="muiAvatar-circular">$</div>
                                 </div>
-                                <div class="muiListItemText-multiline ms-3"> 
-                                    <div class="d-flex justify-content"> 
-                                        <h4>USD</h4> 
+                                <div class="muiListItemText-multiline ms-3">
+                                    <div class="d-flex justify-content">
+                                        <h4>USD</h4>
                                         <h5 class="ms-auto"><b> $0.00</b></h5>
-                                    </div> 
+                                    </div>
                                     <h5>United States Dollar</h5>
-                                </div> 
-                            </li> 
+                                </div>
+                            </li>
                             <li>
                                 <div class="muiListItemAvatar-root">
                                     <div class="muiAvatar-circular">$</div>
                                 </div>
-                                <div class="muiListItemText-multiline ms-3"> 
-                                    <div class="d-flex justify-content"> 
-                                        <h4>USD</h4> 
+                                <div class="muiListItemText-multiline ms-3">
+                                    <div class="d-flex justify-content">
+                                        <h4>USD</h4>
                                         <h5 class="ms-auto"><b> $0.00</b></h5>
-                                    </div> 
+                                    </div>
                                     <h5>United States Dollar</h5>
-                                </div> 
-                            </li> 
+                                </div>
+                            </li>
                             <li>
                                 <div class="muiListItemAvatar-root">
                                     <div class="muiAvatar-circular">$</div>
                                 </div>
-                                <div class="muiListItemText-multiline ms-3"> 
-                                    <div class="d-flex justify-content"> 
-                                        <h4>USD</h4> 
+                                <div class="muiListItemText-multiline ms-3">
+                                    <div class="d-flex justify-content">
+                                        <h4>USD</h4>
                                         <h5 class="ms-auto"><b> $0.00</b></h5>
-                                    </div> 
+                                    </div>
                                     <h5>United States Dollar</h5>
-                                </div> 
-                            </li>  
+                                </div>
+                            </li>
+                            <li>
+                                <div class="muiListItemAvatar-root">
+                                    <div class="muiAvatar-circular">$</div>
+                                </div>
+                                <div class="muiListItemText-multiline ms-3">
+                                    <div class="d-flex justify-content">
+                                        <h4>USD</h4>
+                                        <h5 class="ms-auto"><b> $0.00</b></h5>
+                                    </div>
+                                    <h5>United States Dollar</h5>
+                                </div>
+                            </li>
                         </ul>
                     </div>
- 
+
                     <h3 class="mt-md-4 mb-md-4"><b> Payment History <i class="fa-solid fa-filter" id="payments-filter"></i></b></h3>
 
                     <div class="row payment-history">
@@ -190,12 +190,12 @@
                         </div>
                         <div class="col-md-6"></div>
                     </div>
-                    
+
                     <div class="row bg-white p-4">
                         <div class="col-md-5 ">
                             <div class="table-responsive-sm">
-                                
-                            
+
+
                             <table class="table table-bordered">
                                 <tr>
                                     <th>SN.</th>
@@ -226,23 +226,23 @@
                                     <td>{{$pd->payment_status}}</td>
                                     <td>{{$pd->other}}</td>
                                 </tr>
-                                <?php $count++  ?> 
+                                <?php $count++  ?>
                                 @endforeach
                                 @endif
                             </table>
-                            <div class="form-group mt-md-4"> 
+                            <div class="form-group mt-md-4">
                                 <div class="d-grid gap-2">
                                    {{ $payment_details->links() }}
                                 </div>
                             </div>
                             </div>
                         </div>
-                        
-                        
+
+
                     </div>
-                </div> 
-            </div> 
+                </div>
+            </div>
         </div>
     </div>
-     
+
 @endsection
