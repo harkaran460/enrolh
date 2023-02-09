@@ -46,15 +46,15 @@ class RazorpayController extends Controller
                 'payment_status' => 2,
                 'payment_date' => date('Y-m-d H:i:s')
             ];
-             
-            // return $payInfo ;       
+
+            // return $payInfo ;
             Payment::insertGetId($payInfo);
             DB::table('student_applications')->where('app_id', $request->appid)->update($payment_app);
-            
-              $getProgramId =  DB::table('student_applications')->select('program_id')->where('app_id', $request->appid)->get(); 
+
+              $getProgramId =  DB::table('student_applications')->select('program_id')->where('app_id', $request->appid)->get();
               if(!empty($getProgramId))
               {
-                 $program_id = $getProgramId[0]->program_id; 
+                 $program_id = $getProgramId[0]->program_id;
                  $getCommissionDetails =  DB::table('college_programs')->select('programs_name','commission_break_down','commission_type','amount_percentage','amount_fixed','tax_fixed','tax_percentage','tax_type')->where('id', $program_id)->get();
                     if(!empty($getCommissionDetails))
                     {
@@ -81,38 +81,54 @@ class RazorpayController extends Controller
                       if(($tax_type =='exclusive')&&($tax_fixed ==0))
                       {
                        $tax  = ($request->amount)*($tax_percentage)/100;
-                       $ttype = 'percent';
+                       $ttype = 'exclusive';
                       }
                       if(($tax_type =='exclusive')&&($tax_fixed !=0))
                       {
                        $tax = $tax_fixed;
-                       $ttype = 'fixed';
-                       //$tax = (($request->amount) - ($tax_fixed));
+                       $ttype = 'exclusive';
                       }
-                      
+
+                      //inclusive
+                      if(($tax_type =='inclusive')&&($tax_fixed ==0))
+                      {
+                       $tax  = ($request->amount)*($tax_percentage)/100;
+                       $ttype = 'inclusive';
+                      }
+                      if(($tax_type =='inclusive')&&($tax_fixed !=0))
+                      {
+                       $tax = $tax_fixed;
+                       $ttype = 'inclusive';
+                      }
+
+                    if($tax_type !='inclusive'){
                       if(($commission_amt !='') && ($tax !=''))
                       {
                          $finaldeduction =  $commission_amt + $tax;
-                         $final_payment_amt = $request->amount -$finaldeduction; 
+                         $final_payment_amt = $request->amount -$finaldeduction;
                       }
-                      
+                    }else
+                    {
+                        $finaldeduction =  $commission_amt;
+                        $final_payment_amt = $request->amount -$finaldeduction;
+                    }
                      $inviceData = [
-                        'appid' =>$request->appid,
-                        'email' =>$request->student_id,
-                        'amount' =>$request->amount,
-                        'commission' =>$commission_amt,
-                        'tax' =>$tax,
-                        'total_deduction'=>$finaldeduction,
-                        'final_payable_amt'=>$final_payment_amt,
-                        'commission_type' =>$commission_type,
-                        'tax_type' =>$ttype,
-                        'payment_id' =>$request->razorpay_payment_id,
+                        'appid' =>isset($request->appid) ? $request->appid :'',
+                        'email' =>isset($request->student_id) ? $request->student_id :'',
+                        'amount' =>isset($request->amount) ? $request->amount :'',
+                        'commission' =>isset($commission_amt) ? $commission_amt : '',
+                        'tax' =>isset($tax) ? $tax : '',
+                        'total_deduction'=>isset($finaldeduction) ? $finaldeduction :'',
+                        'final_payable_amt'=>isset($final_payment_amt) ? $final_payment_amt : '',
+                        'commission_type' =>isset($commission_type) ? $commission_type :'',
+                        'tax_type' =>isset($ttype) ? $ttype :'',
+                        'payment_id' =>isset($request->razorpay_payment_id) ? $request->razorpay_payment_id : '',
                         'payment_date' => date('Y-m-d H:i:s'),
                         'debite_amount' => 0,
                         'debited_by' => 0,
                         'debited_date' => date('Y-m-d H:i:s')
                     ];
-                   
+
                     DB::table('invice')->insert($inviceData);
                     }
               }
