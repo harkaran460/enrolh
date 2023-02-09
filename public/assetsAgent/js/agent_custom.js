@@ -582,7 +582,7 @@ function agentStudentProfileUpdate() {
     let grade_average = $.trim($("input[name='grade_average']").val());
 
     let name_of_institution = $("#name_of_institution").val();
-    
+
     let primary_language_of_instruction = $("#primary_language_of_instruction").val();
     let attended_institution_from = $("#attended_institution_from").val();
     let attended_institution_to = $("#attended_institution_to").val();
@@ -706,7 +706,7 @@ function agentStudentProfileUpdate() {
         );
         $("input[name='phone_number']").focus();
         return false;
-    
+
     } else if (checking == false) {
         $("#error").html(
             '<div class="alert alert-danger" role="alert">Accept only number.</div>'
@@ -761,7 +761,7 @@ function agentStudentProfileUpdate() {
             type: "POST",
             success: function (result) { //alert(result);
                 var parsedJson = $.parseJSON(result);
-               
+
                 if (parsedJson.message === "success") {
                     // alert(parsedJson.student_id);
                     $("#success").html(
@@ -816,14 +816,17 @@ function docupload(docType,studentId,appId)
         success: function (data) {
             $("#uploaddoc"+docType).hide();
             $("#suceess"+docType).text("Document successfully updated");
-            $("#msg"+docType).html(data);
+            $("#msg"+docType).html('<a href="'+ data +'" target="_blank">View Details </a> <span onclick="myFunction(1)">remove</span>');
             $("#complete"+docType).show();
             $("#pending"+docType).hide();
         },
     });
 
 }
-
+//delete image for student application review
+function myFunction (a){
+alert(a);
+}
 //save student notes
 
 function notesSave()
@@ -871,24 +874,58 @@ function notesSave()
             $("#msg").html('Save');
             if(data =='success')
             {
-            $("#success").html("<div class='alert alert-success'><strong>Success!</strong> Note save successfully.</div> "); 
+            $("#success").html("<div class='alert alert-success'><strong>Success!</strong> Note save successfully.</div> ");
             $('#frmnote')[0].reset();
         }else
-            { 
-              $("#error").html("<div class='alert alert-danger'><strong>Failed!</strong> Data Not Saved.</div> ");    
+            {
+              $("#error").html("<div class='alert alert-danger'><strong>Failed!</strong> Data Not Saved.</div> ");
             }
         },
     });
- 
+
 }
 }
 
+function statusChange(appid,status)
+{
+    var form_data = new FormData();
+        form_data.append("appid", appid);
+        form_data.append("status", status);
 
-
-
-
-
-
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": token,
+        },
+        url: base_path + "/change-document-status",
+        method: "POST",
+        data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function () {
+            $("#msg_pass").html("Please wait...");
+        },
+        success: function (data) {
+            if(data=='aproved'){
+            $("#msg_pass").hide();
+            $("#suceess_pass").html("<spain class='success'>Application successfully Aproved</span>");
+            setTimeout(function() {
+                location.reload();
+            }, 5000);
+            }
+            else if(data=='disaproved'){
+                $("#msg_pass").hide();
+                $("#suceess_pass").html("<spain class='error'>Application successfully Disaproved</span>");
+                setTimeout(function() {
+                    location.reload();
+                }, 5000);
+            }else{
+                    $("#msg_pass").hide();
+                    $("#suceess_pass").html("<spain class='error'>Something worng</span>");
+                }
+        },
+    });
+}
 /*$(document).on("change", "#img-upload1", function () {
     var property = document.getElementById("img-upload").files[0];
     var image_name = property.name;

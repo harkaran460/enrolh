@@ -70,22 +70,21 @@ class AgentHome extends Controller
         }
         //paid application
         $tempMonthArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        $yearName = date("Y"); 
-        // $monthNameArr = array();
-        // for ($i = 0; $i < 12; $i++) {
-        //     if ($i < date('m')) {
-        //         $monthNameArr[] = $tempMonthArr[$i];
-        //     }
-        // }
+        $monthNameArr = array();
+        for ($i = 0; $i < 12; $i++) {
+            if ($i < date('m')) {
+                $monthNameArr[] = $tempMonthArr[$i];
+            }
+        }
 
         $dataSetArr = array();
-        $dataSetArr['labels'] = $tempMonthArr;
+        $dataSetArr['labels'] = $monthNameArr;
 
         $counter = 0;
         foreach ($this->getColleges() as $key => $collage) {
             $dataSetArr['datasets'][$key]['label'] = $collage->program_college_name;
             $dataSetArr['datasets'][$key]['backgroundColor'] = $this->colorarry()[$counter];
-            $dataSetArr['datasets'][$key]['data'] = $this->collageWiseMonthLyDataCount($collage->college_id, $tempMonthArr, $yearName);
+            $dataSetArr['datasets'][$key]['data'] = $this->collageWiseMonthLyDataCount($collage->college_id, $monthNameArr);
             if ($counter == 6) {
                 $counter = 0;
             } else {
@@ -106,31 +105,6 @@ class AgentHome extends Controller
         $data['notice_board'] =  DB::table('notice_board')->select('id','notice_text')->get();
         return view('agent.dashboard', $data);
     }
-
-    /*--------------------------------------- change year and update the chart from ajax request start-------------------------------------------*/
-    public function getYearData(){
-        if(isset($_GET['year'])){
-             $tempMonthArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-         //   return $_GET['year'];
-         $yearName = $_GET['year'];
-           $dataSetArr = array();
-     $dataSetArr['labels'] = $tempMonthArr;
-
-     $counter = 0;
-     foreach ($this->getColleges() as $key => $collage) {
-         $dataSetArr['datasets'][$key]['label'] = $collage->program_college_name;
-         $dataSetArr['datasets'][$key]['backgroundColor'] = $this->colorarry()[$counter];
-         $dataSetArr['datasets'][$key]['data'] = $this->collageWiseMonthLyDataCount($collage->college_id, $tempMonthArr, $yearName);
-         if ($counter == 6) {
-             $counter = 0;
-         } else {
-             $counter++;
-         }
-     } 
-      return ($dataSetArr);
-     }
- }
-/*--------------------------------------- change year and update the chart from ajax request end-------------------------------------------*/
 
     public function getGroupbystatusCount($id)
     {
@@ -156,18 +130,18 @@ class AgentHome extends Controller
     {
         return $paid_student = DB::select(DB::raw("SELECT COUNT(payments.id) as total from payments WHERE MONTHNAME(CAST(payments.created_at AS DATE)) = '" . $month_name . "'"));
     }
-    public function collageWiseMonthLyDataCount($college_id, $monthNameArr, $yearName)
+    public function collageWiseMonthLyDataCount($college_id, $monthNameArr)
     {
         $monthlyArr = array();
         foreach ($monthNameArr as $monthName) {
-            $monthlyArr[] = $this->getMonthData($college_id, $monthName, $yearName);
+            $monthlyArr[] = $this->getMonthData($college_id, $monthName);
         }
         return $monthlyArr;
     }
 
-    public function getMonthData($college_id, $monthName, $yearName)
+    public function getMonthData($college_id, $monthName)
     {
-        $student_applications = DB::select(DB::raw("SELECT COUNT(student_applications.id) as total from student_applications WHERE MONTHNAME(CAST(student_applications.created_at AS DATE)) = '" . $monthName . "' AND YEAR(student_applications.created_at) = '". $yearName ."' AND  program_id  = " . $college_id ));
+        $student_applications = DB::select(DB::raw("SELECT COUNT(student_applications.id) as total from student_applications WHERE MONTHNAME(CAST(student_applications.created_at AS DATE)) = '" . $monthName . "' AND program_id  = " . $college_id));
         if (isset($student_applications) && $student_applications[0]->total > 0) {
             return $student_applications[0]->total;
         }
@@ -227,7 +201,7 @@ class AgentHome extends Controller
             ->paginate($limit);
     }
 
-    //missing_requirement_count  
+    //missing_requirement_count
     public function missing_requirement_count($app_id)
     {
         return $data['missing_doc']    =  DB::table('student_uploaded_docs')->select('id')->where('app_id', $app_id)->whereIn('is_verified', [0, 2])->groupBy('app_id')->count();
@@ -313,7 +287,7 @@ class AgentHome extends Controller
         $application_end_date   = $request->input('application_end_date');
         $requirement_partner    = $request->input('requirement_partner');
         $requirements           = $request->input('requirements');
-        $current_status         = $request->input('c  rrent_status');
+        $current_status         = $request->input('current_status');
         $current_date = date('Y-m-d H:i:s');
 
         $qty = $request->input('qty');
@@ -339,7 +313,7 @@ class AgentHome extends Controller
         array_push($ids, $agent);
 
 
-        $data1 =  DB::table('users as a')->select('b.user_id', 'b.first_name', 'b.last_name', 'd.program_college_name', 'd.programs_name', 'd.earliest_intake_date', 'd.id as pid', 'c.student_id', 'c.app_id', 'c.status', 'g.status_title', 'c.agent_id', 'c.created_at', 'c.id', 'e.college_logo', 'e.id as cid', 'f.status_name', 'f.bgcolor')
+        $data1 =  DB::table('users as a')->select('b.user_id', 'b.first_name', 'b.last_name', 'd.program_college_name', 'd.programs_name', 'd.earliest_intake_date', 'd.id as pid', 'c.student_id', 'c.app_id', 'c.status', 'c.agent_id', 'c.created_at', 'c.id', 'e.college_logo', 'e.id as cid', 'f.status_name', 'f.bgcolor')
             ->whereIn('a.agent_id', $ids)
             ->whereIn('a.user_type', ['5', '6', '8', '11', '12']);
 
@@ -374,7 +348,6 @@ class AgentHome extends Controller
         $data1 = $data1->join('college_programs as d', 'd.id', '=', 'c.program_id');
         $data1 = $data1->join('colleges  as e', 'e.id', '=', 'd.college_id');
         $data1 = $data1->join('payment_status as f', 'f.id', '=', 'c.payment_status');
-        $data1 = $data1->join('current_status as g', 'g.id', '=', 'c.application_status');
         $data1 = $data1->orderBy('c.id', 'DESC');
         $data1 = $data1->paginate($limit);
         $data['agent_email']    =  DB::table('users')->select('id', 'name', 'user_type', 'email')->where('id', Auth::user()->id)->get();
@@ -514,7 +487,7 @@ class AgentHome extends Controller
             ->leftjoin('country as c2', 'c2.id', '=', 'extschool.country_of_institution2')
             ->leftjoin('state as s2', 's2.id', '=', 'extschool.school_province2')
             ->leftjoin('city as city2', 'city2.id', '=', 'extschool.school_city_town2')
-            
+
             ->leftjoin('country as c3', 'c3.id', '=', 'extschool.country_of_institution3')
             ->leftjoin('state as s3', 's3.id', '=', 'extschool.school_province3')
             ->leftjoin('city as city3', 'city3.id', '=', 'extschool.school_city_town3')
@@ -525,15 +498,15 @@ class AgentHome extends Controller
             ->leftjoin('college_programs  as cp', 'cp.id', '=', 'sp.program_id')
             ->leftjoin('colleges  as c', 'c.id', '=', 'cp.college_id')
             ->where('student_id', $studentid)->get();
-           //return $data; 
+           //return $data;
         $data['applications_count']    =  DB::table('student_applications as sp')->select('app_id')
         ->where('student_id', $studentid)->get()->count();
         return view('agent.student_profile', $data);
     }
 
     public function agent_student_profile_update(Request $request)
-    { 
-       
+    {
+
         $data = array(
                 "first_name" => "$request->first_name",
                 "middle_name" => $request->middle_name,
@@ -565,7 +538,7 @@ class AgentHome extends Controller
                 "primary_language_of_instruction" => $request->primary_language_of_instruction,
                 "attended_institution_from" => $request->attended_institution_from,
                 "attended_institution_to" => $request->attended_institution_to,
-                
+
                 "degree_name" => $request->degree_name,
                 "graduated_institution" => $request->graduated_institution,
                 "graduation_date" => $request->graduation_date,
@@ -599,7 +572,7 @@ class AgentHome extends Controller
                 "study_permit_visa" => $request->study_permit_visa
 
             );
-           
+
             $res =  DB::table('student_profile')
             ->where('id', $request->id)->update($data);
             $other_school_data = array(
@@ -643,14 +616,14 @@ class AgentHome extends Controller
                  ->where('user_id', $request->user_id)
                  ->update($other_school_data);
             }else{
-                 DB::table('other_schools_attended')->insert($other_school_data);   
-            } 
+                 DB::table('other_schools_attended')->insert($other_school_data);
+            }
         if ($res == 1) {
             $msg = array(
                 'message'  => "success",
                 'student_id'  => $request->user_id
             );
-            //log record  other_schools_attended 
+            //log record  other_schools_attended
             DB::table('student_records')->insert([
                 'title'          => 'Profile Updated',
                 'text'           => "Profile Updated",
@@ -857,9 +830,8 @@ class AgentHome extends Controller
             ->join('payment_status as b', 'b.id', '=', 'a.payment_status')
             ->join('college_programs as c', 'c.id', '=', 'a.program_id')
             ->join('current_status as d', 'd.id', '=', 'a.application_status')
-            ->where('a.student_id', $student_id)->where('a.status', 1) 
-            ->paginate(15, ['*'], 'newpage');
-  
+            ->where('a.student_id', $student_id)->where('a.status', 1)
+            ->paginate('5');
         return view('agent.student_profile_application', $data);
     }
 
@@ -888,7 +860,7 @@ class AgentHome extends Controller
     }
     public function student_application_review($app_id)
     {
-        $data['student_details']  =  DB::table('users as a')->select('a.id', 'app_status.status_title', 'application_status', 'ps.status_name as payment_status', 'c.program_id as progoramid', 'certificate_img', 'passport_img', 'd.*', 'email', 'g.country as country_of_citizenship', 'h.country as student_college_country', 'edu.title as highest_level_of_education', 'app_id', 'd.id as progoramid', 'i.country as college_country', 'e.college_address', 'f.title as level_of_education', 'first_name', 'middle_name', 'last_name', 'date_of_birth', 'first_language', 'passport_number', 'marital_status', 'gender', 'address', 'n.city as city_town', 'kk.country as country', 'mm.state as province_state', 'postal_code', 'phone_number', 'k.country as country_of_education', 'o.grad_name as grading_scheme', 'grade_average', 'graduated_from_most_recent_school', 'j.country as country_of_institution', 'name_of_institution', 'primary_language_of_instruction', 'attended_institution_from', 'attended_institution_to', 'degree_name', 'graduated_institution', 'graduation_date', 'physical_certificate_for_this_degree', 'school_address', 'l.city as school_city_town', 'm.state as school_province', 'school_postal_code', 'b.english_exam_type', 'date_of_exam', 'd.doc_requirement', 'college_logo', 'b.user_id as student_id')
+        $data['student_details']  =  DB::table('users as a')->select('a.id', 'app_status.status_title', 'application_status', 'ps.status_name as payment_status', 'c.program_id as progoramid', 'certificate_img','c.payment_status as paymentstatus', 'passport_img', 'd.*', 'email', 'g.country as country_of_citizenship', 'h.country as student_college_country', 'edu.title as highest_level_of_education', 'app_id', 'd.id as progoramid', 'i.country as college_country', 'e.college_address', 'f.title as level_of_education', 'first_name', 'middle_name', 'last_name', 'date_of_birth', 'first_language', 'passport_number', 'marital_status', 'gender', 'address', 'n.city as city_town', 'kk.country as country', 'mm.state as province_state', 'postal_code', 'phone_number', 'k.country as country_of_education', 'o.grad_name as grading_scheme', 'grade_average', 'graduated_from_most_recent_school', 'j.country as country_of_institution', 'name_of_institution', 'primary_language_of_instruction', 'attended_institution_from', 'attended_institution_to', 'degree_name', 'graduated_institution', 'graduation_date', 'physical_certificate_for_this_degree', 'school_address', 'l.city as school_city_town', 'm.state as school_province', 'school_postal_code', 'b.english_exam_type', 'date_of_exam', 'd.doc_requirement', 'college_logo', 'b.user_id as student_id')
             ->leftjoin('student_profile as b', 'b.user_id', '=', 'a.id')
             ->leftjoin('student_applications as c', 'c.student_id', '=', 'a.id')
             ->leftjoin('college_programs  as d', 'd.id', '=', 'c.program_id')
@@ -913,14 +885,14 @@ class AgentHome extends Controller
 
 
             ->where('c.app_id', $app_id)->first();
-        // $doc_req = $data['student_details']->doc_requirement;
+         $doc_req = $data['student_details']->doc_requirement;
         $doc_req = json_decode($data['student_details']->doc_requirement, true);
- 
+
         if (!empty($doc_req)) {
             $total_doc = count($doc_req);
             $data['doc_requirment']  =  DB::table('documents_requirment')->select('id', 'document_name', 'description', 'required_field', 'upload_status')->whereIn('id', $doc_req)->where('status', 1)->get();
         }
-      
+
         $data['upload_doc_details']  =  DB::table('student_uploaded_docs')->select('doc_id', 'image_name')->where('app_id', $app_id)->get();
         $data['student_records']     =  DB::table('student_records')->select('title', 'text', 'created_at')->where('app_id', $app_id)->orderBy('id', 'desc')->get();
         $upload_doc_count            =  DB::table('student_uploaded_docs')->select('doc_id')->where('app_id', $app_id)->count();
@@ -929,7 +901,7 @@ class AgentHome extends Controller
         $data['upload_doc_review_count']            =  DB::table('student_uploaded_docs')->select('id')->where('app_id', $app_id)->where('is_verified', 0)->count();
         $data['upload_doc_verifiyed_count']         =  DB::table('student_uploaded_docs')->select('id')->where('app_id', $app_id)->where('is_verified', 1)->count();
         $data['upload_doc_canciled_count']          =  DB::table('student_uploaded_docs')->select('id')->where('app_id', $app_id)->where('is_verified', 2)->count();
-        //return $missing_doc;
+       // return $data;
         return view('agent.student_application_review', $data);
     }
 
@@ -938,7 +910,7 @@ class AgentHome extends Controller
 
         /*$validatedData = $request->validate([
             //'file' => 'required|jpg,jpeg,png,pdf|max:2048',
-    
+
            ]);*/
 
 
@@ -946,13 +918,15 @@ class AgentHome extends Controller
         $student_id = $request->input('student_id');
         $doc_type   = $request->input('doc_type');
         $file = $request->file('file');
-        $extension = $file->getClientOriginalExtension();
-        $filename = time() . '.' . $extension;
-
+        $originalname = $request->file('file')->getClientOriginalName();
+         $extension = $file->getClientOriginalExtension();
+         $filename1 = $originalname . '.' . $extension;
+         $filename = strtolower($originalname);
         $request->file('file')->storeAs('public/agent_documents/' . $appid, $filename);
 
-        $img_url =  asset("agentdoc/$appid/$filename");
-        echo '<img src="' . $img_url . '" alt="img" width="150">';
+        $img_url =  asset("agentdoc1/$appid/$filename");
+        // echo '<img src="' . $img_url . '" alt="img" width="150">';
+        echo $img_url;
         $data['upload_doc_status']  =  DB::table('student_uploaded_docs')->select('id')->where('doc_id', $doc_type)->where('app_id', $appid)->where('student_id', $student_id)->get();
 
         if (!empty($data['upload_doc_status'][0]->id)) {
@@ -1044,7 +1018,7 @@ class AgentHome extends Controller
             }
             $fname = $name . ' ' . $mname . ' ' . $lname;
 
-            // Mail::to(users: "nirajkumar11288@gmail.com")->send(new StudentNotes($title, $notes, $appid, $fname));
+            Mail::to(users: "nirajkumar11288@gmail.com")->send(new StudentNotes($title, $notes, $appid, $fname));
             //return $sdata;
             return "success";
         } else {
@@ -1171,8 +1145,8 @@ class AgentHome extends Controller
             $data['college_details'] = $data['college_details'];
         }else{
             $data['college_details']  =["collegenotfound"];
-        }  
-      
+        }
+
        return view('agent.college_details', $data);
     }
 
@@ -1281,7 +1255,7 @@ class AgentHome extends Controller
                 $data['courseTotal'] =  DB::table('college_programs')->whereIn('college_id', $iDs)->count();
                 $data['canapply'] =  'canaaply';
                 if ($studentfilter == 'student_filter') {
-                    
+
                     return view('agent.search_and_apply', $data);
                 } else {
                     return view('agent.program', $data);
@@ -1987,7 +1961,7 @@ class AgentHome extends Controller
     public function important_notice(){
         $limit = 5;
         $data['important_notice']    =  DB::table('student_records as a')->select('a.*', 'b.program_id', 'c.college_id as college_id','c.programs_name', 'c.program_college_name', 'd.first_name as agent_first_name','d.last_name as agent_last_name','e.status_name as payment_status','f.status_title as application_status', 'u.id as student_id','u.name','u.email')
-       
+
             ->where('is_view', 0)
             ->where('a.agent_id', Auth::user()->id)
             ->join('student_applications as b', 'b.app_id', '=', 'a.app_id')
@@ -1996,7 +1970,7 @@ class AgentHome extends Controller
             ->join('payment_status as e', 'e.id', '=', 'b.payment_status')
             ->join('current_status as f', 'f.id', '=', 'b.application_status')
             ->join('users as u', 'u.id', '=', 'a.student_id')
-            
+
             ->orderBy('a.id', 'DESC')->paginate($limit);
 
              $data['notes']    =  DB::table('notes as a')->select('a.*','b.program_id','c.college_id as college_id','c.programs_name', 'c.program_college_name','u.name','u.email')
@@ -2017,7 +1991,7 @@ class AgentHome extends Controller
             ->join('payment_status as e', 'e.id', '=', 'a.payment_status')
             ->join('current_status as f', 'f.id', '=', 'a.application_status')
             ->join('users as u', 'u.id', '=', 'a.student_id')
-            
+
             ->orderBy('a.id', 'DESC')->paginate($limit);
           //return   $data;
         return view('agent.important_notice',$data);
@@ -2025,6 +1999,6 @@ class AgentHome extends Controller
 
     public function action_notice()
     {
-        
+
     }
 }

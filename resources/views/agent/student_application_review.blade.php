@@ -11,20 +11,24 @@
     @php $getEnglishexamType = getEnglishexamType();@endphp
     @php $astatus = $student_details->application_status;@endphp
 
-
-
     <div class="page-content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-8">
-                    @if ($astatus == 13)
-                        <a href="" class="application-cancelled"><i class="fa-solid fa-circle-exclamation"></i>
-                            Application Cancelled</a>
-                    @endif
                     <div class="review-main pt-3 pb-2">
                         <h3>Show Application
-                            <a class="btn btn-danger btn-sm px-2 mb-2"><i class="fa-solid fa-cart-shopping"></i> &nbsp; Pending</a>
-                        </h3>  
+                            @if ($astatus < 11)
+                            <a class="btn btn-warning btn-sm px-2 mb-2"><i class="fa-solid fa-cart-shopping"></i> &nbsp; Pending</a>
+                            @endif
+                            @if ($astatus == 11)
+                            <a class="btn btn-danger btn-sm px-2 mb-2"><i class="fa-solid fa-cart-shopping"></i> &nbsp; Cancel</a>
+                            @endif
+                            @if (($astatus == 12) && ($student_details->paymentstatus >1))
+                            <a class="btn btn-success btn-sm px-2 mb-2"><i class="fa-solid fa-cart-shopping"></i> &nbsp; Approved</a>
+                            @elseif(($astatus == 12) && ($student_details->paymentstatus < 2))
+                            <a class="btn btn-warning btn-sm px-2 mb-2"><i class="fa-solid fa-cart-shopping"></i> &nbsp; Payment Pending</a>
+                            @endif
+                        </h3>
                         <!--<span class="badge bg-danger text-white float-end">Pending</span>-->
                         <nav aria-label="breadcrumb">
                           <ol class="breadcrumb">
@@ -36,7 +40,7 @@
                                                 <li class="breadcrumb-item active" aria-current="page">{{ $student_details->program_college_name }} - {{ $student_details->college_address }}</li>&nbsp; /
                           </ol>
                         </nav>
-                    </div> 
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="d-flex justify-content-end">
@@ -45,34 +49,36 @@
                                 <i class="fa-solid fa-ellipsis-vertical "></i>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Cancel Application</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="statusChange({{ $student_details->app_id}},11)">Cancel Application</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
+            <div id="msg_pass"></div>
+            <div id="suceess_pass"></div>
             <div class="row mt-md-3">
                 <div class="col-md-12">
                     <div id="crumbs">
                         <ul>
 
                             <li><a href="#"
-                                    class="@if ($astatus >= 0) application-active @else '' @endif "><i
+                                    class="@if (($astatus >= 0) && ($student_details->paymentstatus >1)) application-active @else '' @endif "><i
                                         class="fa-solid fa-check"></i><span> Pay Application Fee</span></a></li>
                             <li><a href="#"
-                                    class="@if ($astatus >= 2) application-active @else '' @endif "><i
+                                    class="@if (($astatus >= 2) && ($student_details->paymentstatus >1)) application-active @else '' @endif "><i
                                         class="fa-solid fa-check"></i><span> Prepare Application</span></a></li>
                             <li><a href="#"
-                                    class="@if ($astatus >= 3) application-active @else '' @endif "><i
+                                    class="@if (($astatus >= 3) && ($student_details->paymentstatus >1)) application-active @else '' @endif "><i
                                         class="fa-solid fa-check"></i><span> Submission In Progress</span></a></li>
                             <li><a href="#"
-                                    class="@if ($astatus >= 4) application-active @else '' @endif "><i
+                                    class="@if (($astatus >= 4) && ($student_details->paymentstatus >1)) application-active @else '' @endif "><i
                                         class="fa-solid fa-check"></i><span> Decision</span></a></li>
                             <li><a href="#"
-                                    class="@if ($astatus >= 5) application-active @else '' @endif "><i
+                                    class="@if (($astatus >= 5)  && ($student_details->paymentstatus >1)) application-active @else '' @endif "><i
                                         class="fa-solid fa-check"></i><span> Post-Decision Requirements</span></a></li>
                             <li><a href="#"
-                                    class="@if ($astatus >= 12) application-active @else '' @endif "><i
+                                    class="@if (($astatus >= 12)  && ($student_details->paymentstatus >1)) application-active @else '' @endif "><i
                                         class="fa-solid fa-check"></i><span> Enrollment Confirmed</span></a></li>
                         </ul>
                     </div>
@@ -82,12 +88,12 @@
                 <div class="col-md-4">
                     <div class="application-custom-box my-3">
                         <div class="main-review-left">
-                            
+
                             <div class="css-1p7mtvv">
                                 <!--<div class="muiBox-img">-->
                                 <!--    <img src="/assetsAgent/img/user.svg" class="img-fluid" alt="">-->
                                 <!--</div>-->
-                                
+
                                 <div class="css-11bq05t">
                                     <div class="css-xdzpz9">
                                         <div class="sidebarcountry position-relative">
@@ -99,8 +105,8 @@
                                 </div>
                                         </div>
                                         <div class="css-1dt3oac">
-                                            <a href="/agent-college-details/{{ $student_details->college_id }}" 
-                                                class="fw-bold">{{ $student_details->program_college_name }}  
+                                            <a href="/agent-college-details/{{ $student_details->college_id }}"
+                                                class="fw-bold">{{ $student_details->program_college_name }}
                                                 - {{ $student_details->college_address }}
                                             </a>
                                         </div>
@@ -478,7 +484,7 @@
                                             </li>
                         </ul>
 
- 
+
                         <div class="row mt-md-3">
                             <div class="col-md-12">
                                 <div class="tab-content" id="pills-tabContent">
@@ -487,7 +493,7 @@
 
                                         <div class="row">
 
-                                            
+
                                             <div class="col-md-12">
                                                 <div class="accordion" id="accordionPanelsStayOpenExample">
                                                     <div class="accordion-item">
@@ -520,7 +526,7 @@
                                                                                 <img src="/assetsAgent/img/check-icon.svg">
                                                                                 <!-- <div>3</div> -->
                                                                             </div>
-                                                                        </div> 
+                                                                        </div>
                                                                     </div>
 
                                                                 </div>
@@ -531,14 +537,14 @@
                                                             aria-labelledby="panelsStayOpen-headingOne" style="">
                                                             <div class="accordion-body">
                                                                 <ul class="acccrodion-list-detalis">
-                                                                  
-                                                             
-                                                                    
+
+
+
                                                                     @if (!empty($doc_requirment))
                                                                         @foreach ($doc_requirment as $doc_list)
                                                                         @csrf
-                                                                        
-                                                                      
+
+
                                                                             <li>
                                                                                 <div role="listitem" class="css-rbi7dp">
                                                                                     @if ($doc_list->required_field == 1)
@@ -554,7 +560,7 @@
                                                                                             </div>
                                                                                         </div>
                                                                                     @endif
-                                                                                    
+
                                                                                     <div class="css-1lp81ux">
                                                                                         <div class="css-1p0j8nq" style="display: none"
                                                                                             id="complete<?php echo $doc_list->id; ?>">
@@ -564,7 +570,7 @@
                                                                                                 class="css-fke44g">
                                                                                                 Completed
                                                                                             </div>
-                                                                                        </div> 
+                                                                                        </div>
                                                                                     </div>
 
 
@@ -586,7 +592,7 @@
                                                                                                 }
                                                                                             } ?>
                                                                                         </div>
-                                                                                        <?php 
+                                                                                        <?php
                                                                                 }
                                                                                 else
                                                                                 {?>
@@ -606,7 +612,7 @@
                                                                                             <div
                                                                                                 class="MuiBox-root jss209 sc-dkzDqf jlXQtr css-1iwe4pm">
                                                                                                 <div class="css-green">
-                                                                                                    
+
 
 
                                                                                                 </div>
@@ -702,32 +708,33 @@
                                                                                                                             <div class="col-md-8">
                                                                                                                                 <div
                                                                                                                                     class="dowonload-icon-btn">
-                                                                                                                                  
-                                                                                                                                        
-                                                                                                                                            <!--<input-->
-                                                                                                                                            <!--    type="file"-->
-                                                                                                                                            <!--    id="img-upload<?php echo $doc_list->id; ?>"-->
-                                                                                                                                            <!--    class="form-control fileupload"-->
-                                                                                                                                            <!--    onchange="docupload(<?php echo $doc_list->id; ?>,<?php echo $student_details->id; ?>,<?php echo $student_details->app_id; ?>);">-->
-                                                                                                                                            <!--<span-->
-                                                                                                                                            <!--    id="suceess<?php echo $doc_list->id; ?>"-->
-                                                                                                                                            <!--    style="color:green"></span><br />-->
-                                                                                                                                            <!--<span-->
-                                                                                                                                            <!--    id="msg<?php echo $doc_list->id; ?>"-->
-                                                                                                                                            <!--    style="color:green"></span><br />-->
-    
-                                                                                                                                            <?php if(!empty($image_name)) 
+
+
+                                                                                                                                            <input
+                                                                                                                                            type="file"
+                                                                                                                                            id="img-upload<?php echo $doc_list->id; ?>"
+                                                                                                                                            class="form-control fileupload"
+                                                                                                                                            onchange="docupload(<?php echo $doc_list->id; ?>,<?php echo $student_details->id; ?>,<?php echo $student_details->app_id; ?>);">
+                                                                                                                                            <span
+                                                                                                                                            id="suceess<?php echo $doc_list->id; ?>"
+                                                                                                                                            style="color:green"></span><br />
+
+                                                                                                                                            <span
+                                                                                                                                            id="msg<?php echo $doc_list->id; ?>"
+                                                                                                                                            style="color:green"></span><br />
+
+                                                                                                                                            <?php if(!empty($image_name))
                                                                                                                                                 {
-                                                                                                                                                
+
                                                                                                                                                     foreach ($upload_doc_details as $data)
-                                                                                                                                                    {  
-                                                                                                                                                        
+                                                                                                                                                    {
+
                                                                                                                                                         if($data->doc_id == $doc_list->id)
                                                                                                                                                         {
-                                                                                                                                                        $img_url = asset('agentdoc/'); ?>
+                                                                                                                                                        $img_url = asset('agentdoc1/'); ?>
                                                                                                                                                         <!--<img class="card-img-top" src="<?php echo $img_url . '/' . $student_details->app_id . '/' . $data->image_name; ?>" id="uploaddoc<?php echo $doc_list->id; ?>" style="max-height:150px">-->
-                                                                                                                                                            
-                                                                                                                                                            
+
+
                                                                                                                                                              <div class="card">
                                                                                                                                                                   <a href="<?php echo $img_url . '/' . $student_details->app_id . '/' . $data->image_name; ?>" target="_blank">
                                                                                                                                                                        <img src="<?php echo $img_url . '/' . $student_details->app_id . '/' . $data->image_name; ?>" class="card-img-top" style="max-height:150px">
@@ -735,16 +742,16 @@
                                                                                                                                                                   <div class="card-body px-0 pt-0">
                                                                                                                                                                     <h5 class="card-title">
                                                                                                                                                                         <div class="file-field input-field">
-                                                                                                                                                                           
+
                                                                                                                                                                             <input type="file" class="form-control" id="img-upload<?php echo $doc_list->id; ?>"
-                                                                                                                                                                                onchange="docupload(<?php echo $doc_list->id; ?>,<?php echo $student_details->id; ?>,<?php echo $student_details->app_id; ?>);"> 
+                                                                                                                                                                                onchange="docupload(<?php echo $doc_list->id; ?>,<?php echo $student_details->id; ?>,<?php echo $student_details->app_id; ?>);">
                                                                                                                                                                             <span
                                                                                                                                                                                 id="suceess<?php echo $doc_list->id; ?>"
                                                                                                                                                                                 style="color:green"></span><br />
                                                                                                                                                                             <span
                                                                                                                                                                                 id="msg<?php echo $doc_list->id; ?>"
                                                                                                                                                                                 style="color:green"></span><br />
-                                    
+
                                                                                                                                                                         </div>
                                                                                                                                                                     </h5>
                                                                                                                                                                     <p class="card-text">
@@ -753,24 +760,24 @@
                                                                                                                                                                                 <i class="fa fa-download me-2"></i>Download
                                                                                                                                                                             </a>
                                                                                                                                                                         </div>
-                                                                                                                                                                    </p> 
+                                                                                                                                                                    </p>
                                                                                                                                                                   </div>
                                                                                                                                                                 </div>
-                                                                                                                                                            
-                                                                                                                                                            
-                                                                                                                                                            <?php  
+
+
+                                                                                                                                                            <?php
                                                                                                                                                         }
-                                                                                                                                                    }  
-                                                                                                                                            
+                                                                                                                                                    }
+
                                                                                                                                                 }
                                                                                                                                             ?>
-                                                                                                                                 
-                                                                                                                                    <?php if(!empty($image_name)) 
+
+                                                                                                                                    <?php if(!empty($image_name))
                                                                                                                                         {
-                                                                                                                                        
+
                                                                                                                                             foreach ($upload_doc_details as $data)
-                                                                                                                                            {  
-                                                                                                                                                
+                                                                                                                                            {
+
                                                                                                                                                 if($data->doc_id == $doc_list->id)
                                                                                                                                                 {
                                                                                                                                                     $img_url = asset('agentdoc/'); ?>
@@ -779,20 +786,20 @@
                                                                                                                                                     <!--        <i class="fa fa-download"></i>Download-->
                                                                                                                                                     <!--    </a>-->
                                                                                                                                                     <!--</div>-->
-                                                                                                                                                    <?php  
+                                                                                                                                                    <?php
                                                                                                                                                 }
-                                                                                                                                            }  
-                                                                                                                                            
+                                                                                                                                            }
+
                                                                                                                                         }
                                                                                                                                     ?>
                                                                                                                                 </div>
 
                                                                                                                             </div>
                                                                                                                         </div>
-                                                                                                                        
+
                                                                                                                     </div>
-                                                                                                                    
-                                                                                                                      
+
+
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         @endif
@@ -863,7 +870,7 @@
                                                                 payments, invoices, and application statuses.</p>
                                                         </a>
                                                     </div>-->
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -878,7 +885,7 @@
                                                 <div class="form-group">
                                                     <!--<input type="text" name="notes_title" id="notes_title" class="form-control"-->
                                                     <!--    placeholder="Enter title here....">-->
-                                                        
+
                                                     <input type="text" name="editor1" id="notes_title" class="form-control"
                                                         placeholder="Enter title here....">
                                                 </div>
@@ -916,7 +923,7 @@
         .breadcrumb-item{
             color:#2a50ed;
         }
-        
+
         #img-upload5::before,
    #img-upload4::before{
   content: "Browser File";
@@ -926,6 +933,26 @@
   background-color: #eee;
   width: 80px;
 }
-        
+
+    </style>
+    <style>
+        #img-upload_pass {
+            font-weight: bold;
+            color: var(--color);
+            height: 2.5em;
+            border-radius: 3px;
+        }
+        .breadcrumb-item.active {
+            font-size: 14px;
+        }
+        .breadcrumb-item{
+            color:#2a50ed;
+        }
+        .success{
+            color: green;
+        }
+        .error{
+            color:red;
+        }
     </style>
 @endsection
