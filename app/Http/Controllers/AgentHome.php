@@ -267,6 +267,96 @@ class AgentHome extends Controller
         return view('agent.program', $data);
     }
 
+    // public function agentApplication(Request $request)
+    // {
+    //     //return  $request->input();
+    //     $payment_start_date  = date("Y-m-d", strtotime($request->input('payment_start_date'))) . ' 00:00:01';
+    //     $payment_end_date    = date("Y-m-d", strtotime($request->input('payment_end_date'))) . ' 23:59:00';
+
+    //     $appid               = $request->input('appid');
+    //     $student_id          = $request->input('student_id');
+    //     $fname               = $request->input('fname');
+    //     $lname               = $request->input('lname');
+    //     $program_name        = $request->input('program_name');
+    //     $school_name         = $request->input('school_name');
+
+    //     $payment_start_date  = date("Y-m-d", strtotime($request->input('payment_start_date'))) . ' 00:00:01';
+    //     $payment_end_date    = date("Y-m-d", strtotime($request->input('payment_end_date'))) . ' 23:59:00';
+
+    //     $application_start_date = $request->input('application_start_date');
+    //     $application_end_date   = $request->input('application_end_date');
+    //     $requirement_partner    = $request->input('requirement_partner');
+    //     $requirements           = $request->input('requirements');
+    //     $current_status         = $request->input('current_status');
+    //     $current_date = date('Y-m-d H:i:s');
+
+    //     $qty = $request->input('qty');
+    //     if ($qty != '') {
+    //         $limit = $qty;
+    //     } else {
+    //         $limit = 10;
+    //     }
+    //     $agent = Auth::user()->id;
+    //     $data['total_apply_count']    =  DB::table('student_applications')->select('student_id', DB::raw("count(student_id) as count"))
+
+    //         ->where('agent_id', Auth::user()->id)
+    //         ->groupBy('student_id')
+    //         ->get();
+    //     $associated_id     =  DB::table('users')->select('id')->whereIn('user_type', ['6', '7', '9'])->where('agent_id', $agent)->get();
+    //     if (!empty($associated_id)) {
+    //         foreach ($associated_id as $id) {
+    //             $ids[] = $id->id;
+    //         }
+
+    //         //return $ids;
+    //     }
+    //     array_push($ids, $agent);
+
+
+    //     $data1 =  DB::table('users as a')->select('b.user_id', 'b.first_name', 'b.last_name', 'd.program_college_name', 'd.programs_name', 'd.earliest_intake_date', 'd.id as pid', 'c.student_id', 'c.app_id', 'c.status', 'c.agent_id', 'c.created_at', 'c.id', 'e.college_logo', 'e.id as cid', 'f.status_name', 'f.bgcolor')
+    //         ->whereIn('a.agent_id', $ids)
+    //         ->whereIn('a.user_type', ['5', '6', '8', '11', '12']);
+
+    //     if (($request->input('payment_start_date') != '') && ($request->input('payment_end_date') != '')) {
+    //         $data1 = $data1->whereBetween('c.payment_date', ["$payment_start_date", "$payment_end_date"]);
+    //     }
+
+    //     if (($request->input('payment_start_date') != '') && ($request->input('payment_end_date') == '')) {
+    //         $data1 = $data1->whereBetween('c.payment_date', ["$payment_start_date", "$current_date"]);
+    //     }
+    //     if ($student_id != '') {
+    //         $data1 = $data1->where('a.id', $student_id);
+    //     }
+    //     if ($appid != '') {
+    //         $data1 = $data1->where('c.app_id', $appid);
+    //     }
+    //     if ($fname != '') {
+    //         $data1 = $data1->where('b.first_name', $fname);
+    //     }
+    //     if ($lname != '') {
+    //         $data1 = $data1->where('b.last_name', $lname);
+    //     }
+    //     if ($program_name != '') {
+    //         $data1 = $data1->where('d.programs_name', $program_name);
+    //     }
+    //     if ($school_name != '') {
+    //         $data1 = $data1->where('e.college_name', $school_name);
+    //     }
+
+    //     $data1 = $data1->join('student_profile as b', 'b.user_id', '=', 'a.id');
+    //     $data1 = $data1->join('student_applications as c', 'c.student_id', '=', 'a.id');
+    //     $data1 = $data1->join('college_programs as d', 'd.id', '=', 'c.program_id');
+    //     $data1 = $data1->join('colleges  as e', 'e.id', '=', 'd.college_id');
+    //     $data1 = $data1->join('payment_status as f', 'f.id', '=', 'c.payment_status');
+    //     $data1 = $data1->orderBy('c.id', 'DESC');
+    //     $data1 = $data1->paginate($limit);
+    //     $data['agent_email']    =  DB::table('users')->select('id', 'name', 'user_type', 'email')->where('id', Auth::user()->id)->get();
+
+    //      //return $data1;
+    //      $data1['status_title']='';
+    //     $data['application_list']  = $data1;
+    //     return view('agent.application', $data);
+    // }
     public function agentApplication(Request $request)
     {
         //return  $request->input();
@@ -287,7 +377,7 @@ class AgentHome extends Controller
         $application_end_date   = $request->input('application_end_date');
         $requirement_partner    = $request->input('requirement_partner');
         $requirements           = $request->input('requirements');
-        $current_status         = $request->input('current_status');
+        $current_status         = $request->input('c  rrent_status');
         $current_date = date('Y-m-d H:i:s');
 
         $qty = $request->input('qty');
@@ -313,7 +403,7 @@ class AgentHome extends Controller
         array_push($ids, $agent);
 
 
-        $data1 =  DB::table('users as a')->select('b.user_id', 'b.first_name', 'b.last_name', 'd.program_college_name', 'd.programs_name', 'd.earliest_intake_date', 'd.id as pid', 'c.student_id', 'c.app_id', 'c.status', 'c.agent_id', 'c.created_at', 'c.id', 'e.college_logo', 'e.id as cid', 'f.status_name', 'f.bgcolor')
+        $data1 =  DB::table('users as a')->select('b.user_id', 'b.first_name', 'b.last_name', 'd.program_college_name', 'd.programs_name', 'd.earliest_intake_date', 'd.id as pid', 'c.student_id', 'c.app_id', 'c.status', 'g.status_title', 'c.agent_id', 'c.created_at', 'c.id', 'e.college_logo', 'e.id as cid', 'f.status_name', 'f.bgcolor')
             ->whereIn('a.agent_id', $ids)
             ->whereIn('a.user_type', ['5', '6', '8', '11', '12']);
 
@@ -348,6 +438,7 @@ class AgentHome extends Controller
         $data1 = $data1->join('college_programs as d', 'd.id', '=', 'c.program_id');
         $data1 = $data1->join('colleges  as e', 'e.id', '=', 'd.college_id');
         $data1 = $data1->join('payment_status as f', 'f.id', '=', 'c.payment_status');
+        $data1 = $data1->join('current_status as g', 'g.id', '=', 'c.application_status');
         $data1 = $data1->orderBy('c.id', 'DESC');
         $data1 = $data1->paginate($limit);
         $data['agent_email']    =  DB::table('users')->select('id', 'name', 'user_type', 'email')->where('id', Auth::user()->id)->get();
