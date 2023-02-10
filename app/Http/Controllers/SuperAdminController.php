@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use App\Mail\StudentNotes;
 use Illuminate\Support\Facades\Mail;
+use Session;
 
 class SuperAdminController extends Controller
 {
@@ -67,7 +68,7 @@ class SuperAdminController extends Controller
           ->groupBy('student_id')
           ->get();
 
-         
+          
          
             $data1 =  DB::table('users as a')->select('a.email','b.user_id', 'b.first_name', 'b.last_name','c2.email as partner_email','cs.status_title', 'd.program_college_name', 'd.programs_name', 'd.earliest_intake_date','d.id as pid', 'c.student_id', 'c.app_id', 'c.status', 'c.agent_id', 'c.created_at', 'c.id','c.payment_date', 'e.college_logo','e.id as cid', 'f.status_name', 'f.bgcolor')
           //->whereIn('a.agent_id', $ids)
@@ -123,9 +124,24 @@ class SuperAdminController extends Controller
           $data1= $data1->join('users as c2', 'c2.id', '=', 'c.agent_id');
           $data1= $data1->join('current_status as cs', 'cs.id', '=', 'c.application_status');
           $data1= $data1->orderBy('c.id', 'DESC');
-          $data1= $data1->paginate($limit); 
-        
-      $data['application_list']  = $data1;
+          $data1= $data1->paginate($limit);  
+         $data['application_list']  = $data1;
+  
+        //  $data['notices'] = DB::table('notices')->select('id', 'notice_title','notice_des', 'created_at')->orderBy('created_at', 'desc')->paginate(5);
+
+
+     if (isset($_GET['delete_notice_id'])) {
+      $notice_id = $_GET['delete_notice_id'];
+      DB::delete('delete from notices where id ='. $notice_id);
+      Session::flash('notice_deleted', 'Notice has been Deleted !'); 
+       return redirect('admin-application-list'); 
+    }
+
+    if(isset($_GET['edit_notice_id'])){
+      $editId = $_GET['edit_notice_id'];
+      $data['edit_notice_data'] = DB::table('notices')->select('notice_title', 'notice_des')->where('id', $editId)->get();
+      
+    }
         return view('admin.admin-application',$data);
     }
 
@@ -271,8 +287,52 @@ class SuperAdminController extends Controller
         return "failed";die;
        }
   
-      } 
+      }
+
+  function addNotice(Request $request)
+  {
+    $validated = $request->validate([
+      'notice_title' => 'required',
+      'notice_des' => 'required',
+    ]);  
+    $value = array(
+      'user_id' => Auth::user()->id,
+      'notice_title' => $request->input('notice_title'),
+      'notice_des' => $request->input('notice_des')
+    );
+    $res = DB::table('notices')->insert($value);
+    if ($res) {
+      Session::flash('notice_submited', 'Notice has been submitted !'); 
     }
-    
+    return redirect('admin-application-list'); 
+  }
+
+ 
+  function UpdateNotice(Request $request){
+    $validated = $request->validate([
+      'notice_title' => 'required',
+      'notice_des' => 'required',
+    ]);  
+
+    $id = $request->input('notice_id');
+    $notice_title = $request->input('notice_title');
+    $notice_des = $request->input('notice_des');
+    $date = Carbon::now()->toDateTimeString();
+
+    $result = DB::table('notices')->where('id', $id)->update(['notice_title' => $notice_title, 'notice_des' => $notice_des, 'updated_at' => $date]);
+    if($result){
+      return redirect('admin-application-list'); 
+    } 
+   }
+
+
+   function noticeBoard(){
+    $data['notices'] = DB::table('notices')->select('id', 'notice_title','notice_des', 'created_at')->orderBy('created_at', 'desc')->paginate(5);
+
+    return view('admin.admin-notice-board', $data);
+   }
+    }
+
+   
    
 

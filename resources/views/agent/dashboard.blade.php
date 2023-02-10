@@ -656,7 +656,10 @@
                                 
                                 <div class="w-100 pad10 bdr-r5 mrgb-05 d-flex align-items-center justify-content-between wallet-content ">
                                     <div class="wc">
-                                        <p class="x16 fw600">{{$list->notice_text}}</p>
+                                    <h4 class="notice-title">{{$list->notice_title}}</h4>
+                                <p class="notice-date">{{date('d-M-Y', strtotime($list->created_at))}}</p>
+                                <p style="font-weight: 500;">{{$list->notice_des}}</p>
+ 
                                     </div>
                                 </div>
                             <?php 

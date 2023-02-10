@@ -5,18 +5,16 @@
         <div class="row">
             
             <div class="col-md-12"> 
-                <div class="bg-white p-3 important_updates">
-  
-                     
+                <div class="bg-white p-3 important_updates"> 
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
+                    <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="missing_requirements_tab" data-bs-toggle="pill" data-bs-target="#missing_requirements" type="button" role="tab" aria-controls="missing_requirements" aria-selected="true">Notifications <span>@if(!empty($important_notice)){{$important_notice->total()}}@else {{0}}@endif</span> </button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="notes_tab" data-bs-toggle="pill" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="false">Notes <span>@if(!empty($notes)){{$notes->total()}}@else {{0}}@endif </span> </button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="application_status_tab" data-bs-toggle="pill" data-bs-target="#application_status" type="button" role="tab" aria-controls="application_status" aria-selected="false">Application Status <span>@if(!empty($application_list)){{$application_list->total()}}@else {{0}}@endif</span> </button>
+                            <button class="nav-link " id="application_status_tab" data-bs-toggle="pill" data-bs-target="#application_status" type="button" role="tab" aria-controls="application_status" aria-selected="false">Application Status <span>@if(!empty($application_list)){{$application_list->total()}}@else {{0}}@endif</span> </button>
                         </li>
                     </ul>
                     
@@ -111,8 +109,9 @@
                                                 </thead>
                                                 <tbody>
                                                     
-                                                    @php $count = 1; @endphp
+                                                    @php $count = 0; @endphp
                                                     @foreach ($important_notice as $notice)
+                                                    @php $count = $count+1 @endphp 
                                                         <tr><td>{{$count}}</td>
                                                         <td>{{$notice->title}}</td>
                                                         <td>{{$notice->text}} {{$notice->agent_first_name}} {{$notice->agent_last_name}}</td>
@@ -125,16 +124,13 @@
                                                         <td><a href="/agent-program-details/{{$notice->program_id}}">{{$notice->programs_name}}</a> & <a href="/agent-college-details/{{$notice->college_id}}">{{$notice->program_college_name}}</a></td>
                                                         {{-- <td class="text-center view-btn"> <a href="#"> View</a></td> --}}
                                                     </tr> 
-                                                    @php $count ++ @endphp 
+                                                    
                                                     @endforeach
                                                 </tbody>
-                                            </table>
-                                           <div class="notices"> {{$important_notice->links('pagination::bootstrap-4')}}</div>
-                                           <div><span>
-                                            Showing Results {{ ($important_notice->currentpage() - 1) * $important_notice->perpage() + 1 }} to
-                                            {{ $important_notice->currentpage() * $important_notice->perpage() }}
-                                            of {{ $important_notice->total() }} entries
-                                           </span></div>
+                                            </table><br>
+                                            <ul class="pagination">{{$important_notice->appends('page_b', Input::get('page_b', 1))
+                                            ->appends('page_c', Input::get('page_c',1)) 
+                                            ->links('pagination::bootstrap-4')}}</ul>
                                            @endif
                                         </div>
                                         
@@ -182,11 +178,9 @@
                                                             <table class="table table-bordered table-striped">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>
-                                                                           
+                                                                        <th> 
                                                                         </th>
-                                                                        <th>Date & Time</th>
-                                                        
+                                                                        <th>Date & Time</th> 
                                                                         <th>Student Name</th>
                                                                         <th>Email</th>
                                                                         <th>App Id</th>
@@ -222,12 +216,11 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
-                                                    </div>
-                                                    {{$notes->links('pagination::bootstrap-4')}}
-                                                    <div><span>
-                                                    Showing Results {{ ($notes->currentpage() - 1) * $notes->perpage() + 1 }} to
-                                                    {{ $notes->currentpage() * $notes->perpage() }} of {{ $notes->total() }} entries
-                                                    </span></div>
+                                                    </div><br>
+                                                    <div class="notices">{{$notes->appends('page_a', Input::get('page_a',1))
+                                                        ->appends('page_c', Input::get('page_c',1)) 
+                                                        ->links('pagination::bootstrap-4')}}</div>
+                                                    
                                                     @endif 
                                                 </div>
                                                 <div class="tab-pane fade" id="unread_messages" role="tabpanel" aria-labelledby="unread_messages_tab" tabindex="0">
@@ -906,8 +899,11 @@
                                                                     @endforeach
                                                                      
                                                                 </tbody>
-                                                            </table>
-                                                        </div>
+                                                            </table><br>
+                                                            <div class="pagination">  {{$application_list->appends('page_a', Input::get('page_a',1))
+                                                                ->appends('page_b', Input::get('page_b',1)) 
+                                                                ->links('pagination::bootstrap-4')}}</div>
+                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="unread_messages2" role="tabpanel" aria-labelledby="unread_messages_tab2" tabindex="0">

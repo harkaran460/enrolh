@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Application</h4>
+                        <h4 class="mb-sm-0 font-size-18">Notice Board</h4>
     
                         <div class="d-flex">
                             
@@ -48,9 +48,7 @@
                     
                     <div class="d-flex flex-row">
                         <a href="/admin-application-list" class="btn me-4 fw-normal fs-5 border rounded-pill px-3 py-1 border-danger" > Back </a>
-                        <button class="btn me-4 fw-normal fs-5 border rounded-pill px-3 py-1 border-primary">Apply Filter</button>
-                        <button class="btn me-4 fw-normal fs-5 border rounded-pill px-3 py-1 border-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#student-filters" aria-controls="student-filters"><i class="fa-solid fa-filter"></i> Filters </button>
-                        <a class="btn me-4 fw-normal fs-5 border rounded-pill px-3 py-1 border-primary" href="#" data-bs-toggle="modal" data-bs-target="#addNewStudent"><i class="fa-solid fa-plus me-2"></i>Add new student</a>
+                         <a class="btn me-4 fw-normal fs-5 border rounded-pill px-3 py-1 border-primary" href="#" data-bs-toggle="modal" data-bs-target="#addNewStudent"><i class="fa-solid fa-plus me-2"></i>Add new Notice</a>
                     </div>
                     
                     <div class="modal fade" id="addNewStudent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -58,7 +56,7 @@
                             <div class="modal-dialog" style="max-width: 600px;">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add New Student</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Add New Notice</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body " style="height: 600px; overflow-Y: scroll;">
@@ -134,7 +132,7 @@
                                     </div>
                                     <div class="modal-footer d-flex flex-row">
                                         <button type="button" class="btn px-4" style="background-color: #FFE5E4;" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="button" class="btn btn-primary px-4 bg">Create Student</button>
+                                        <button type="button" class="btn btn-primary px-4 bg">Create New Notice</button>
                                     </div>
                                 </div>
                             </div>
@@ -376,219 +374,41 @@
 
         </div>
         <div class="container-fluid pt-5">
+        <div class="alert-success" role="alert">
+                            <center><h2>{{Session::get('notice_deleted')}}</h2></center>
+                            </div> 
+                            <h3>All Notice</h3> 
             <div class="row">
-                <div class="col-12">
-                    <div class="row overflow-hidden" id="student-table">
-                        <div class="col-12 position-relative">
-                            <div class="myftable">
-                                <table class="table">
-                                    <thead>
-                                        <tr style="border-bottom: 2px solid #0000001f;">
-                                            <th class="text-center" scope="col">Actions</th>
-                                            <th class="text-center" scope="col">Payment Date</th>
-                                            <th class="text-center" scope="col">App ID</th>
-                                            <th class="text-center" scope="col">Student ID</th>
-                                            <th class="text-center" scope="col">Student Email ID</th>
-                                            <th class="text-center" scope="col">Apply Date</th>
-                                            <th class="text-center" scope="col">First Name</th>
-                                            <th class="text-center" scope="col">Last Name</th>
-                                            <th class="text-center" scope="col">Program</th>
-                                            <th class="text-center" scope="col">School</th>
-                                            <th class="text-center" scope="col">Start Date</th>
-                                            <th class="text-center" scope="col">Recruitment Partner</th>
-                                            <th class="text-center" scope="col">Payment Status</th>
-                                            <!--<th class="text-center" scope="col">Requirements</th>-->
-                                            <th class="text-center" scope="col">Current Stage</th>
-                                            <th class="text-center" scope="col">View More</th>
-                                        </tr>
-                                        <form method="GET" action="/admin-application-list" id="frmApplicationFilter">
-                                            <tr>
-                                                <td scope="col"></td>
-                                                <td scope="col">     
-                                                    <div class="ui main-date">
-                                                        <div class="ui form">
-                                                            <div class="two fields">
-                                                                <div class="field">
-                                                                    <!--<label>Start date</label>-->
-                                                                    <div class="ui calendar" id="rangestart">
-                                                                        <div class="ui input left icon">
-                                                                            <i class="calendar icon"></i>
-                                                                            <input type="text" name="payment_start_date" placeholder="Start" onchange="this.form.submit()">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="field margin-10">
-                                                                    <!--<label>End date</label>-->
-                                                                    <div class="ui calendar" id="rangeend">
-                                                                        <div class="ui input left icon">
-                                                                            <i class="calendar icon"></i>
-                                                                            <input type="text" name="payment_end_date"  placeholder="End" onchange="this.form.submit()">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td> 
-                                                <td scope="col">
-                                                    <div class="input-control">
-                                                        <input type="text" class="form-control" name="appid">
-                                                    </div>
-                                                </td>
-                                                <td scope="col">
-                                                    <div class="input-control">
-                                                        <input type="text" class="form-control" name="student_id">
-                                                    </div>
-                                                </td>
-                                                <td scope="col"></td>
-                                                <td scope="col"></td>
-                                                <td scope="col">
-                                                    <div class="input-control">
-                                                        <input type="text" class="form-control" name="fname">
-                                                    </div> 
-                                                 </td>
-                                                <td scope="col">
-                                                    <div class="input-control">
-                                                        <input type="text" class="form-control" name="lname">
-                                                    </div> 
-                                                </td>
-                                                <td scope="col">
-                                                    <div class="input-control">
-                                                        <input type="text" class="form-control" name="program_name" style="width: 200px;">
-                                                    </div> 
-                                                </td>
-                                                <td scope="col">
-                                                    <div class="input-control">
-                                                        <input type="text" class="form-control" name="school_name" style="width: 200px;">
-                                                    </div> 
-                                                </td>
-                                                <td scope="col">
-                                                    <div class="ui main-date">
-                                                        <div class="ui form">
-                                                            <div class="two fields">
-                                                                <div class="field">
-                                                                    <div class="ui calendar" id="rangestart1">
-                                                                        <div class="ui input left icon">
-                                                                            <i class="calendar icon"></i>
-                                                                            <input type="text" name="application_start_date" placeholder="Start" onchange="this.form.submit()">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="field margin-10">
-                                                                    <div class="ui calendar" id="rangeend1">
-                                                                        <div class="ui input left icon">
-                                                                            <i class="calendar icon"></i>
-                                                                            <input type="text" name="application_end_date" placeholder="End" onchange="this.form.submit()">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td scope="col">
-                                                    <div class="input-control">
-                                                        <input type="text" class="form-control" name="requirement_partner" style="width: 200px;">
-                                                    </div>
-                                                </td>
-                                                <td scope="col">
-                                                    <div class="input-control">
-                                                        <select class="form-select" name="payment_status" aria-label="Default select example" onchange="this.form.submit()" style="width: 170px;">
-                                                            <option value="0">---</option>
-                                                            @if(!empty($payment_status))
-                                                            @foreach ($payment_status as $ps)
-                                                            <option value="{{$ps->id}}">{{$ps->status_name}}</option>   
-                                                            @endforeach
-                                                            @endif
-                                                        </select>
-                                                    </div>
-                                                </td>
-                                                <td scope="col">
-                                                    <div class="input-control">
-                                                        <select class="form-select" name="application_status" aria-label="Default select example" onchange="this.form.submit()" style="width: 170px;">
-                                                            <option value='0'>---</option>
-                                                            @if(!empty($application_status))
-                                                            @foreach ($application_status as $as)
-                                                            <option value="{{$as->id}}">{{$as->status_title}}</option>   
-                                                            @endforeach
-                                                            @endif
-                                                        </select>
-                                                    </div>
-                                                </td>
-                                                <td scope="col">
-                                                    
-                                                </td>
-                                                <!--<th scope="col"></td>-->
-                                            </tr>
-                                        </form>
-                                    </thead>
-                                    <tbody>
-                                        
-                                        @if(!empty($application_list))
-                                        @foreach ($application_list as $applicationlist)
-                                            
-                                        
-                                        <tr>
-                                            <td> 
-                                                <div class="dropdown">
-                                                     <button class="btn border-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">
-                                                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                        <li><a class="dropdown-item" href="/admin-application-review/{{$applicationlist->app_id}}"><i class="bi bi-pencil"></i> View Application</a></li>
-                                                    </ul>
-                                                </div> 
-                                            </td>
-                                            <td class="text-center"><a href="#">{{date('d-M-Y', strtotime($applicationlist->payment_date))}} </a></td>
-                                            <td class="text-center">
-                                                <a href="/admin-application-review/{{$applicationlist->app_id}}">{{$applicationlist->app_id}}</a>
-                                            </td>
-                                            <td class="text-center">{{$applicationlist->user_id}}</td>
-                                            <td class="text-center"><span>{{$applicationlist->email}}</span></td>
-                                            <td class="text-center"><span>{{date('d-M-Y', strtotime($applicationlist->created_at))}}</span></td>
-                                            <td class="text-center"><span>{{$applicationlist->first_name}}</span></td>
-                                            <td class="text-center"><span>{{$applicationlist->last_name}}</span></td>
-                                            <td class="text-center"><a href="/agent-program-details/{{$applicationlist->pid}}"><span>{{$applicationlist->programs_name}}</span></a></td>
-                                            <td class="text-center"><a href="/agent-college-details/{{$applicationlist->cid}}"><span><img width="20" height="20" src="{{ url('/images/' . $applicationlist->college_logo) }}" alt="Logo" />
-                                                {{$applicationlist->program_college_name}}</span></a></td>
-                                            <td><span>{{date('d-M-Y', strtotime($applicationlist->earliest_intake_date))}} </span></td>
-                                            <td class="text-center"><a href="#">{{$applicationlist->partner_email}}</a></td> 
-
-                                            
-                                            <td class="text-center"><span class="{{$applicationlist->bgcolor}} px-2 py-1 rounded-pill text-white text-white">{{$applicationlist->status_name}}</span></td>
-
-                                            <!--<td class="text-center">
-                                                <ul>
-                                                    <li>
-                                                        <div class="text-white">1</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="text-white">2</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="text-white">3</div>
-                                                    </li>
-                                                </ul>
-                                            </td> -->
-                                            <td class="text-center">
-                                                <span class="bg-light px-3 py-1 rounded-pill">{{$applicationlist->status_title}}</span>
-                                            </td>
-                                            
-                                            <td class="text-center">
-                                            <span class="application_view"><a href="/admin-application-review/{{$applicationlist->app_id}}">View</a></span>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                        @endif
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            @foreach ($notices as $notice)
+                <div class="col-6">
+                <div class="card m7">
+              <!-- <h5 class="card-header"></h5> -->
+            <div class="card-body">
+                <h5 class="card-title">{{$notice->notice_title}}</h5>
+                <p>{{date('d-M-Y', strtotime($notice->created_at))}}</p>
+                <p class="card-text">{{$notice->notice_des}}</p>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                 <a href="?edit_notice_id={{$notice->id}}"><i class='fas fa-edit' style='font-size:20px'></i></a>
+                 <a href="#" onclick="Confirm('Yes', 'Cancel', '?delete_notice_id={{$notice->id}}')"><i class='fas fa-trash' style='font-size:20px'></i></a> 
+                
+            </div>
+            </div>
+                </div>   
+                @endforeach 
+            
             </div>
             <div class="row">
-
+                
+                <div class="all-notice">
+                     
+                          
+                    <!--  --------------------------------------------------- --> 
+                     <div class="cpagination">{{$notices->links('pagination::bootstrap-4')}}</div> 
+                    <!--  --------------------------------------------------- -->    
+                           
+                       
+                </div>
+                <div class="col-md-6 col-lg-6"></div>
                 <div class="col d-flex justify-content-start align-items-center py-3">
 
                     <div class="dropdown d-flex flex-row border-end pe-2">
@@ -601,203 +421,13 @@
                             </select>
                         </form>
                     </div>
-                     
-                   <div class="cpagination">{{$application_list->links()}}</div>
-                </div>
-
-                <div class="container-fluid pt-5 notice-container">
-                    <div class="row">
-                        <div class="col-md-5 col-lg-5">
-                            <div class="add-notice">
-                            <?php
-                        if(isset($_GET['edit_notice_id'])){
-                            $noticeid = $_GET['edit_notice_id'];
-                            ?>
-                           <h3>Edit Notice</h3>
-                            <div class="alert-success" role="alert">
-                            <!-- <center><h3>{{Session::get('notice_submited')}}</h3></center> -->
-                            </div> 
-                            @foreach($edit_notice_data as $notice_data) 
-                            <form method="post" action="update-notice"> 
-                                @csrf 
-                                <input type="hidden" name="notice_id" id="notice_id" value="{{$noticeid}}">
-                            <div class="form-group"> 
-                                <label for="notice_title">Notice Title</label>
-                               
-                                <input type="text" class="form-control" value="{{$notice_data->notice_title}}" name="notice_title" id="notice_title" placeholder="Enter Notice Title">
-                                <span class="text-danger">
-                                    @error('notice_title')
-                                    {{$message}}
-                                    @enderror
-                                </span>
-                            </div>
-                             
-                            <div class="form-group">
-                                <label for="notice_des">Notice Description</label>
-                                <textarea class="form-control" name="notice_des" id="notice_des" rows="3">{{$notice_data->notice_title}}</textarea>
-                                <span class="text-danger">
-                                    @error('notice_des')
-                                {{$message}}
-                             @enderror
-                             </span>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Update Notice</button>
-                            </form>
-                            @endforeach
-
-                        </div>
-                            <?php
-                        }else{
-                       ?>
- 
-                            <h3>Add New Notice</h3>
-                            <div class="alert-success" role="alert">
-                            <center><h3>{{Session::get('notice_submited')}}</h3></center>
-                            </div> 
-                            <form method="post" action="add-notice"> 
-                                @csrf 
-                            <div class="form-group"> 
-                                <label for="notice_title">Notice Title</label>
-                               
-                                <input type="text" class="form-control" name="notice_title" id="notice_title" placeholder="Enter Notice Title">
-                                <span class="text-danger">
-                                    @error('notice_title')
-                                    {{$message}}
-                                    @enderror
-                                </span>
-                            </div>
-                             
-                            <div class="form-group">
-                                <label for="notice_des">Notice Description</label>
-                                <textarea class="form-control" name="notice_des" id="notice_des" rows="3"></textarea>
-                                <span class="text-danger">
-                                    @error('notice_des')
-                                {{$message}}
-                             @enderror
-                             </span>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Add Notice</button>
-                            </form>
-
-                        </div>
-                        <?php
-                        }
-                        ?>
-                       
-                        </div>
-                        
-                        <div class="col-md-7 col-lg-7 ">
-                        <div class="all-notice">
-                        <div class="alert-success" role="alert">
-                            <center><h2>{{Session::get('notice_deleted')}}</h2></center>
-                            </div> 
-                            <h3>All Notice</h3> 
-                            @foreach ($notices as $notice)
-                            <div  class="notice-board">
-                            <h4 class="notice-title">{{$notice->notice_title}}</h4>
-                                <p class="notice-date">{{date('d-M-Y', strtotime($notice->created_at))}}</p>
-                                <p>{{$notice->notice_des}}</p>
-                                <a href="?edit_notice_id={{$notice->id}}"><i class='fas fa-edit' style='font-size:20px'></i></a>
-                                <a href="#" onclick="Confirm('Yes', 'Cancel', '?delete_notice_id={{$notice->id}}')"><i class='fas fa-trash' style='font-size:20px'></i></a> 
-                
-                            </div>
-                            @endforeach 
-                    <!--  --------------------------------------------------- --> 
-                     <div class="cpagination">{{$notices->links('pagination::bootstrap-4')}}</div> 
-                    <!--  --------------------------------------------------- -->    
-                           
-                        </div>
-                         
-
-                        </div>
-                     
-                       
-                    </div>
               
+                </div>
 
                  
-                </div>
                 
-                    <div class=" border-end pe-2">
-                        <form action="/action_page.php">
-                           
-                          <div class="mb-3 mt-3">
-                            <label for="Payment Type" class="form-label">Payment Type</label>
-                             <select class="form-select">
-                              <option value="percentage">Percentage</option>
-                              <option value="fixed">Fixed</option>
-                              
-                            </select>
-                          </div>
-                          <div class="row">
-                          <div class="col mb-3">
-                            <label for="percentage" class="form-label">Percentage</label>
-                            <div>
-                                <input type="number" class="form-control" id="percentage" placeholder="Enter Payment Percentage" name="percentage">
-                            </div>
-                          </div>
-                          
-                          <div class="col mb-3">
-                            <label for="fixed" class="form-label">Fixed</label>
-                            <input type="number" class="form-control" id="fixed" placeholder="Enter Payment Fixed" name="fixed">
-                          </div>
-                          </div>
-                          
-                        <div class="row mt-4">
-                             <label for="Tax" class="form-label">Tax</label>
-                            <div class="col">
-                                <label for="tax-amount" class="form-label">Tax In Amount</label>
-                              <input type="number" class="form-control" placeholder="Enter Tax In Amount" name="tax">
-                            </div>
-                            <div class="col">
-                                <label for="tax-percentage" class="form-label">Tax In Percentage</label>
-                              <select class="form-select">
-                                <option disabled>select</option>
-                                <option value="1%">1%</option>
-                                <option value="2%">2%</option>
-                                <option value="3%">3%</option>
-                                <option value="4%">4%</option>
-                                <option value="5%">5%</option>
-                                <option value="6%">6%</option>
-                                <option value="7%">7%</option>
-                                <option value="8%">8%</option>
-                                <option value="9%">9%</option>
-                                <option value="10%">10%</option>
-                                <option value="11%">11%</option>
-                                <option value="12%">12%</option>
-                                <option value="13%">13%</option>
-                                <option value="14%">14%</option>
-                                <option value="15%">15%</option>
-                                <option value="16%">16%</option>
-                                <option value="17%">17%</option>
-                                <option value="18%">18%</option>
-                                <option value="19%">19%</option>
-                                <option value="20%">20%</option>
-                                <option value="21%">21%</option>
-                                <option value="22%">22%</option>
-                                <option value="23%">23%</option>
-                                <option value="24%">24%</option>
-                                <option value="25%">25%</option>
-                                <option value="26%">26%</option>
-                                <option value="27%">27%</option>
-                                <option value="28%">28%</option>
-                                <option value="29%">29%</option>
-                                <option value="30%">30%</option>
-                              </select>
-                            </div>
-                            
-                          </div>
-                          <div class="mb-4 mt-2">
-                            <label for="tax-type" class="form-label">Tax Type</label>
-                             <select class="form-select">
-                                
-                              <option value="percentage">Exclusive</option>
-                              <option value="fixed">Inclusive</option>
-                            </select>
-                          </div>
-                          <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
+                    
+                
                     
 
             </div>

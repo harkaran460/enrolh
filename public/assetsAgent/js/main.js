@@ -634,3 +634,90 @@ function ImgUpload() {
 $("#filters").click(function(){
     $(".programs-form-search").attr("style", "");
 })
+
+
+$(function() { 
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+      localStorage.setItem('lastTab', $(this).attr('href'));
+    });
+    var lastTab = localStorage.getItem('lastTab');
+    
+    if (lastTab) {
+      $('[href="' + lastTab + '"]').tab('show');
+    } 
+  });
+
+$("#missing_requirements_tab").click(function(){
+    // alert("test");
+    localStorage.setItem('activeTab', active);
+    var currentTab = document.getElementById("missing_requirements_tab");
+     localStorage.getItem('activeTab');
+});
+
+$(function() {  
+    $('button[data-bs-toggle="pill"]').on('shown.bs.tab', function (e) { 
+        localStorage.setItem('lastTab', $(this).attr('id'));  
+    });
+    var lastTab = localStorage.getItem('lastTab');
+   
+    if (lastTab == "notes_tab") { 
+        document.getElementById(lastTab).classList.add("active");
+        document.getElementById("missing_requirements_tab").classList.remove("active");
+        var a = document.getElementById('notes');
+        var b = document.getElementById('missing_requirements');
+        a.classList.add("show", "active");
+        b.classList.remove("active", "show");  
+
+    }else if(lastTab == "application_status_tab"){
+        document.getElementById(lastTab).classList.add("active");
+        document.getElementById("missing_requirements_tab").classList.remove("active");
+        var a = document.getElementById('application_status');
+        var b = document.getElementById('missing_requirements');
+        a.classList.add("show", "active");
+        b.classList.remove("active", "show");  
+}
+  });	
+
+
+  
+function Confirm($true, $false, $link) { /*change*/
+var title = "Delete Notice";
+var msg = "Are you sure you want to Delete";
+
+var $content =  "<div class='dialog-ovelay'>" +
+                "<div class='dialog'><header>" +
+                 " <h3> " + title + " </h3> " +
+                 "<i class='fa fa-close'></i>" +
+             "</header>" +
+             "<div class='dialog-msg'>" +
+                 " <p> " + msg + " </p> " +
+             "</div>" +
+             "<footer>" +
+                 "<div class='controls'>" +
+                     " <button class='button button-danger doAction'>" + $true + "</button> " +
+                     " <button class='button button-default cancelAction'>" + $false + "</button> " +
+                 "</div>" +
+             "</footer>" +
+          "</div>" +
+        "</div>";
+ $('body').prepend($content);
+$('.doAction').click(function () {
+window.open($link, '_self');
+// location.reload();
+$(this).parents('.dialog-ovelay').fadeOut(500, function () {
+  $(this).remove();
+});
+});
+$('.cancelAction, .fa-close').click(function () {
+$(this).parents('.dialog-ovelay').fadeOut(500, function () {
+  $(this).remove();
+});
+});
+
+}
+// $('a').click(function () {
+// Confirm('Go to Google', 'Are you sure you want to visit Google', 'Yes', 'Cancel', "https://www.google.com.eg"); /*change*/
+// });
+function test(){
+    alert("test");
+}

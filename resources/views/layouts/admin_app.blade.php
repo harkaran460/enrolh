@@ -70,8 +70,7 @@
                     
                         <li><a href="/{{$permission->slug}}"><?php echo $permission->icon;?><span>{{$permission->page_title}}</span></a></li>
                         @endforeach
-                        
-
+ 
                     </ul>
                 </div>
                 

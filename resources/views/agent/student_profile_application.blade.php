@@ -127,7 +127,7 @@
                                                                 <span data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Click to view courses ckecklist" aria-describedby="tooltip328" class="css-eogltt">
                                                                     {{ $details->status }}</span>
                                                                 <span>
-                                                                    <select class="form-select mt-2" style="padding: 4px 15px; font-size: 13px;">
+                                                                    <select class="form-select mt-2" style="padding: 4px 15px; font-size: 13px; width: 120px;">
                                                                         @php $intekdates = getIntekDate() @endphp
                                                                         @foreach ($intekdates as $intekdate)
                                                                             <option value="{{ $intekdate->earliest_intake_date }}"
@@ -219,19 +219,14 @@
                                         </tfoot>
                                        
                                     </table><br>
-                                    <div class="pagination"> {{ $aplication_details->links() }} </div> 
+                                    <div class="pagination"> {{ $aplication_details->appends('page_b', Input::get('page_b',1))->links() }} </div> 
                                     <br><br>
                                 </div>
                             </div>
                         </div>
-                        
-                        
                          </div>
                         </div>
-                        
-                        
-                        
-
+                         
                         <div class="row overflow-hidden mt-3">
                             <div class="col-md-8">
 
@@ -245,14 +240,12 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        
+                         
                         <!--SECTION DONE BY KD-->
                         
                         <div class="box-holder p-4">
                             
-                            <div class="bg-white ">
-
+                            <div class="bg-white "> 
                         <div class="row overflow-hidden mt-3">
                             <div class="col-12">
                                 <div class="css-1lgqrjk css-1piu9jy1">
@@ -282,27 +275,27 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if (!empty($aplication_details))
-                                                @foreach ($aplication_details as $details)
-                                                    @if ($details->payment_status != 1)
+                                            @if (!empty($aplication_details_paid))
+                                                @foreach ($aplication_details_paid as $details_paid)
+                                                    @if ($details_paid->payment_status != 1)
                                                         <tr>
-                                                            <td>{{ $details->status_name }}</td>
-                                                            <td><a href="/student-application-review/{{ $details->app_id }}"> {{ $details->app_id }} </a>
+                                                            <td>{{ $details_paid->status_name }}</td>
+                                                            <td><a href="/student-application-review/{{ $details->app_id }}"> {{ $details_paid->app_id }} </a>
                                                             </td>
-                                                            <td><a href="/agent-college-details/{{ $details->college_id }}"> {{ $details->program_college_name }} </a>
+                                                            <td><a href="/agent-college-details/{{ $details->college_id }}"> {{ $details_paid->program_college_name }} </a>
                                                             </td>
-                                                            <td><span> {{ $details->programs_name }} </span></td>
+                                                            <td><span> {{ $details_paid->programs_name }} </span></td>
                                                             <td>
                                                                 <span>ESL</span>
                                                                 <span> N/A </span>
                                                             </td>
                                                             <td>
                                                                 <span> Academic </span>
-                                                                <span>{{ date('Y - M', strtotime($details->earliest_intake_date)) }}</span>
+                                                                <span>{{ date('Y - M', strtotime($details_paid->earliest_intake_date)) }}</span>
                                                             </td>
                                                             <td><span>Application Fee </span>
-                                                                {{ $details->application_fee_min }}</td>
-                                                                <td><span> {{$details->current_status}}</span></td>
+                                                                {{ $details_paid->application_fee_min }}</td>
+                                                                <td><span> {{$details_paid->current_status}}</span></td>
                                                             <td>
                                                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Application Note" class="application-note"> 
                                                                     <a href="student_profile_review">
@@ -323,7 +316,10 @@
                                         </tbody>
 
                                     </table>
-                                    <div class="cpagination"> {{ $aplication_details->links() }} </div>
+                                    <!-- <div class="cpagination"> {{ $aplication_details->links() }} </div> -->
+                                    <br>
+                                    <div class="pagination"> {{ $aplication_details_paid->appends('page_a', Input::get('page_a',1))->links() }} </div> 
+                                    <br><br>
                                 </div>
                             </div>
                         </div>
