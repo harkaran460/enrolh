@@ -16,7 +16,7 @@
                                 </div>
                             </div>
                             <div class="css-1ca1ag7 css-1jlq0r61">
-                                <div class="css-1yyj7dd css-1jlq0r63"><?php echo ucfirst($student_details->first_name);?> 
+                                <div class="css-1yyj7dd css-1jlq0r63"><?php echo ucfirst($student_details->first_name);?>
                                     <?php echo ucfirst($student_details->middle_name);?>
                                     <?php echo ucfirst($student_details->last_name);?></div>
                                 <div>
@@ -53,9 +53,9 @@
                                 <span class="css-1ksf4ma css-1uorugc4">Payments</span>
                             </a>
                         </div>
-                        
+
                         <div class="box-holder p-4">
-                            
+
                             <div class="bg-white ">
 
                         <div class="row overflow-hidden">
@@ -86,7 +86,7 @@
                                                 <th class="text-center" scope="col">Program</th>
                                                 <th class="text-center" scope="col">ESL Start Date</th>
                                                 <th class="text-center" scope="col">Start Date</th>
-                                                <th class="text-center" scope="col">Fees</th> 
+                                                <th class="text-center" scope="col">Fees</th>
                                                 <th class="text-center" scope="col">Application Status</th>
                                                 <th class="text-center" scope="col">Pay Fees</th>
                                                 <th class="text-center" scope="col"></th>
@@ -100,7 +100,7 @@
                                                     @if ($details->payment_status == 1)
                                                         <tr>
                                                             <td class="text-center">
-                                                                <button class="btn border-0"><i class="fa-solid fa-ellipsis-vertical"></i></button> 
+                                                                <button class="btn border-0"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                                                             </td>
                                                             <td class="text-center">
                                                                 <a href="">{{ $details->status_name }}</a>
@@ -163,13 +163,13 @@
                                                             <td class="text-center">
                                                                 <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Application Note" class="application-note">
                                                                     <a href="#">
-                                                                        <i class="fa-solid fa-note-sticky"></i> 
+                                                                        <i class="fa-solid fa-note-sticky"></i>
                                                                     </a>
                                                                 </span>
                                                             </td>
                                                             <td class="action text-center">
                                                                 <a href="/student-application-review/{{ $details->app_id }}" class="edit">
-                                                                    <i class="fa-solid fa-pen-to-square fs-4"></i> 
+                                                                    <i class="fa-solid fa-pen-to-square fs-4"></i>
                                                                 </a>
                                                             </td>
                                                             <td class="action text-center">
@@ -200,7 +200,7 @@
                                                     @endif
                                                 @endforeach
                                                 <!--{{ $aplication_details->links() }}   -->
-                                                
+
                                             @endif
 
                                         </tbody>
@@ -217,6 +217,7 @@
                                                 </td>
                                             </tr>
                                         </tfoot>
+<<<<<<< HEAD
                                        
                                     </table><br>
                                     <div class="pagination"> {{ $aplication_details->appends('page_b', Input::get('page_b',1))->links() }} </div> 
@@ -227,6 +228,22 @@
                          </div>
                         </div>
                          
+=======
+
+                                    </table>
+                                    <div class="cpagination"> {{ $aplication_details->links() }} </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                         </div>
+                        </div>
+
+
+
+
+>>>>>>> 87c91560b9c4001356e47b238fbcc02b9b5eb353
                         <div class="row overflow-hidden mt-3">
                             <div class="col-md-8">
 
@@ -240,12 +257,23 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                          
+=======
+
+
+>>>>>>> 87c91560b9c4001356e47b238fbcc02b9b5eb353
                         <!--SECTION DONE BY KD-->
-                        
+
                         <div class="box-holder p-4">
+<<<<<<< HEAD
                             
                             <div class="bg-white "> 
+=======
+
+                            <div class="bg-white ">
+
+>>>>>>> 87c91560b9c4001356e47b238fbcc02b9b5eb353
                         <div class="row overflow-hidden mt-3">
                             <div class="col-12">
                                 <div class="css-1lgqrjk css-1piu9jy1">
@@ -297,7 +325,7 @@
                                                                 {{ $details_paid->application_fee_min }}</td>
                                                                 <td><span> {{$details_paid->current_status}}</span></td>
                                                             <td>
-                                                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Application Note" class="application-note"> 
+                                                                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Application Note" class="application-note">
                                                                     <a href="student_profile_review">
                                                                         <i class="fa-solid fa-note-sticky"></i>
                                                                     </a>
@@ -325,7 +353,7 @@
                         </div>
                         </div>
                         </div>
-                        
+
                         <!--SECTION DONE BY KD-->
 
 
@@ -339,7 +367,7 @@
             overflow: scroll !important;
             width: 100%;
         }
-       
+
     .w-5.h-5 {
         width: 2%;
     }
@@ -355,6 +383,6 @@
     .shop_cart-spamain-two{
         color:green !important;
     }
-  
+
     </style>
 @endsection

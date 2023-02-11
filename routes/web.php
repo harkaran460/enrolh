@@ -123,7 +123,7 @@ Route::get('/agent-student-profile/{id}', [AgentHome::class, 'agent_student_prof
 Route::post('/agent-student-profile-update/', [AgentHome::class, 'agent_student_profile_update'])->name('agent_student_profile_update');
 Route::get('/agent-student-search-and-apply/{id}', [AgentHome::class, 'agent_student_search_and_apply'])->name('agent_student_search_and_apply');
 Route::post('/student-eligibility-filter', [AgentHome::class, 'get_eligibility_filter'])->name('get_eligibility_filter');
-Route::get('/yearChartReq', [AgentHome::class, 'getYearData'])->name('yearChartReq');
+
 //Route::get('/student-search-and-apply/{id}', [AgentHome::class, 'student_search_and_apply'])->name('student_search_and_apply');
 
 

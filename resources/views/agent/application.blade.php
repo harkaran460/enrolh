@@ -113,7 +113,7 @@
                         <label class="form-check-label " for="inlineRadio1">Yes</label>
                         <label class="form-check-label ">No</label>
                     </div>
-                    <div class="columnFilter"> 
+                    <div class="columnFilter">
                         <input class="form-check-input " type="radio" name="payment_statues" id="payYes" value="option1">
                         <input class="form-check-input " type="radio" name="payment_statues" id="payNo" value="option2">
                         <label class="form-label">Paid</label>
@@ -128,7 +128,7 @@
                         <input class="form-check-input" type="radio" name="appplication_status_accepted" id="prepareApplication_f" value="option2">
                         <label class="form-label">Prepare Application</label>
                     </div>
-                    <div class="columnFilter"> 
+                    <div class="columnFilter">
                         <input class="form-check-input" type="radio" name="appplication_status_rejected" id="submissionInProg_t" value="option1">
                         <input class="form-check-input" type="radio" name="appplication_status_rejected" id="submissionInProg_f" value="option2">
                         <label class="form-label">Submission In Progress</label>
@@ -179,8 +179,8 @@
                     </div>
                 </div>
                 <div class="tab-pane fade column-check" id="columnsTabPane" role="tabpanel" aria-labelledby="columnsTabPane">
-                    
-                <ul class="p-0 m-0 column-check"> 
+
+                <ul class="p-0 m-0 column-check">
                                         <li><span>COLUMN HEADER</span> <a href="javacsript:;" id="application_all_hide">hide all</a></li>
                                         <li>
                                             <hr class="w-100 my-0">
@@ -279,23 +279,29 @@
                                     <div class="ui calendar" id="rangestart"><div class="ui input left icon"><i class="calendar icon"></i><input type="text" name="payment_start_date" placeholder="Start" onchange="this.form.submit()"></div></div>
                                     <div class="ui calendar" id="rangeend"><div class="ui input left icon"><i class="calendar icon"></i><input type="text" name="payment_end_date"  placeholder="End" onchange="this.form.submit()"></div></div>
                                 </div>
+<<<<<<< HEAD
                             </th> 
                             <th class="action_app_hide"></th>
                             <th class="action_app_hide"></th>
+=======
+                            </th>
+                            <th></th>
+                            <th></th>
+>>>>>>> 87c91560b9c4001356e47b238fbcc02b9b5eb353
                         </tr>
                     </form>
                 </thead>
                 <tbody>
                     @if(!empty($application_list))
                     @foreach ($application_list as $applicationlist)
-                    <tr class="{{$applicationlist->status_title}} {{$applicationlist->status_name}}" id="{{$applicationlist->status_name}}">                        
+                    <tr class="{{$applicationlist->status_title}} {{$applicationlist->status_name}}" id="{{$applicationlist->status_name}}">
                         <td class="appId_hide_app"><a href="/student-application-review/{{$applicationlist->app_id}}">{{$applicationlist->app_id}}</a></td>
                         <td class="studentId_hide_app"><a href="/agent_student_profile/{{ $applicationlist->user_id }}">{{$applicationlist->user_id}}</a></td>
                         <td class="applyDate_hide_app">{{date('d-M-Y', strtotime($applicationlist->created_at))}}</td>
                         <td class="firstName_hide_app">{{$applicationlist->first_name}}</td>
                         <td class="lastName_hide_app">{{$applicationlist->last_name}}</td>
                         <td class="status status_hide_app"><span class="{{$applicationlist->bgcolor}}">{{$applicationlist->status_name}}</span></td>
-                        <td class="scoreHere requirements_hide_app"><div class="scoreView" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Requirements">1</div><div class="scoreView" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Requirements">2</div><div class="scoreView" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Requirements">3</div></td> 
+                        <td class="scoreHere requirements_hide_app"><div class="scoreView" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Requirements">1</div><div class="scoreView" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Requirements">2</div><div class="scoreView" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Requirements">3</div></td>
                         <td class="currentStage_hide_app"><span class="bg-light px-3 py-1 rounded-pill">Cancelled</span></td>
                         <td class="program_hide_app"><a href="/agent-program-details/{{$applicationlist->pid}}">{{$applicationlist->programs_name}}</a></td>
                         <td class="school_hide_app"><a class="schoolView" href="/agent-college-details/{{$applicationlist->cid}}"><img src="{{ url('/images/' . $applicationlist->college_logo) }}" alt="Logo" />{{$applicationlist->program_college_name}}</a></td>
@@ -307,14 +313,14 @@
                         <td class="text-center paymentDate_hide_app"><a href="#"> NA</a></td>
                         @endif
                         <td class="text-center action_app_hide"><a href="#">View</a></td>
-                        <td class="action action_app_hide"> 
+                        <td class="action action_app_hide">
                             <div class="dropdown dropstart">
                                 <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <li><a class="dropdown-item" href="https://design.enrolhere.com/student-application-review/78429398"><i class="bi bi-pencil"></i> View Application</a></li>
                                     <li><a class="dropdown-item" href="https://design.enrolhere.com/student-profile-application/16"><i class="bi bi-file-earmark-text"></i> All Applications</a></li>
                                 </ul>
-                            </div> 
+                            </div>
                         </td>
                     </tr>
                     @endforeach
@@ -324,7 +330,7 @@
         </div>
         <div class="tableFooter">
             <div class="controls">
-                Row: 
+                Row:
                 <form method="GET" action="/agentApplication" id="agentApplication">
                     <select class="form-select form-select-sm" name="qty" onchange="this.form.submit()">
                         <option value="20" @php if(isset($_GET['qty']) && $_GET['qty'] == '20'){echo "selected";} @endphp>20</option>
