@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2023 at 06:16 AM
+-- Generation Time: Feb 11, 2023 at 07:47 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -2298,6 +2298,41 @@ INSERT INTO `notes` (`id`, `title`, `notes`, `app_id`, `is_trash`, `is_read`, `s
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notices`
+--
+
+CREATE TABLE `notices` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `notice_title` text NOT NULL,
+  `notice_des` text NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `notices`
+--
+
+INSERT INTO `notices` (`id`, `user_id`, `notice_title`, `notice_des`, `created_at`, `updated_at`) VALUES
+(16, 49, 'This is Notice Title', 'This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin.', '2023-02-10 16:22:05', '2023-02-10 16:22:05'),
+(17, 49, 'This is notice Title 2', 'This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin.', '2023-02-10 16:22:42', '2023-02-10 16:22:42'),
+(18, 49, 'This is notice Title 3', 'This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin.', '2023-02-10 16:22:56', '2023-02-10 16:22:56'),
+(19, 49, 'This is Notice title 4', 'This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin.', '2023-02-10 16:23:11', '2023-02-10 16:23:11'),
+(20, 49, 'Notice title 5', 'This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin.', '2023-02-10 16:23:22', '2023-02-10 16:23:22'),
+(21, 49, 'notice title 6', 'This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin.', '2023-02-10 16:23:34', '2023-02-10 16:23:34'),
+(22, 49, 'notice title new', 'This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin.', '2023-02-10 16:23:46', '2023-02-10 16:23:46'),
+(23, 49, 'notice title new one', 'This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin.', '2023-02-10 16:24:01', '2023-02-10 16:24:01'),
+(24, 49, 'this is notice title', 'This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin.', '2023-02-10 16:24:15', '2023-02-10 16:24:15'),
+(25, 49, 'Notice Titleasdf', 'Notice Titleasdf', '2023-02-10 16:24:44', '2023-02-11 11:57:08'),
+(26, 49, 'Notice Title  Updated Title', 'Update Description Notice Title', '2023-02-10 16:24:53', '2023-02-11 11:55:25'),
+(27, 49, 'Notice Title', 'This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin. This is the notice Description for testin.', '2023-02-10 16:25:03', '2023-02-10 16:25:03'),
+(28, 49, 'Notiece anil', 'Notiece anil', '2023-02-10 16:25:10', '2023-02-11 11:50:21'),
+(34, 49, 'sadfsaasdfdsfSADFF ANDIL KUA', 'sadfsaasdfdsfSADFF ANI KUMAR', '2023-02-11 10:44:19', '2023-02-11 11:54:58');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `notice_board`
 --
 
@@ -2574,7 +2609,8 @@ INSERT INTO `permissions` (`id`, `role_id`, `page_title`, `slug`, `icon`, `statu
 (95, 2, 'College Dashboard', 'collegeDashboard', '<i class=\"me-2 fa-solid fa-house-chimney-window\">', 1, '2022-12-14 18:53:22', '2022-12-14 18:53:22'),
 (96, 2, 'Add College', 'addCollege', '<i class=\"me-2 fa-solid fa-building-columns\"></i>', 1, '2022-12-14 18:53:22', '2022-12-14 18:53:22'),
 (97, 2, 'Add Program', 'addProgram', '<i class=\"me-2 fa-solid fa-list-check\"></i>', 1, '2022-12-14 18:55:43', '2022-12-14 18:55:43'),
-(98, 20, 'Requirement', 'requirement', '<i class=\"me-2 fa-solid fa-list-check\"></i>', 0, '2022-12-14 18:55:43', '2022-12-14 18:55:43');
+(98, 20, 'Requirement', 'requirement', '<i class=\"me-2 fa-solid fa-list-check\"></i>', 0, '2022-12-14 18:55:43', '2022-12-14 18:55:43'),
+(99, 1, 'Notice Board', 'notice-board', '<i class=\"fa-regular fa-clipboard\"></i>', 1, '2023-02-10 12:28:06', '2023-02-10 12:28:06');
 
 -- --------------------------------------------------------
 
@@ -3695,7 +3731,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `user_type`, `agent_id`, `email_verified_at`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `created_at`, `updated_at`, `social_id`, `social_type`) VALUES
-(1, 'Niraj', 'hello_agent@gmail.com', '$2y$10$.oiw/R8NVOQY2w6j3DEdR.CC8jZcoAH5ZZ274L8dhPMyaa5danzSa', 3, 0, NULL, NULL, NULL, NULL, 'mZNXEzF1uNxGaS3YsarVCRzJEASBmGYkROoEvyCoUrM4iURhxW8PJyxwUpaZ', '2022-09-01 08:58:27', '2022-09-01 08:58:27', NULL, NULL),
+(1, 'Niraj', 'hello_agent@gmail.com', '$2y$10$.oiw/R8NVOQY2w6j3DEdR.CC8jZcoAH5ZZ274L8dhPMyaa5danzSa', 3, 0, NULL, NULL, NULL, NULL, 'qj4vY6B9wZBCcHx8yx9y7wR4rwejmfyPQstvqbYGoyIVKixUqiAXjA5LbF5o', '2022-09-01 08:58:27', '2022-09-01 08:58:27', NULL, NULL),
 (2, 'Shivam', 'shivam@gmail.com', '$2y$10$8ultxrWJJfp42yGGY25Kr.yzuSU.NOzAVZPdiK5AqQWwXmcoSt6yK', 5, 1, NULL, NULL, NULL, NULL, NULL, '2022-09-01 09:00:49', '2022-09-01 09:00:49', NULL, NULL),
 (3, 'Ramesh', 'ramesh@yahoo.in', '$2y$10$EaK474zhULKEfKkw4rl6O.bhg3b9fcdBxGFVfGz1dgzrqmfu.ju/.', 5, 2, NULL, NULL, NULL, NULL, NULL, '2022-09-01 11:12:43', '2022-09-01 11:12:43', NULL, NULL),
 (4, 'Rima', 'rima@gmail.com', '$2y$10$RmRsT3ZeFuJIjEzhnFIe5.J.DdlWXR3.TYWJKP4oB9A7pybmEw1pa', 5, 1, NULL, NULL, NULL, NULL, NULL, '2022-09-01 11:17:31', '2022-09-01 11:17:31', NULL, NULL),
@@ -3877,6 +3913,12 @@ ALTER TABLE `my_profile`
 -- Indexes for table `notes`
 --
 ALTER TABLE `notes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notices`
+--
+ALTER TABLE `notices`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -4152,6 +4194,12 @@ ALTER TABLE `notes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
+-- AUTO_INCREMENT for table `notices`
+--
+ALTER TABLE `notices`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
 -- AUTO_INCREMENT for table `notice_board`
 --
 ALTER TABLE `notice_board`
@@ -4179,7 +4227,7 @@ ALTER TABLE `payment_status`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `permit_visa`

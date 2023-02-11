@@ -7924,3 +7924,8 @@ height: 400px;
 .m7{
     margin:7px;
 }
+
+.card-body:hover{
+    background: #d2cfff;
+    border-radius: 10px; 
+}

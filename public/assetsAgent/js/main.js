@@ -721,3 +721,10 @@ $(this).parents('.dialog-ovelay').fadeOut(500, function () {
 function test(){
     alert("test");
 }
+
+
+$(document).ready(function() {
+    if(window.location.href.indexOf('#editNotice') != -1) {
+      $('#editNotice').modal('show');
+    }
+  });

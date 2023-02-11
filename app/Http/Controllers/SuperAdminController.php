@@ -125,23 +125,7 @@ class SuperAdminController extends Controller
           $data1= $data1->join('current_status as cs', 'cs.id', '=', 'c.application_status');
           $data1= $data1->orderBy('c.id', 'DESC');
           $data1= $data1->paginate($limit);  
-         $data['application_list']  = $data1;
-  
-        //  $data['notices'] = DB::table('notices')->select('id', 'notice_title','notice_des', 'created_at')->orderBy('created_at', 'desc')->paginate(5);
-
-
-     if (isset($_GET['delete_notice_id'])) {
-      $notice_id = $_GET['delete_notice_id'];
-      DB::delete('delete from notices where id ='. $notice_id);
-      Session::flash('notice_deleted', 'Notice has been Deleted !'); 
-       return redirect('admin-application-list'); 
-    }
-
-    if(isset($_GET['edit_notice_id'])){
-      $editId = $_GET['edit_notice_id'];
-      $data['edit_notice_data'] = DB::table('notices')->select('notice_title', 'notice_des')->where('id', $editId)->get();
-      
-    }
+         $data['application_list']  = $data1; 
         return view('admin.admin-application',$data);
     }
 
@@ -304,7 +288,7 @@ class SuperAdminController extends Controller
     if ($res) {
       Session::flash('notice_submited', 'Notice has been submitted !'); 
     }
-    return redirect('admin-application-list'); 
+    return redirect('notice-board'); 
   }
 
  
@@ -321,14 +305,27 @@ class SuperAdminController extends Controller
 
     $result = DB::table('notices')->where('id', $id)->update(['notice_title' => $notice_title, 'notice_des' => $notice_des, 'updated_at' => $date]);
     if($result){
-      return redirect('admin-application-list'); 
+      Session::flash('notice_updated', 'Notice has been Updated !'); 
+      return redirect('notice-board'); 
     } 
    }
 
 
    function noticeBoard(){
-    $data['notices'] = DB::table('notices')->select('id', 'notice_title','notice_des', 'created_at')->orderBy('created_at', 'desc')->paginate(5);
+    $data['notices'] = DB::table('notices')->select('id', 'notice_title','notice_des', 'created_at')->orderBy('created_at', 'desc')->paginate(10);
+    
+    if (isset($_GET['delete_notice_id'])) { 
+      $notice_id = $_GET['delete_notice_id'];
+      DB::delete('delete from notices where id ='. $notice_id);
+      Session::flash('notice_deleted', 'Notice has been Deleted !'); 
+       return redirect('notice-board');  
+    }
 
+    if(isset($_GET['edit_notice_id'])){
+      $editId = $_GET['edit_notice_id'];
+      $data['edit_notice_data'] = DB::table('notices')->select('notice_title', 'notice_des')->where('id', $editId)->get();
+       
+    }
     return view('admin.admin-notice-board', $data);
    }
     }

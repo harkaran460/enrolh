@@ -105,7 +105,7 @@ class AgentHome extends Controller
         }
         $data['dataSetstd'] = json_encode($paid_student);
         $data['college_list'] = DB::table('colleges')->select('id', 'college_name')->get();
-        $data['notice_board'] = DB::table('notices')->select('notice_title', 'notice_des', 'created_at')->get();
+        $data['notice_board'] = DB::table('notices')->select('notice_title', 'notice_des', 'created_at')->orderBy('created_at', 'desc')->get();
         return view('agent.dashboard', $data);
     }
 
