@@ -7925,7 +7925,7 @@ height: 400px;
     margin:7px;
 }
 
-.card-body:hover{
+.card-body-my:hover{
     background: #d2cfff;
     border-radius: 10px; 
 }

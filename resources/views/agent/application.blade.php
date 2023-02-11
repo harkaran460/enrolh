@@ -257,31 +257,31 @@
                     </tr>
                     <form method="GET" action="/agentApplication" id="frmApplicationFilter">
                         <tr>
-                            <th><input type="text" class="form-control" name="appid"></th>
-                            <th><input type="text" class="form-control" name="student_id"></th>
-                            <th></th>
-                            <th><input type="text" class="form-control" name="fname"></th>
-                            <th><input type="text" class="form-control" name="lname"></th>
-                            <th></th>
-                            <th><select class="form-select" name="requirements" aria-label="Default select example" onchange="this.form.submit()"><option selected>---</option><option value="Missing">Missing</option><option value="Reviewing">Reviewing</option><option value="Reviewing - None Outstanding">Reviewing - None Outstanding</option><option value="Not Approved">Not Approved</option><option value="Complete">Complete</option></select></th>
-                            <th><select class="form-select" aria-label="Default select example" name="current_status" onchange="this.form.submit()"><option selected>---</option><option value="Pre-Payment">Pre-Payment</option><option value="Pre-Submission">Pre-Submission</option><option value="Submission">Submission</option><option value="Post-Submission">Post-Submission</option><option value="Admission">Admission</option><option value="Visa-Application">Visa-Application</option><option value="Pre-Arrival">Pre-Arrival</option><option value="Post Arrival/Commission">Post Arrival/Commission</option><option value="Arrival">Arrival</option></select></th>
-                            <th><input type="text" class="form-control" name="program_name"></th>
-                            <th><input type="text" class="form-control" name="school_name"></th>
-                            <th>
+                            <th class="appId_hide_app"><input type="text" class="form-control" name="appid"></th>
+                            <th class="studentId_hide_app"><input type="text" class="form-control" name="student_id"></th>
+                            <th class="applyDate_hide_app"></th>
+                            <th class="firstName_hide_app"><input type="text" class="form-control" name="fname"></th>
+                            <th class="lastName_hide_app"><input type="text" class="form-control" name="lname"></th>
+                            <th class="status_hide_app"></th>
+                            <th class="requirements_hide_app"><select class="form-select" name="requirements" aria-label="Default select example" onchange="this.form.submit()"><option selected>---</option><option value="Missing">Missing</option><option value="Reviewing">Reviewing</option><option value="Reviewing - None Outstanding">Reviewing - None Outstanding</option><option value="Not Approved">Not Approved</option><option value="Complete">Complete</option></select></th>
+                            <th class="currentStage_hide_app"><select class="form-select" aria-label="Default select example" name="current_status" onchange="this.form.submit()"><option selected>---</option><option value="Pre-Payment">Pre-Payment</option><option value="Pre-Submission">Pre-Submission</option><option value="Submission">Submission</option><option value="Post-Submission">Post-Submission</option><option value="Admission">Admission</option><option value="Visa-Application">Visa-Application</option><option value="Pre-Arrival">Pre-Arrival</option><option value="Post Arrival/Commission">Post Arrival/Commission</option><option value="Arrival">Arrival</option></select></th>
+                            <th class="program_hide_app"><input type="text" class="form-control" name="program_name"></th>
+                            <th class="school_hide_app"><input type="text" class="form-control" name="school_name"></th>
+                            <th class="startDate_hide_app">
                                 <div class="fromToDate">
                                     <div class="ui calendar" id="rangestart1"><div class="ui input left icon"><i class="calendar icon"></i><input type="text" name="application_start_date" placeholder="Start" onchange="this.form.submit()"></div></div>
                                     <div class="ui calendar" id="rangeend1"><div class="ui input left icon"><i class="calendar icon"></i><input type="text" name="application_end_date" placeholder="End" onchange="this.form.submit()"></div></div>
                                 </div>
                             </th>
-                            <th scope="col"><input type="text" class="form-control" name="requirement_partner" style="width: 200px;"></th>
-                            <th scope="col">
+                            <th scope="col" class="recruitmentPartner_hide_app"><input type="text" class="form-control" name="requirement_partner" style="width: 200px;"></th>
+                            <th scope="col" class="paymentDate_hide_app">
                                 <div class="fromToDate">
                                     <div class="ui calendar" id="rangestart"><div class="ui input left icon"><i class="calendar icon"></i><input type="text" name="payment_start_date" placeholder="Start" onchange="this.form.submit()"></div></div>
                                     <div class="ui calendar" id="rangeend"><div class="ui input left icon"><i class="calendar icon"></i><input type="text" name="payment_end_date"  placeholder="End" onchange="this.form.submit()"></div></div>
                                 </div>
                             </th> 
-                            <th></th>
-                            <th></th>
+                            <th class="action_app_hide"></th>
+                            <th class="action_app_hide"></th>
                         </tr>
                     </form>
                 </thead>
