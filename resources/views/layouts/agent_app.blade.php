@@ -15,13 +15,13 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('assetsAgent/css/app.min.css') }}" id="app-style" />
     <!--<link rel="stylesheet" type="text/css" href="{{ asset('assetsAgent/css/daterangepicker.css') }}">-->
-    
+
     <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
-    
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('assetsAgent/css/icons.min.css') }}" />
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('assetsAgent/css/animate.min.css') }}" />
@@ -49,7 +49,7 @@
             </div>
         </div>
     </div>
-    
+
     <header class="mainHeader">
         <a href="javascript:void(0)" class="brandName"><img src="assetsAgent/img/Enrolhere.png"><img src="assetsAgent/img/eh.png"></a>
         <a href="javascript:void(0)" class="toggleSide"><img src="assetsAgent/img/bars.png"></a>
@@ -58,11 +58,11 @@
         <div class="dropdown profileLogin">
             <img src="assetsAgent/img/profile.png">
             <a type="button" data-bs-toggle="dropdown">{{Auth::user()->name}} <strong>{{Auth::user()->email}}</strong></a>
-            <div class="dropdown-menu dropdown-menu-end"> 
-                <a class="dropdown-item" href="/recruitment_partner_id">Profile</a> 
+            <div class="dropdown-menu dropdown-menu-end">
+                <a class="dropdown-item" href="/recruitment_partner_id">Profile</a>
                 <a class="dropdown-item" href="/logout"><span key="t-logout">Logout</span></a>
             </div>
-        </div> 
+        </div>
     </header>
 
     <section class="mainWrapper">
@@ -81,30 +81,30 @@
         <script>
             var base_path = '{{ url('/') }}';
         </script>
-        
+
         <!-- Javascript -->
         <script src="{{ asset('assetsAgent/js/jquery.min.js') }}"></script>
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.3.2/ckeditor.js"></script>-->
-        
+
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
         <script src="{{ asset('assetsAgent/js/chosen.jquery.min.js') }}"></script>
         <script src="{{ asset('assetsAgent/js/moment.min.js') }}"></script>
-         
+
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 
         <!--<script src="{{ asset('assetsAgent/js/daterangepicker.min.js') }}"></script>-->
-        <!--<script src="{{ asset('assetsAgent/js/litepicker.js') }}"></script>--> 
+        <!--<script src="{{ asset('assetsAgent/js/litepicker.js') }}"></script>-->
 
         <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>-->
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>
 
         <script src="{{ asset('assetsAgent/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('assetsAgent/js/metisMenu.min.js') }}"></script> 
+        <script src="{{ asset('assetsAgent/js/metisMenu.min.js') }}"></script>
         <script src="{{ asset('assetsAgent/js/simplebar.min.js') }}"></script>
-        
+
         <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
 
         <script src="{{ asset('assetsAgent/js/waves.min.js') }}"></script>
@@ -118,7 +118,7 @@
         <!--<script src="{{ asset('assetsAgent/js/dashboard.init.js') }}"></script>-->
         <!--<script src="{{ asset('assetsAgent/js/ion.rangeSlider.min.js') }}"></script>-->
         <!--<script src="{{ asset('assetsAgent/js/range-sliders.init.js') }}"></script>-->
-        
+
         <!--<script src="https://code.jscharting.com/latest/jscharting.js"></script>-->
 
         <!-- Main js -->
@@ -166,15 +166,15 @@
                             data:{razorpay_payment_id:response.razorpay_payment_id,amount:amount,student_id:student_id,appid:appid,disc:disc},
                             success:function(data){
                                 if(data.success =='paid'){
-                                    $('.success-message').html('<span class="alert alert-success">Thank You ! Your application fees paid successfully</span>');   
-            
+                                    $('.success-message').html('<span class="alert alert-success">Thank You ! Your application fees paid successfully</span>');
+
                                 }else
                                 {
-                                    $('.danger-message').html('<span class="alert alert-danger ">OOPS ! Your application fees payment failed, Please try again</span>');    
+                                    $('.danger-message').html('<span class="alert alert-danger ">OOPS ! Your application fees payment failed, Please try again</span>');
                                 }
                                 setTimeout(function(){
-                                window.location.reload(); 
-                                },5000); 
+                                window.location.reload();
+                                },5000);
 
 
 
@@ -197,8 +197,8 @@
                 var rzp1 = new Razorpay(options);
                 rzp1.open();
             });
-      
-            // click body js 
+
+            // click body js
             const checkbox = document.getElementById('checkbox');
 
             checkbox.addEventListener('change', () => {
@@ -206,23 +206,23 @@
             });
 
             $(".gallery-list a").fancybox();
-            
+
             $(function() {
-                
+
                 $( "#datepicker" ).datepicker({
                     changeMonth: true,
                     changeYear: true,
                     dateFormat: 'yy-mm-dd'
                 });
             });
-            
-    
+
+
             var _seed = 42;
             Math.random = function() {
                 _seed = _seed * 16807 % 2147483647;
                 return (_seed - 1) / 2147483646;
             };
-            
+
             const ctxdd = document.getElementById('myChartsdsd');
             new Chart(ctxdd, {
                 type: 'pie',
@@ -244,9 +244,9 @@
                       }]
                 }
               });
-            
 
-            
+
+
             $(document).ready(function() {
                 let data = {
                     dataValues: [
@@ -268,7 +268,7 @@
                     barLabels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                     labelColors: ["#444", "#444", "#444", "#444"]
                 };
-            
+
                 let options = {
                     chartWidth: "60%",
                     chartHeight: "60%",
@@ -280,11 +280,11 @@
                     barValuePosition: "center",
                     barSpacing: "1%"
                 };
-            
+
                 let element = "#testDiv";
-            
+
                 drawBarChart(data, options, element);
-            
+
                 function drawBarChart(data, options, element) {
                     drawChartContainer(element);
                     drawChartTitle(options);
@@ -295,18 +295,18 @@
                     drawXAxis(data, options);
                     drawXAxisTitle(options);
                 }
-            
+
                 function drawChartContainer(element) {
                     $(element).prepend("<div class='chartContainer'></div>");
                     $(element).css("height", "100%");
                 }
-            
+
                 function drawChartTitle(options) {
                     $(".chartContainer").append("<div class='chartTitle'>" + options.chartTitle + "</div>");
                     $(".chartTitle").css("color", options.chartTitleColor);
                     $(".chartTitle").css("font-size", options.chartTitleFontSize);
                 }
-            
+
                 function drawChartLegend(data) {
                     $(".chartContainer").append("<div class='chartLegend'></div>");
                     for (let i = 0; i < data.legend.length; i++) {
@@ -315,11 +315,11 @@
                         $(".chartLegend").append("<span>" + data.legend[i] + "</span>");
                     }
                 }
-            
+
                 function drawYAxisTitle(options) {
                     $(".chartContainer").append("<div class='yAxisTitle'>" + options.yAxisTitle + "</div>");
                 }
-            
+
                 function drawYAxis(data) {
                     $(".chartContainer").append("<div class='yAxis'></div>");
                     let maximum = maxScale(tallestBar(data));
@@ -333,7 +333,7 @@
                         }
                     }
                 }
-            
+
                 function tallestBar(data) {
                     let sum = 0;
                     for (let i = 0; i < data.dataValues.length; i++) {
@@ -344,7 +344,7 @@
                         return sum;
                     }
                 }
-            
+
                 function maxScale(n) {
                     let order = Math.floor(Math.log(n) / Math.LN10 + 0.000000001); // 2
                     let multiple = Math.pow(10, order);
@@ -357,23 +357,23 @@
                         return result.toFixed(Math.abs(order));
                     }
                 }
-            
+
                 function drawChartGrid(data, options) {
                     $(".chartContainer").append("<div class='chartGrid'></div>");
-            
+
                     let maximum = maxScale(tallestBar(data));
-            
+
                     let barWidth = 100 / (data.dataValues.length + 2);
-            
+
                     for (let i = 0; i < data.dataValues.length; i++) {
                         $(".chartGrid").append("<div class='bar bar" + i + "'></div>");
                         $(".bar" + i).css("height", "100%");
                         $(".bar" + i).css("width", barWidth + "%");
                         for (let j = 0; j < data.dataValues[i].length; j++) {
-            
+
                             if (data.dataValues[i][j]) {
                                 $(".bar" + i).prepend("<div class='innerBar innerBar" + i + j + "'></div");
-            
+
                                 let height = data.dataValues[i][j] / maximum * 100;
                                 $(".innerBar" + i + j).css("height", height + "%");
                                 $(".innerBar" + i + j).css("background-color", data.legendColors[j]);
@@ -385,59 +385,59 @@
                     }
                     $(".bar").css("margin", "0 " + options.barSpacing);
                 }
-            
+
                 function drawXAxis(data, options) {
                     $(".chartContainer").append("<div class='emptyBox'></div>");
                     $(".chartContainer").append("<div class='xAxis'></div>");
-            
+
                     let barWidth = 100 / (data.barLabels.length + 2);
-            
+
                     for (let i = 0; i < data.barLabels.length; i++) {
                         $(".xAxis").append("<div class='xAxisLabel xAxisLabel" + i + "'>" + data.barLabels[i] + "</div>");
                         $(".xAxisLabel").css("width", barWidth + "%");
                         $(".xAxisLabel" + i).css("color", data.labelColors[i]);
                     }
-            
+
                     $(".xAxisLabel").css("margin", "0 " + options.barSpacing);
                 }
-            
+
                 function drawXAxisTitle(options) {
                     $(".chartContainer").append("<div class='xAxisTitle'>" + options.xAxisTitle + "</div>");
                 }
-                
+
                 $("#about_us > div.col-md-8 > div > div.bg-white.p-3.mt-3 > p").addClass("fs-4")
                 $("#about_us > div.col-md-8 > div > div.bg-white.p-3.mt-3 > ul li").addClass("fs-4").css("line-height", "1.4285em")
                 $("#about_us > div.col-md-8 > div > div.bg-white.p-3.mt-3 > p:nth-child(3)").remove();
                 $("#about_us > div.col-md-8 > div > div.bg-white.p-3.mt-3 > p:nth-child(4)").remove();
                 $("#about_us > div.col-md-8 > div > div.bg-white.p-3.mt-3 > p:nth-child(6)").remove();
-                
+
                 // $(".avatar .avatar-img").on("error", function(){
                 //     $(this).attr('src', 'https://via.placeholder.com/56');
                 // });
-                
+
                 // const imgas = document.querySelector("#school > div > div > div > div.avatar > a > img");
-                
+
 
                 // imgas.addEventListener('error', function handleError() {
                 //   const defaultImage =
                 //     'https://bobbyhadz.com/images/blog/javascript-show-div-on-select-option/banner.webp';
-                
+
                 //   imgas.src = defaultImage;
                 //   imgas.alt = 'default';
                 // });
 
-            
+
             });
             function funaction(id)
             {
                // var action = $('#action_'+id).find(":selected").val();
                this.form.submit();
-                
+
             }
         </script>
-        
-        
-      
+
+
+
 
 </body>
 

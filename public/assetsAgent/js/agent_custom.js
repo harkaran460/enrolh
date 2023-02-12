@@ -824,8 +824,50 @@ function docupload(docType,studentId,appId)
 
 }
 //delete image for student application review
-function myFunction (a){
-alert(a);
+
+function myFunction(id,user_id,app_id,imgurl,student_id,doc_name)
+{
+    var form_data = new FormData();
+        form_data.append("id", id);
+        form_data.append("user_id", user_id);
+        form_data.append("app_id", app_id);
+        form_data.append("imgurl", imgurl);
+        form_data.append("student_id", student_id);
+        form_data.append("doc_name", doc_name);
+
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": token,
+        },
+        url: base_path + "/delete-doreq-img",
+        method: "POST",
+        data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function () {
+            $("#msg_pass"+id).html("Please wait...");
+        },
+        success: function (data) {
+            if(data=='success'){
+            $("#msg_pass"+id).hide();
+            $("#suceess_pass"+id).html("<spain class='success'>Documents delete successfully</span>");
+            setTimeout(function() {
+                location.reload();
+            }, 5000);
+            }
+            else if(data=='failed'){
+                $("#msg_pass").hide();
+                $("#suceess_pass").html("<spain class='error'>Application successfully Disaproved</span>");
+                setTimeout(function() {
+                    location.reload();
+                }, 5000);
+            }else{
+                    $("#msg_pass").hide();
+                    $("#suceess_pass").html("<spain class='error'>Something worng</span>");
+                }
+        },
+    });
 }
 //save student notes
 

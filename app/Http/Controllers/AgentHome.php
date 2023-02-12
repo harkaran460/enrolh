@@ -11,9 +11,13 @@ use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use App\Mail\StudentNotes;
 use Illuminate\Support\Facades\Mail;
+use File;
+use Storage;
+
 
 class AgentHome extends Controller
 {
+    const MYCONST = 'val';
     public function __construct()
     {
         $this->middleware('auth');
@@ -267,96 +271,6 @@ class AgentHome extends Controller
         return view('agent.program', $data);
     }
 
-    // public function agentApplication(Request $request)
-    // {
-    //     //return  $request->input();
-    //     $payment_start_date  = date("Y-m-d", strtotime($request->input('payment_start_date'))) . ' 00:00:01';
-    //     $payment_end_date    = date("Y-m-d", strtotime($request->input('payment_end_date'))) . ' 23:59:00';
-
-    //     $appid               = $request->input('appid');
-    //     $student_id          = $request->input('student_id');
-    //     $fname               = $request->input('fname');
-    //     $lname               = $request->input('lname');
-    //     $program_name        = $request->input('program_name');
-    //     $school_name         = $request->input('school_name');
-
-    //     $payment_start_date  = date("Y-m-d", strtotime($request->input('payment_start_date'))) . ' 00:00:01';
-    //     $payment_end_date    = date("Y-m-d", strtotime($request->input('payment_end_date'))) . ' 23:59:00';
-
-    //     $application_start_date = $request->input('application_start_date');
-    //     $application_end_date   = $request->input('application_end_date');
-    //     $requirement_partner    = $request->input('requirement_partner');
-    //     $requirements           = $request->input('requirements');
-    //     $current_status         = $request->input('current_status');
-    //     $current_date = date('Y-m-d H:i:s');
-
-    //     $qty = $request->input('qty');
-    //     if ($qty != '') {
-    //         $limit = $qty;
-    //     } else {
-    //         $limit = 10;
-    //     }
-    //     $agent = Auth::user()->id;
-    //     $data['total_apply_count']    =  DB::table('student_applications')->select('student_id', DB::raw("count(student_id) as count"))
-
-    //         ->where('agent_id', Auth::user()->id)
-    //         ->groupBy('student_id')
-    //         ->get();
-    //     $associated_id     =  DB::table('users')->select('id')->whereIn('user_type', ['6', '7', '9'])->where('agent_id', $agent)->get();
-    //     if (!empty($associated_id)) {
-    //         foreach ($associated_id as $id) {
-    //             $ids[] = $id->id;
-    //         }
-
-    //         //return $ids;
-    //     }
-    //     array_push($ids, $agent);
-
-
-    //     $data1 =  DB::table('users as a')->select('b.user_id', 'b.first_name', 'b.last_name', 'd.program_college_name', 'd.programs_name', 'd.earliest_intake_date', 'd.id as pid', 'c.student_id', 'c.app_id', 'c.status', 'c.agent_id', 'c.created_at', 'c.id', 'e.college_logo', 'e.id as cid', 'f.status_name', 'f.bgcolor')
-    //         ->whereIn('a.agent_id', $ids)
-    //         ->whereIn('a.user_type', ['5', '6', '8', '11', '12']);
-
-    //     if (($request->input('payment_start_date') != '') && ($request->input('payment_end_date') != '')) {
-    //         $data1 = $data1->whereBetween('c.payment_date', ["$payment_start_date", "$payment_end_date"]);
-    //     }
-
-    //     if (($request->input('payment_start_date') != '') && ($request->input('payment_end_date') == '')) {
-    //         $data1 = $data1->whereBetween('c.payment_date', ["$payment_start_date", "$current_date"]);
-    //     }
-    //     if ($student_id != '') {
-    //         $data1 = $data1->where('a.id', $student_id);
-    //     }
-    //     if ($appid != '') {
-    //         $data1 = $data1->where('c.app_id', $appid);
-    //     }
-    //     if ($fname != '') {
-    //         $data1 = $data1->where('b.first_name', $fname);
-    //     }
-    //     if ($lname != '') {
-    //         $data1 = $data1->where('b.last_name', $lname);
-    //     }
-    //     if ($program_name != '') {
-    //         $data1 = $data1->where('d.programs_name', $program_name);
-    //     }
-    //     if ($school_name != '') {
-    //         $data1 = $data1->where('e.college_name', $school_name);
-    //     }
-
-    //     $data1 = $data1->join('student_profile as b', 'b.user_id', '=', 'a.id');
-    //     $data1 = $data1->join('student_applications as c', 'c.student_id', '=', 'a.id');
-    //     $data1 = $data1->join('college_programs as d', 'd.id', '=', 'c.program_id');
-    //     $data1 = $data1->join('colleges  as e', 'e.id', '=', 'd.college_id');
-    //     $data1 = $data1->join('payment_status as f', 'f.id', '=', 'c.payment_status');
-    //     $data1 = $data1->orderBy('c.id', 'DESC');
-    //     $data1 = $data1->paginate($limit);
-    //     $data['agent_email']    =  DB::table('users')->select('id', 'name', 'user_type', 'email')->where('id', Auth::user()->id)->get();
-
-    //      //return $data1;
-    //      $data1['status_title']='';
-    //     $data['application_list']  = $data1;
-    //     return view('agent.application', $data);
-    // }
     public function agentApplication(Request $request)
     {
         //return  $request->input();
@@ -951,7 +865,17 @@ class AgentHome extends Controller
     }
     public function student_application_review($app_id)
     {
-        $data['student_details']  =  DB::table('users as a')->select('a.id', 'app_status.status_title', 'application_status', 'ps.status_name as payment_status', 'c.program_id as progoramid', 'certificate_img','c.payment_status as paymentstatus', 'passport_img', 'd.*', 'email', 'g.country as country_of_citizenship', 'h.country as student_college_country', 'edu.title as highest_level_of_education', 'app_id', 'd.id as progoramid', 'i.country as college_country', 'e.college_address', 'f.title as level_of_education', 'first_name', 'middle_name', 'last_name', 'date_of_birth', 'first_language', 'passport_number', 'marital_status', 'gender', 'address', 'n.city as city_town', 'kk.country as country', 'mm.state as province_state', 'postal_code', 'phone_number', 'k.country as country_of_education', 'o.grad_name as grading_scheme', 'grade_average', 'graduated_from_most_recent_school', 'j.country as country_of_institution', 'name_of_institution', 'primary_language_of_instruction', 'attended_institution_from', 'attended_institution_to', 'degree_name', 'graduated_institution', 'graduation_date', 'physical_certificate_for_this_degree', 'school_address', 'l.city as school_city_town', 'm.state as school_province', 'school_postal_code', 'b.english_exam_type', 'date_of_exam', 'd.doc_requirement', 'college_logo', 'b.user_id as student_id')
+        $data['student_details']  =  DB::table('users as a')->select('a.id', 'app_status.status_title', 'application_status', 'ps.status_name as payment_status',
+         'c.program_id as progoramid', 'certificate_img','c.payment_status as paymentstatus', 'passport_img', 'd.*', 'email', 'g.country as country_of_citizenship',
+         'h.country as student_college_country', 'edu.title as highest_level_of_education', 'app_id', 'd.id as progoramid',
+         'i.country as college_country', 'e.college_address', 'f.title as level_of_education', 'first_name', 'middle_name',
+         'last_name', 'date_of_birth', 'first_language', 'passport_number', 'marital_status', 'gender', 'address',
+         'n.city as city_town', 'kk.country as country', 'mm.state as province_state', 'postal_code', 'phone_number',
+          'k.country as country_of_education', 'o.grad_name as grading_scheme', 'grade_average', 'graduated_from_most_recent_school',
+          'j.country as country_of_institution', 'name_of_institution', 'primary_language_of_instruction', 'attended_institution_from',
+          'attended_institution_to', 'degree_name', 'graduated_institution', 'graduation_date', 'physical_certificate_for_this_degree',
+          'school_address', 'l.city as school_city_town', 'm.state as school_province', 'school_postal_code', 'b.english_exam_type',
+           'date_of_exam', 'd.doc_requirement', 'college_logo', 'b.user_id as student_id')
             ->leftjoin('student_profile as b', 'b.user_id', '=', 'a.id')
             ->leftjoin('student_applications as c', 'c.student_id', '=', 'a.id')
             ->leftjoin('college_programs  as d', 'd.id', '=', 'c.program_id')
@@ -972,6 +896,7 @@ class AgentHome extends Controller
             ->join('education  as edu', 'edu.id', '=', 'b.highest_level_of_education')
             ->join('payment_status  as ps', 'ps.id', '=', 'c.payment_status')
             ->join('current_status as app_status', 'app_status.id', '=', 'c.application_status')
+           // ->join('student_uploaded_docs as uploaded_img', 'uploaded_img.app_id', '=', 'c.id')
 
 
 
@@ -984,7 +909,7 @@ class AgentHome extends Controller
             $data['doc_requirment']  =  DB::table('documents_requirment')->select('id', 'document_name', 'description', 'required_field', 'upload_status')->whereIn('id', $doc_req)->where('status', 1)->get();
         }
 
-        $data['upload_doc_details']  =  DB::table('student_uploaded_docs')->select('doc_id', 'image_name')->where('app_id', $app_id)->get();
+        $data['upload_doc_details']  =  DB::table('student_uploaded_docs')->select('doc_id', 'image_name','backend_comment')->where('app_id', $app_id)->get();
         $data['student_records']     =  DB::table('student_records')->select('title', 'text', 'created_at')->where('app_id', $app_id)->orderBy('id', 'desc')->get();
         $upload_doc_count            =  DB::table('student_uploaded_docs')->select('doc_id')->where('app_id', $app_id)->count();
         $data['missing_doc'] = $total_doc - $upload_doc_count;
@@ -998,11 +923,6 @@ class AgentHome extends Controller
 
     public function student_certificate_upload(Request $request)
     {
-
-        /*$validatedData = $request->validate([
-            //'file' => 'required|jpg,jpeg,png,pdf|max:2048',
-
-           ]);*/
 
 
         $appid      = $request->input('appid');
@@ -2092,4 +2012,31 @@ class AgentHome extends Controller
     {
 
     }
+
+    public function delete_docrequirement_img(Request $request)
+    {
+        $doc_id       =  $request->input('id');
+        $imgurl       =  $request->input('imgurl');
+        $appid        =  $request->input('app_id');
+        $studentid    =  $request->input('student_id');
+        $doc_name     =  $request->input('doc_name');
+
+       $img = 'storage/agent_documents/'.$appid.'/'.$imgurl;
+       DB::table('student_uploaded_docs')->where('doc_id', $doc_id)->delete();
+       if(file_exists(public_path($img))){
+        unlink(public_path($img));
+        //log record
+        DB::table('student_records')->insert([
+            'title'          => "Delete $doc_name ",
+            'text'           => "Delete $doc_name on Application Review Page by",
+            'agent_id'       =>  Auth::user()->id,
+            'student_id'     => $studentid,
+            'app_id'         => $appid
+        ]);
+        return "success";die;
+      }else{
+       return "failed";die;
+      }
+    }
 }
+
