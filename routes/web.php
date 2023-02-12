@@ -73,7 +73,7 @@ Route::post('/updateProfilePicture', [StudentHome::class, 'updateProfilePicture'
 Route::get('/edit_student_profile', [StudentHome::class, 'edit_student_profile'])->name('edit_student_profile');
 Route::post('/application', [StudentHome::class, 'application'])->name('application');
 Route::post('/removeApplication', [StudentHome::class, 'removeApplication'])->name('removeApplication');
- 
+
 Route::get('/application_detalis', function () {
     return view('student.application_detalis');
 });
@@ -167,6 +167,7 @@ Route::get('/student-application-review/{id}', [AgentHome::class, 'student_appli
 Route::post('/student-certificate-upload', [AgentHome::class, 'student_certificate_upload'])->name('student_certificate_upload');
 Route::post('/student-passport-upload', [AgentHome::class, 'student_passport_upload'])->name('student_passport_upload');
 Route::post('/student-notes', [AgentHome::class, 'student_notes'])->name('student_notes');
+Route::post('/delete-doreq-img', [AgentHome::class, 'delete_docrequirement_img'])->name('delete_docrequirement_img');
 
 Route::get('/recruitment_partners', [AgentHome::class, 'recruitment_partners'])->name('recruitment_partners');
 Route::get('/recruitment_partner_id', [AgentHome::class, 'recruitment_partner_id'])->name('recruitment_partner_id');

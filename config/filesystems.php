@@ -69,6 +69,7 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
         public_path('agentdoc') => storage_path('app/public/agent_documents'),
+        public_path('agentdoc1') => storage_path('app/public/agent_documents'),
         public_path('doc') => storage_path('app/public/agent_documents'),
     ],
 
