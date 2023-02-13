@@ -159,7 +159,7 @@
                                 <div class="col-md-6">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="ready-submit"
-                                            @if ($astatus >= 7) @else '' @endif disabled>
+                                        @if (($astatus >= 7)  && ($student_details->paymentstatus >1)) checked @else {{"disabled"}} @endif>
                                         <label class="form-check-label" for="ready-submit">
                                             Ready to Submit
                                         </label>
@@ -168,7 +168,7 @@
                                 <div class="col-md-6">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="submitted-school"
-                                            @if ($astatus >= 8) @else '' @endif disabled>
+                                        @if (($astatus >= 8)  && ($student_details->paymentstatus >1)) checked @else {{"disabled"}} @endif>
                                         <label class="form-check-label" for="submitted-school">
                                             Submitted to School
                                         </label>
@@ -177,7 +177,7 @@
                                 <div class="col-md-6">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="ready-visa"
-                                            @if ($astatus >= 9) @else '' @endif disabled>
+                                        @if (($astatus >= 9)  && ($student_details->paymentstatus >1)) checked @else {{"disabled"}} @endif>
                                         <label class="form-check-label" for="ready-visa">
                                             Ready for Visa
                                         </label>
@@ -186,7 +186,7 @@
                                 <div class="col-md-6">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="ready-enroll"
-                                            @if ($astatus >= 10)  @else '' @endif disabled>
+                                        @if (($astatus >= 10)  && ($student_details->paymentstatus >1)) checked @else {{"disabled"}} @endif>
                                         <label class="form-check-label" for="ready-enroll">
                                             Ready to Enroll
                                         </label>
@@ -196,7 +196,7 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value=""
                                             id="enrollment-confirmed"
-                                            @if ($astatus >= 12)  @else '' @endif disabled>
+                                            @if (($astatus >= 12)  && ($student_details->paymentstatus >1)) checked @else {{"disabled"}} @endif>
                                         <label class="form-check-label" for="enrollment-confirmed">
                                             Enrollment Confirmed
                                         </label>
@@ -206,7 +206,8 @@
                             <div class="row">
                                 <div class="col-md-12 mt-md-2 text-center">
                                     <p class="text--custom m-0"> <b><i class="fa-solid fa-cart-shopping"></i>
-                                            <?php if ($astatus >= 12) {
+
+                                            <?php if(($astatus >= 12) && ($student_details->paymentstatus >1)) {
                                                 echo 'Completed';
                                             } else {
                                                 echo 'Pending';
@@ -591,12 +592,12 @@
                                                                                                     echo '<span class="fa fa-info-circle" style="color: #FFC72D"></span> <div class="css-fke44g" style="color: #FFC72D">Pending</div> ';
                                                                                                 }
                                                                                             } ?>
-                                                                                        </div>
-                                                                                        <?php
-                                                                                }
-                                                                                else
-                                                                                {?>
-                                                                                        <div class="css-1p0j8nq" id="pending<?php echo $doc_list->id; ?>">
+                                                                                           </div>
+                                                                                          <?php
+                                                                                          }
+                                                                                            else
+                                                                                            {?>
+                                                                                         <div class="css-1p0j8nq" id="pending<?php echo $doc_list->id; ?>">
                                                                                             <span class="fa fa-info-circle"  style="color: #FFC72D"></span>
                                                                                             <div class="css-fke44g" style="color: #FFC72D">
                                                                                                 Pending
@@ -732,66 +733,35 @@
                                                                                                                                                         if($data->doc_id == $doc_list->id)
                                                                                                                                                         {
                                                                                                                                                         $img_url = asset('agentdoc1/'); ?>
-                                                                                                                                                        <!--<img class="card-img-top" src="<?php echo $img_url . '/' . $student_details->app_id . '/' . $data->image_name; ?>" id="uploaddoc<?php echo $doc_list->id; ?>" style="max-height:150px">-->
-
-
                                                                                                                                                              <div class="card">
-                                                                                                                                                                  <a href="<?php echo $img_url . '/' . $student_details->app_id . '/' . $data->image_name; ?>" target="_blank">
-                                                                                                                                                                       <img src="<?php echo $img_url . '/' . $student_details->app_id . '/' . $data->image_name; ?>" class="card-img-top" style="max-height:150px">
-                                                                                                                                                                  </a>
+                                                                                                                                                                <div class="img_action">
+                                                                                                                                                                    <?php $imgurl =  $data->image_name;?>
+                                                                                                                                                                  <a href="<?php echo $imgurl; ?>" target="_blank"> View Details</a> | <a href ="javascript:void(0)"><span class="remove_img" onclick="myFunction('<?php echo $doc_list->id; ?>','<?php echo $student_details->id; ?>','<?php echo $student_details->app_id; ?>','<?php echo $imgurl;?>','<?php echo $student_details->student_id;?>','<?php echo $doc_list->document_name;?>')">Remove Image</span></a>
+                                                                                                                                                                 <div id="msg_pass<?php echo $doc_list->id; ?>"></div>
+                                                                                                                                                                 <div id="suceess_pass<?php echo $doc_list->id; ?>"></div>
+                                                                                                                                                                </div>
                                                                                                                                                                   <div class="card-body px-0 pt-0">
-                                                                                                                                                                    <h5 class="card-title">
-                                                                                                                                                                        <div class="file-field input-field">
 
-                                                                                                                                                                            <input type="file" class="form-control" id="img-upload<?php echo $doc_list->id; ?>"
-                                                                                                                                                                                onchange="docupload(<?php echo $doc_list->id; ?>,<?php echo $student_details->id; ?>,<?php echo $student_details->app_id; ?>);">
-                                                                                                                                                                            <span
-                                                                                                                                                                                id="suceess<?php echo $doc_list->id; ?>"
-                                                                                                                                                                                style="color:green"></span><br />
-                                                                                                                                                                            <span
-                                                                                                                                                                                id="msg<?php echo $doc_list->id; ?>"
-                                                                                                                                                                                style="color:green"></span><br />
-
-                                                                                                                                                                        </div>
-                                                                                                                                                                    </h5>
                                                                                                                                                                     <p class="card-text">
                                                                                                                                                                         <div class="download text-center">
-                                                                                                                                                                            <a href="<?php echo $img_url . '/' . $student_details->app_id . '/' . $data->image_name; ?>" class="btn btn-secondary" download>
+                                                                                                                                                                            <a href="<?php echo $imgurl; ?>" class="btn btn-secondary" download>
                                                                                                                                                                                 <i class="fa fa-download me-2"></i>Download
                                                                                                                                                                             </a>
                                                                                                                                                                         </div>
                                                                                                                                                                     </p>
                                                                                                                                                                   </div>
                                                                                                                                                                 </div>
-
-
-                                                                                                                                                            <?php
+                                                                                                                                                                <div class="backend_comment">
+                                                                                                                                                                    <?php echo $data->backend_comment; ?>
+                                                                                                                                                                </div>
+                                                                                                                                                                 <?php
                                                                                                                                                         }
                                                                                                                                                     }
 
+                                                                                                                                                }else{
+
                                                                                                                                                 }
                                                                                                                                             ?>
-
-                                                                                                                                    <?php if(!empty($image_name))
-                                                                                                                                        {
-
-                                                                                                                                            foreach ($upload_doc_details as $data)
-                                                                                                                                            {
-
-                                                                                                                                                if($data->doc_id == $doc_list->id)
-                                                                                                                                                {
-                                                                                                                                                    $img_url = asset('agentdoc/'); ?>
-                                                                                                                                                    <!--<div class="download text-center">-->
-                                                                                                                                                    <!--    <a href="<?php echo $img_url . '/' . $student_details->app_id . '/' . $data->image_name; ?>" class="btn btn-secondary" download>-->
-                                                                                                                                                    <!--        <i class="fa fa-download"></i>Download-->
-                                                                                                                                                    <!--    </a>-->
-                                                                                                                                                    <!--</div>-->
-                                                                                                                                                    <?php
-                                                                                                                                                }
-                                                                                                                                            }
-
-                                                                                                                                        }
-                                                                                                                                    ?>
                                                                                                                                 </div>
 
                                                                                                                             </div>
