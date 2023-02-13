@@ -476,12 +476,12 @@
                                         class="fa-solid fa-comments"></i> Notes <!--<div class="css-wyw5m9">1</div>--></button>
                             </li>
                             <li class=" d-flex">
-                                                <div class="download-all-btn">
+                                                {{-- <div class="download-all-btn">
                                                     <a href="">
                                                         <i class="fa fa-download"></i>
                                                         Download All
                                                     </a>
-                                                </div>
+                                                </div> --}}
                                             </li>
                         </ul>
 
@@ -862,7 +862,7 @@
                                             </div>
                                             <input type="hidden" name="student_id" id="student_id" value="<?php echo $student_details->student_id; ?>">
                                             <input type="hidden" name="appid" id="appid" value="<?php echo $student_details->app_id; ?>">
-                                            <!--<textarea  name="notes" id="notes" class="post-area"> </textarea><br/>-->
+                                            <textarea  name="notes" id="notes" class="post-area form-control"> </textarea><br/>
                                             <button type="button" class="btn btn-primary" id="msg" onclick="notesSave();">Save</button>
                                         </div>
                                     </form>

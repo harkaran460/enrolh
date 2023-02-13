@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Mail;
 
 class AgentHome extends Controller
 {
-    const MYCONST = 'val';
     public function __construct()
     {
         $this->middleware('auth');
@@ -41,10 +40,12 @@ class AgentHome extends Controller
         }
         $data['statuslist'] = $statusArr;
         //counter
-        $data['totalapproveApplication'] = DB::table('student_applications')->where('application_status', 12)->count();
-        $data['totalApplication'] = DB::table('student_applications')->select('id')->count();
-        $data['totalamount'] = DB::table('student_applications')->sum('payment_amount');
-        $data['totalstudent'] = DB::table('users')->where('user_type', 5)->where('agent_id', Auth::user()->id)->count();
+
+        $data['totalapproveApplication'] =  DB::table('student_applications')->where('application_status', 12)->where('agent_id',Auth::user()->id)->count();
+        $data['totalApplication'] =  DB::table('student_applications')->select('id')->where('agent_id',Auth::user()->id)->count();
+        $data['totalamount'] =  DB::table('student_applications')->where('agent_id',Auth::user()->id)->sum('payment_amount');
+        $data['totalstudent'] =  DB::table('users')->where('user_type', 5)->where('agent_id', Auth::user()->id)->count();
+
         //monthly income
         $monthly_income = '';
         $monthly_income = $this->getMonthRevenue();
@@ -136,7 +137,7 @@ class AgentHome extends Controller
 
     public function getGroupbystatusCount($id)
     {
-        return DB::table('student_applications')->select('id,application_status')->where('application_status', $id)->groupBy('application_status')->count();
+        return DB::table('student_applications')->select('id,application_status')->where('application_status', $id)->where('agent_id',Auth::user()->id)->groupBy('application_status')->count();
     }
     public function colorarry()
     {
@@ -150,7 +151,7 @@ class AgentHome extends Controller
     //get student
     public function getstudents()
     {
-        return DB::table('users')->select('id')->whereIn('user_type', [4, 5, 8, 11])->get();
+        return DB::table('users')->select('id')->whereIn('user_type', [4, 5, 8, 11])->where('agent_id',Auth::user()->id)->get();
     }
 
     //count paid student in a monthly
@@ -169,7 +170,9 @@ class AgentHome extends Controller
 
     public function getMonthData($college_id, $monthName, $yearName)
     {
-        $student_applications = DB::select(DB::raw("SELECT COUNT(student_applications.id) as total from student_applications WHERE MONTHNAME(CAST(student_applications.created_at AS DATE)) = '" . $monthName . "' AND YEAR(student_applications.created_at) = '" . $yearName . "' AND  program_id  = " . $college_id));
+
+        $student_applications = DB::select(DB::raw("SELECT COUNT(student_applications.id) as total from student_applications WHERE MONTHNAME(CAST(student_applications.created_at AS DATE)) = '" . $monthName . "' AND YEAR(student_applications.created_at) = '" . $yearName . "' AND  program_id  = " . $college_id ." AND agent_id  = " . Auth::user()->id));
+
         if (isset($student_applications) && $student_applications[0]->total > 0) {
             return $student_applications[0]->total;
         }
@@ -180,12 +183,14 @@ class AgentHome extends Controller
     {
         $cmonth_revenue = '';
         $currentMonth = date('F');
-        $lastmonth = Date('F', strtotime($currentMonth . " last month"));
-        $applications_monthly_revenue = DB::select(DB::raw("SELECT SUM(student_applications.payment_amount) as total from student_applications WHERE MONTHNAME(CAST(student_applications.payment_date AS DATE)) = '" . $currentMonth . "'"));
+
+        $lastmonth    =  Date('F', strtotime($currentMonth . " last month"));
+        $applications_monthly_revenue = DB::select(DB::raw("SELECT SUM(student_applications.payment_amount) as total from student_applications WHERE agent_id  = " . Auth::user()->id." AND MONTHNAME(CAST(student_applications.payment_date AS DATE)) = '" . $currentMonth . "'"));
+
         if (isset($applications_monthly_revenue) && $applications_monthly_revenue[0]->total > 0) {
             $cmonth_revenue = $applications_monthly_revenue[0]->total;
         }
-        $applications_last_month_revenue = DB::select(DB::raw("SELECT SUM(student_applications.payment_amount) as total from student_applications WHERE MONTHNAME(CAST(student_applications.payment_date AS DATE)) = '" . $lastmonth . "'"));
+        $applications_last_month_revenue = DB::select(DB::raw("SELECT SUM(student_applications.payment_amount) as total from student_applications WHERE agent_id  = " . Auth::user()->id." AND MONTHNAME(CAST(student_applications.payment_date AS DATE)) = '" . $lastmonth . "'"));
         if (isset($applications_last_month_revenue) && $applications_last_month_revenue[0]->total > 0) {
             $last_month_revenue = $applications_last_month_revenue[0]->total;
         }
@@ -229,7 +234,7 @@ class AgentHome extends Controller
             ->paginate($limit);
     }
 
-    //missing_requirement_count  
+    //missing_requirement_count
     public function missing_requirement_count($app_id)
     {
         return $data['missing_doc'] = DB::table('student_uploaded_docs')->select('id')->where('app_id', $app_id)->whereIn('is_verified', [0, 2])->groupBy('app_id')->count();
@@ -529,7 +534,7 @@ class AgentHome extends Controller
             ->leftjoin('college_programs  as cp', 'cp.id', '=', 'sp.program_id')
             ->leftjoin('colleges  as c', 'c.id', '=', 'cp.college_id')
             ->where('student_id', $studentid)->get();
-        //return $data; 
+        //return $data;
         $data['applications_count'] = DB::table('student_applications as sp')->select('app_id')
             ->where('student_id', $studentid)->get()->count();
         return view('agent.student_profile', $data);
@@ -653,7 +658,7 @@ class AgentHome extends Controller
                 'message' => "success",
                 'student_id' => $request->user_id
             );
-            //log record  other_schools_attended 
+            //log record  other_schools_attended
             DB::table('student_records')->insert([
                 'title' => 'Profile Updated',
                 'text' => "Profile Updated",
@@ -866,7 +871,7 @@ class AgentHome extends Controller
             ->where('a.status', 1)
             ->where('a.payment_status', 1)
             ->paginate(2, ['*'], 'page_a');
-       
+
         $data['aplication_details_paid'] = DB::table('student_applications as a')->select('a.id', 'app_id', 'payment_status', 'status_name', 'programs_name', 'program_college_name', 'college_id', 'earliest_intake_date', 'open_date', 'application_fee_min', 'c.status', 'd.status_title as current_status')
             ->join('payment_status as b', 'b.id', '=', 'a.payment_status')
             ->join('college_programs as c', 'c.id', '=', 'a.program_id')
@@ -875,7 +880,7 @@ class AgentHome extends Controller
             ->where('a.status', 1)
             ->where('a.payment_status', 2)
             ->paginate(2, ['*'], 'page_b');
- 
+
 
         return view('agent.student_profile_application', $data);
     }
