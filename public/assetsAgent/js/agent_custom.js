@@ -816,9 +816,12 @@ function docupload(docType,studentId,appId)
         success: function (data) {
             $("#uploaddoc"+docType).hide();
             $("#suceess"+docType).text("Document successfully updated");
-            $("#msg"+docType).html('<a href="'+ data +'" target="_blank">View Details </a> <span onclick="myFunction(1)">remove</span>');
+            $("#msg"+docType).html('<a href="'+ data +'" target="_blank">View Details </a>');
             $("#complete"+docType).show();
             $("#pending"+docType).hide();
+            setTimeout(function() {
+                location.reload();
+            }, 3000);
         },
     });
 
@@ -861,7 +864,7 @@ function myFunction(id,user_id,app_id,imgurl,student_id,doc_name)
                 $("#suceess_pass").html("<spain class='error'>Application successfully Disaproved</span>");
                 setTimeout(function() {
                     location.reload();
-                }, 5000);
+                }, 3000);
             }else{
                     $("#msg_pass").hide();
                     $("#suceess_pass").html("<spain class='error'>Something worng</span>");

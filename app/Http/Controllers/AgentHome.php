@@ -17,7 +17,6 @@ use Storage;
 
 class AgentHome extends Controller
 {
-    const MYCONST = 'val';
     public function __construct()
     {
         $this->middleware('auth');
@@ -44,9 +43,9 @@ class AgentHome extends Controller
         }
         $data['statuslist'] = $statusArr;
         //counter
-        $data['totalapproveApplication'] =  DB::table('student_applications')->where('application_status', 12)->count();
-        $data['totalApplication'] =  DB::table('student_applications')->select('id')->count();
-        $data['totalamount'] =  DB::table('student_applications')->sum('payment_amount');
+        $data['totalapproveApplication'] =  DB::table('student_applications')->where('application_status', 12)->where('agent_id',Auth::user()->id)->count();
+        $data['totalApplication'] =  DB::table('student_applications')->select('id')->where('agent_id',Auth::user()->id)->count();
+        $data['totalamount'] =  DB::table('student_applications')->where('agent_id',Auth::user()->id)->sum('payment_amount');
         $data['totalstudent'] =  DB::table('users')->where('user_type', 5)->where('agent_id', Auth::user()->id)->count();
         //monthly income
         $monthly_income = '';
@@ -112,7 +111,7 @@ class AgentHome extends Controller
 
     public function getGroupbystatusCount($id)
     {
-        return DB::table('student_applications')->select('id,application_status')->where('application_status', $id)->groupBy('application_status')->count();
+        return DB::table('student_applications')->select('id,application_status')->where('application_status', $id)->where('agent_id',Auth::user()->id)->groupBy('application_status')->count();
     }
     public function colorarry()
     {
@@ -126,7 +125,7 @@ class AgentHome extends Controller
     //get student
     public function getstudents()
     {
-        return DB::table('users')->select('id')->whereIn('user_type', [4, 5, 8, 11])->get();
+        return DB::table('users')->select('id')->whereIn('user_type', [4, 5, 8, 11])->where('agent_id',Auth::user()->id)->get();
     }
 
     //count paid student in a monthly
@@ -145,7 +144,7 @@ class AgentHome extends Controller
 
     public function getMonthData($college_id, $monthName)
     {
-        $student_applications = DB::select(DB::raw("SELECT COUNT(student_applications.id) as total from student_applications WHERE MONTHNAME(CAST(student_applications.created_at AS DATE)) = '" . $monthName . "' AND program_id  = " . $college_id));
+        $student_applications = DB::select(DB::raw("SELECT COUNT(student_applications.id) as total from student_applications WHERE MONTHNAME(CAST(student_applications.created_at AS DATE)) = '" . $monthName . "' AND program_id  = " . $college_id . " AND agent_id  = " . Auth::user()->id));
         if (isset($student_applications) && $student_applications[0]->total > 0) {
             return $student_applications[0]->total;
         }
@@ -157,11 +156,11 @@ class AgentHome extends Controller
         $cmonth_revenue = '';
         $currentMonth = date('F');
         $lastmonth    =  Date('F', strtotime($currentMonth . " last month"));
-        $applications_monthly_revenue = DB::select(DB::raw("SELECT SUM(student_applications.payment_amount) as total from student_applications WHERE MONTHNAME(CAST(student_applications.payment_date AS DATE)) = '" . $currentMonth . "'"));
+        $applications_monthly_revenue = DB::select(DB::raw("SELECT SUM(student_applications.payment_amount) as total from student_applications WHERE agent_id  = " . Auth::user()->id." AND MONTHNAME(CAST(student_applications.payment_date AS DATE)) = '" . $currentMonth . "'"));
         if (isset($applications_monthly_revenue) && $applications_monthly_revenue[0]->total > 0) {
             $cmonth_revenue =  $applications_monthly_revenue[0]->total;
         }
-        $applications_last_month_revenue = DB::select(DB::raw("SELECT SUM(student_applications.payment_amount) as total from student_applications WHERE MONTHNAME(CAST(student_applications.payment_date AS DATE)) = '" . $lastmonth . "'"));
+        $applications_last_month_revenue = DB::select(DB::raw("SELECT SUM(student_applications.payment_amount) as total from student_applications WHERE agent_id  = " . Auth::user()->id." AND MONTHNAME(CAST(student_applications.payment_date AS DATE)) = '" . $lastmonth . "'"));
         if (isset($applications_last_month_revenue) && $applications_last_month_revenue[0]->total > 0) {
             $last_month_revenue =  $applications_last_month_revenue[0]->total;
         }
