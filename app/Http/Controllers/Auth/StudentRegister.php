@@ -60,12 +60,6 @@ class StudentRegister extends Controller
 
         );
 
-        // DB::table('users')->insert([
-        //     'name' => $request->first_name,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password),
-        //     'user_type' => 2,
-        // ]);
         $user = User::create([
             'name' => $request->first_name,
             'email' => $request->email,
