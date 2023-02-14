@@ -272,6 +272,12 @@ class SuperAdminController extends Controller
        }
   
       } 
+
+
+
+    public function admin_list_of_college(){
+    return view('admin.admin-list-of-college');
+    }
     }
     
    

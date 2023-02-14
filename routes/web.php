@@ -227,3 +227,4 @@ Route::get('admin-application-review/{id}', [SuperAdminController::class, 'admin
 Route::post('update-document-status/', [SuperAdminController::class, 'update_document_status'])->name('update_document_status');
 Route::post('change-document-status/', [SuperAdminController::class, 'change_document_status'])->name('change_document_status');
 Route::post('update-document-status-discription/', [SuperAdminController::class, 'update_document_status_discription'])->name('update_document_status_discription');
+Route::get('admin-list-of-college', [SuperAdminController::class, 'admin_list_of_college'])->name('admin-list-of-college');
