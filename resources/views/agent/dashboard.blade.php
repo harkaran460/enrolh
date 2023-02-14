@@ -1,6 +1,5 @@
 @extends('layouts.agent_app')
 @section('content')
-  
 <div class="page-content p-15 mx-1">
 
     <div class="container-fluid">
@@ -160,9 +159,23 @@
                         <div class="card shadow-lg">
                             <div class="card-body">
                                 <div class="">
-                                    <div class="heading-title border-bottom d-flex"> 
+                                    <div class="heading-title border-bottom d-flex">
                                         <h5 class="font-size-18"><b>Summary</b></h5>
                                         <div class="ms-auto">
+
+                                        <?php
+                                            echo '<select name="years" id="year">' . PHP_EOL;
+                                            $start_from="2022";
+                                                for($i = $start_from; $i <=date("Y"); $i++){
+
+                                                    echo '<option id="year"'.PHP_EOL;
+                                                    if($i==date("Y")){
+                                                        echo 'selected'.PHP_EOL;
+                                                    }
+                                                    echo 'value="' . $i . '">' . $i . '</option>' . PHP_EOL;
+                                                }
+                                                echo '</select>';
+                                            ?>
                                         </div>
                                     </div>
                                     <ul class="nav nav-pills border-bottom mb-2 paid-all-detalis" id="pills-tab" role="tablist">
@@ -171,7 +184,7 @@
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" id="paid-students-tab" data-bs-toggle="pill" data-bs-target="#paid-students" type="button" role="tab" aria-controls="paid-students" aria-selected="false">Paid Students</button>
-                                        </li> 
+                                        </li>
                                     </ul>
                                     <div class="tab-content" id="pills-tabContent">
                                         <div class="tab-pane fade show active" id="paid-applications" role="tabpanel" aria-labelledby="paid-applications-tab">
@@ -183,21 +196,21 @@
                                             <div class="chart-container">
                                                 <canvas id="myChart213" width="80%"></canvas>
                                             </div>
-                                        </div> 
+                                        </div>
                                     </div>
-     
-                                </div>  
-  
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
 
                 </div>
- 
-                
- 
+
+
+
             </div>
-            
+
             <div class="col-xl-3 res-p-0">
                 <div class="pb-15">
                     <div class="card overflow-hidden shadow-lg">
@@ -229,7 +242,7 @@
                                         <div class="col-7 res-res-px-0">
                                             <div class="">
                                                 <a href="javascript: void(0);" class="btn1-primary waves-effect waves-light">View Profile<i class="mdi mdi-arrow-right"></i></a>
-                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -263,7 +276,7 @@
                             <div class="col-sm-7">
                                 <div class="mt-4 mt-sm-0">
                                     <div id="school7">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -272,8 +285,8 @@
                     </div>
                 </div>
                 </div>
-                
-                <div class="pb-15"> 
+
+                <div class="pb-15">
                     <div class="card rounded-3 shadow-lg">
                     <div class="card-body">
                         <h5 class="font-size-18"><b>Application Status</b></h5>
@@ -286,7 +299,7 @@
                                         <tr>
                                             <td style="width: 80%">
                                                 <p class="mb-0">{{$key}}</p>
-                                            </td> 
+                                            </td>
                                             <!--<td>-->
                                             <!--    <div class="progress bg-transparent progress-sm">-->
                                             <!--        <div class="progress-bar bg-primary rounded" role="progressbar" style="width: {{$value}}%" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100"></div>-->
@@ -298,18 +311,18 @@
                                         </tr>
                                         @endif
                                     <?php } ?>
-                                   
-                                    
+
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
                 </div>
-                
- 
 
-                
+
+
+
 
 
             </div>
@@ -318,15 +331,15 @@
             <div class="col-xl-9 pe-15">
                 <div class="row">
                     <div class="col-xl-12">
-                        
+
                         <div class="card p-3 shadow-lg">
                             <div class="box-holder p-3">
                                 <div class="d-flex pb-3">
-                                <h5 class="font-size-18"><b>Application Reminders</b></h5>                        
+                                <h5 class="font-size-18"><b>Application Reminders</b></h5>
                             </div>
                                 <div class="card p-3">
-                                    
- 
+
+
                                 <div class="overflow-auto">
                                     <table class="table table-bordered">
                                         <thead>
@@ -334,19 +347,19 @@
                                             <th>STUDENT NAME</th>
                                             <th>PROGRAM NAME</th>
                                             <th>SCHOOL NAME</th>
-                                            <th class="text-center">REQUIEMENTS</th> 
+                                            <th class="text-center">REQUIEMENTS</th>
                                         </thead>
                                         <tbody>
-                                            
+
                                             @if(!empty($application_list))
-                                            @foreach ($application_list as $applist) 
-                                           @if($applist['totalmissing'] >0) 
-                                                <tr> 
-                                                <td><a href="#">{{$applist['appid']}}</a></td>  
+                                            @foreach ($application_list as $applist)
+                                           @if($applist['totalmissing'] >0)
+                                                <tr>
+                                                <td><a href="#">{{$applist['appid']}}</a></td>
                                                 <td><a href="#">{{$applist['name']}}</a></td>
                                                 <td><a href="#">{{$applist['programs_name']}}</a></td>
-                                                <td><a href="#">{{$applist['program_college_name']}}</a></td> 
-                                                <td class="requiements-list"> 
+                                                <td><a href="#">{{$applist['program_college_name']}}</a></td>
+                                                <td class="requiements-list">
                                                     <ul class="text-center">
                                                         <li>
                                                             <a href="#">
@@ -354,26 +367,26 @@
                                                             </a>
                                                         </li>
                                                     </ul>
-                                                </td> 
+                                                </td>
                                             </tr>
                                             @endif
                                             @endforeach
                                             @endif
-    
-                                           
+
+
                                         </tbody>
                                     </table>
                                 </div>
-    
-                                <div class="view-all" style="padding: 10px 0 10px 0;"> 
+
+                                <div class="view-all" style="padding: 10px 0 10px 0;">
                                     <a href="=" class="btn1-primary">View More <i class="mdi mdi-arrow-right"></i></a>
                                 </div>
                                 </div>
-                                
-                            
+
+
                             </div>
-                            
-                            
+
+
                         </div>
                     </div>
                 </div>
@@ -391,24 +404,24 @@
                                 <i class="fa-solid fa-envelope"></i>
                                 <a href="mailto:{{$student_list->email}}">{{$student_list->email}}</a>
                             </div>
-                            
+
                             <div class="icon">
                                 <i class="fa-solid fa-phone"></i>
                                 <a href="tel:{{$student_list->phone_number}}">{{$student_list->phone_number}}</a>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="">
-                
+
                 <div class="row pb-15">
                     <div class="col-xl-4 summary-box pe-15">
-                        <div class="card p-3 shadow-lg"> 
-                            
+                        <div class="card p-3 shadow-lg">
+
                             <div class="box-holder p-3">
                                 <h5 class="font-size-18 pb-2"><b>Revenue</b></h5>
                                 <div class="card p-3">
@@ -419,7 +432,7 @@
                                                 <h4 class="fw-medium">Potential Commission</h4>
                                                 <h6 class="mb-0">4</h6>
                                             </div>
-        
+
                                             <div class="flex-shrink-0 align-self-center">
                                                 <span class="avatar-title rounded-circle circle-blaccav-main">
                                                     <i class="fa-solid fa-file-pen font-size-24 ps-2"></i>
@@ -435,7 +448,7 @@
                                                     <h4 class="fw-medium">Earned</h4>
                                                     <h6 class="mb-0">0</h6>
                                                 </div>
-            
+
                                                 <div class="flex-shrink-0 align-self-center">
                                                     <span class="avatar-title rounded-circle circle-blaccav-main">
                                                         <i class="fa-solid fa-coins font-size-24"></i>
@@ -451,7 +464,7 @@
                                                     <h4 class="fw-medium">Withdrawn</h4>
                                                     <h6 class="mb-0">0</h6>
                                                 </div>
-            
+
                                                 <div class="flex-shrink-0 align-self-center">
                                                     <span class="avatar-title rounded-circle circle-blaccav-main">
                                                         <i class="fa-solid fa-coins font-size-24"></i>
@@ -462,17 +475,17 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="col-xl-8 res-px-0">
-                        
-                        <div class="card rounded-3 mb-0 h-100 p-3 shadow-lg"> 
-                            <div class="box-holder position-relative p-3 h-100" style="height:300px !important; overflow:scroll !important;"> 
-                                <h5 class="pb-2 font-size-18"><b>Team Proformance</b></h5>  
+
+                        <div class="card rounded-3 mb-0 h-100 p-3 shadow-lg">
+                            <div class="box-holder position-relative p-3 h-100" style="height:300px !important; overflow:scroll !important;">
+                                <h5 class="pb-2 font-size-18"><b>Team Proformance</b></h5>
                                 <div class="card p-3">
                                     <div class="overflow-auto">
-                                        <table class="table table-borderless text-center" id="csmTable" role="grid"> 
+                                        <table class="table table-borderless text-center" id="csmTable" role="grid">
                                             <thead>
                                                 <tr>
                                                     <th>Name</th>
@@ -491,7 +504,7 @@
                                                             <div class="image-content">
                                                                 <img src="assetsAgent/img/user-img.png" class="img-fluid" alt="">
                                                                 <h2>{{$team ->name}}</h2>
-                                                            </div> 
+                                                            </div>
                                                         </div>
                                                     </td>
                                                     <td>
@@ -508,34 +521,34 @@
                                                     <td>NA</td>
                                                 </tr>
                                                 @endforeach
-                                                @endif   
+                                                @endif
                                             </tbody>
-                                        </table> 
+                                        </table>
                                     </div>
                                 </div>
-                                <div class="text-center btn-team res-mt-15"> 
+                                <div class="text-center btn-team res-mt-15">
                                     <a href="#" class="btn1-primary position-absolute" style="bottom: 8%; left: 40%;">View More  <i class="mdi mdi-arrow-right"></i></a>
-                                </div> 
-                                
+                                </div>
+
                             </div>
-                            
+
                         </div>
-                        
+
                     </div>
                 </div>
 
-                             
+
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-xl-6 pe-15">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="commissions-by"> 
-                            <div class="card rounded-3 p-3 mb-0 shadow-lg"> 
+                        <div class="commissions-by">
+                            <div class="card rounded-3 p-3 mb-0 shadow-lg">
                                 <h5 class="mb-3 font-size-18"><b>Commissions by Quarter</b></h5>
-                                <div id="chartDiv" style="height: 300px;"> </div> 
+                                <div id="chartDiv" style="height: 300px;"> </div>
                                 <ul>
                                     <li><span class="size"></span> USD</li>
                                     <li><span class="size"></span> CAD</li>
@@ -546,44 +559,44 @@
                         </div>
                     </div>
                 </div>
- 
+
 
                 <div class="row pt-2 school-section">
                     <div class="col-md-12 mb-2 pt-2">
-                       
+
                         <div class="bg-white p-3">
                             <h5 class="font-size-18"><b> School</b></h5>
                             <div class="my-4 row text-center">
-                             
+
                                 <?php if(!empty($college_list ))
                                 {
                                     foreach ($college_list as $collegename)
                                      {
                                         ?>
-                                        <div class="col-md-2 col-6"> 
+                                        <div class="col-md-2 col-6">
                                             <div id="school1"></div>
                                             <div class="collage-name">
                                                 <h5><a href="/agent-college-details/{{$collegename->id}}">{{$collegename->college_name}}</a></h5>
                                             </div>
                                         </div>
-                                        <?php 
+                                        <?php
                                      }
                                 }
                                 ?>
-                              
+
                             </div>
                         </div>
                     </div>
-                </div>  
+                </div>
             </div>
             <div class="col-xl-6 res-p-0 res-mt-15">
                 <div class="card p-3 shadow-lg h-100" style="overflow: scroll;">
                     <div class="row">
-                    
+
                     <div class="col-xl-6 pe-15">
                         <div class="mrgt-15 wallet-summary-holder">
                     <div class="summary-wrap">
-                        <div class="w-100 mrgb-15 wallet-head"> 
+                        <div class="w-100 mrgb-15 wallet-head">
                             <h5 class="mb-3 font-size-18"><b>Wallet Details</b></h5>
                         </div>
                         <div class="w-100 pad10 bdr-r5 mrgb-05 d-flex align-items-center justify-content-between wallet-content ">
@@ -626,7 +639,7 @@
                                 <p class="x16 fw600">₹ 0</p>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
                     </div>
@@ -640,31 +653,31 @@
                         {
                             foreach ($notice_board as $list)
                             { ?>
-                                
+
                                 <div class="w-100 pad10 bdr-r5 mrgb-05 d-flex align-items-center justify-content-between wallet-content ">
                                     <div class="wc">
                                     <h4 class="notice-title">{{$list->notice_title}}</h4>
                                 <p class="notice-date">{{date('d-M-Y', strtotime($list->created_at))}}</p>
                                 <p style="font-weight: 500;">{{$list->notice_des}}</p>
- 
+
                                     </div>
                                 </div>
-                            <?php 
+                            <?php
                             }
                         }?>
-                       
-                         
+
+
                     </div>
                 </div>
                     </div>
-                </div>
-                    
                 </div>
 
-               
+                </div>
+
+
             </div>
         </div>
-        
+
         <div id="chartDiv" style="width:50%; height:300px; margin:0; auto;"></div>
 
     </div>
@@ -680,8 +693,8 @@
    .circle-blaccav-main{
        background-color:#000 !important;
    }
-  
-    
+
+
 </style>
 
 
@@ -692,32 +705,32 @@
     <script src="https://code.jscharting.com/2.9.0/jscharting.js"></script>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js"></script>-->
     <script>
-    
+
     $(document).ready(function() {
             $('#year').change(function(){
-            var year=$('#year').val(); 
-                 $.ajax({ 
-                    type: "GET", 
-                    url: "yearChartReq",  
+            var year=$('#year').val();
+                 $.ajax({
+                    type: "GET",
+                    url: "yearChartReq",
                     data: { year: year},
-                    success: function(val){  
+                    success: function(val){
                          myChartsd.data = val;
                          myChartsd.update();
                         //  console.log(val);
-                    try{     
-                    }catch(e) {     
+                    try{
+                    }catch(e) {
                         alert('Exception while request..');
-                        }   
+                        }
                     },
-                    error: function(){                      
+                    error: function(){
                         alert('Error while request..');
                     }
                 });
         });
     });
-    
+
         const ctx11 = document.getElementById('myChartsd').getContext('2d');
-        
+
         const myChartsd = new Chart(ctx11, {
             type: 'bar',
             data: {!! $dataSet !!},
@@ -729,11 +742,11 @@
                     tooltip: {
                         // Disable the on-canvas tooltip
                         enabled: false,
-        
+
                         external: function(context) {
                             // Tooltip Element
                             let tooltipEl = document.getElementById('chartjs-tooltip');
-        
+
                             // Create element on first render
                             if (!tooltipEl) {
                                 tooltipEl = document.createElement('div');
@@ -741,14 +754,14 @@
                                 tooltipEl.innerHTML = '<table class="table table-borderless" style="border-radius:0"></table>';
                                 document.body.appendChild(tooltipEl);
                             }
-        
+
                             // Hide if no tooltip
                             const tooltipModel = context.tooltip;
                             if (tooltipModel.opacity === 0) {
                                 tooltipEl.style.opacity = 0;
                                 return;
                             }
-        
+
                             // Set caret Position
                             tooltipEl.classList.remove('above', 'below', 'no-transform');
                             if (tooltipModel.yAlign) {
@@ -756,23 +769,23 @@
                             } else {
                                 tooltipEl.classList.add('no-transform');
                             }
-        
+
                             function getBody(bodyItem) {
                                 return bodyItem.lines;
                             }
-        
+
                             // Set Text
                             if (tooltipModel.body) {
                                 const titleLines = tooltipModel.title || [];
                                 const bodyLines = tooltipModel.body.map(getBody);
-        
+
                                 let innerHtml = '<thead>';
-        
+
                                 titleLines.forEach(function(title) {
                                     innerHtml += '<tr><th class="">' + title + '</th></tr>';
                                 });
                                 innerHtml += '</thead><tbody>';
-        
+
                                 bodyLines.forEach(function(body, i) {
                                     const colors = tooltipModel.labelColors[i];
                                     let style = 'color:' + colors.backgroundColor;
@@ -783,14 +796,14 @@
                                     innerHtml += '<tr><td>' + span + '</td></tr>';
                                 });
                                 innerHtml += '</tbody>';
-        
+
                                 let tableRoot = tooltipEl.querySelector('table');
                                 tableRoot.innerHTML = innerHtml;
                             }
-        
+
                             const position = context.chart.canvas.getBoundingClientRect();
                             const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
-        
+
                             // Display, position, and set styles for font
                             tooltipEl.style.opacity = 1;
                             tooltipEl.style.position = 'absolute';
@@ -802,7 +815,7 @@
                         }
                     }
                 },
-                
+
                 interaction:{
                     mode: 'index',
                     // titleColor: '#000',
@@ -811,7 +824,7 @@
                     borderWidth: 2,
                     displayColors:false,
                     padding: 20
-                    
+
                 },
                 scales: {
                     x: {
@@ -824,10 +837,10 @@
                 }
             }
         });
-        
+
         // myChartsd.style.height = '300px';
         // myChartsd.canvas.parentNode.style.height = '300px';
-        
+
         const ctx112 = document.getElementById('myChart213').getContext('2d');
         const myChart213 = new Chart(ctx112, {
                     type: 'bar',
@@ -839,7 +852,7 @@
                             backgroundColor: 'rgba(255,99,132,0.2)',
                             borderColor: 'rgba(255,99,132,1)',
                             borderWidth: 1
-                           
+
                         }]
                     },
                      options: {
@@ -859,12 +872,12 @@
                         }
                     }
                 });
-                
+
         // myChartsd.resize('400px', '500px');
-        
+
     </script>
 <!--Commissions by Quarter graph-->
-  <script> 
+  <script>
     var chart = JSC.chart("chartDiv", {
         debug: true,
         type: '',

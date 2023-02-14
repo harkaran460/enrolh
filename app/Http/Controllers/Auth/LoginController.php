@@ -26,7 +26,7 @@ class LoginController extends Controller
         } elseif ($user->user_type == '3') {
             return redirect('agentDashboard');
         }elseif ($user->user_type == '4') {
-            return redirect('studentDashboard');
+            return redirect('agent-student-profile/'.$user->id);
         }elseif ($user->user_type == '5') {
             return redirect('agentDashboard');
         }
