@@ -298,7 +298,7 @@
                                     <div class="form-group">
                                         <label>Open Date </label>
                                         <input id="open_date" name="open_date" type="date" class="form-control">
-                                       
+
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -361,8 +361,8 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
+
+
                 </div>
                 <div class="page-content main-index h-80 requirement-page">
     <div class="container-fluid">
@@ -371,32 +371,32 @@
                 <div class="page-title-box d-flex align-items-center justify-content-between">
                     <h4 class="mb-sm-0 font-size-18">Requirement According Program</h4>
                 </div>
-            </div> 
+            </div>
         </div>
-        <div class="row">
+        <div class="row" id="docreq">
             @if(!empty($documents_requirment))
             @foreach($documents_requirment as $documentsrequirment)
             <div class="col-md-3">
                 <div class="card">
-                    <div class="card-body">  
-                        <div class="form-group">  
+                    <div class="card-body">
+                        <div class="form-group">
                             <div class="col">
                                 <input class="form-check-input" name="certificate_{{$documentsrequirment->id}}[]" type="checkbox" value="{{$documentsrequirment->id}}" id="certificate_{{$documentsrequirment->id}}">
                                 <label class="form-check-label" for="certificate">
-                                   {{$documentsrequirment->document_name}} 
+                                   {{$documentsrequirment->document_name}}
                                 </label>
                             </div>
-                        </div> 
+                        </div>
                     </div>
-                </div> 
+                </div>
             </div>
             @endforeach
             @endif
         </div>
-       
-    </div> 
+
+    </div>
 </div>
-                
+
                 <div class="col-md-12">
                     <div class="page-title-box">
                         <h5 class="mb-md-0"><b>Payment Details</b></h5>
@@ -415,7 +415,7 @@
                           <div id="per" >
                               <label for="percentage" class="form-label">Percentage</label>
                             <input type="number" class="form-control" id="percentage" placeholder="Enter Payment Percentage" name="percentage">
-                            
+
                             <label for="Tax" class="form-label mt-2">Tax</label>
                             <div class="col">
                                 <label for="tax-percentage" class="form-label">Tax In Percentage</label>
@@ -423,13 +423,13 @@
                                    <option disabled>select</option>
                                 <?php for($i=1; $i<=50;$i++){ ?>
                                 <option value="{{$i}}">{{$i}}%</option>
-                                <?php 
+                                <?php
                                 }
                                 ?>
                               </select>
                             </div>
                             </div>
-                            
+
                             <div id="fix" style="display:none;">
                               <label for="fixed" class="form-label">Fixed</label>
                               <input type="number" class="form-control" id="fixed" placeholder="Enter Payment Fixed" name="fixed">
@@ -440,18 +440,18 @@
                             </div>
                             </div>
                         </div>
-                          
+
                         <div class="row mt-4">
                           </div>
                           <div class="mb-4 mt-2">
                             <label for="tax-type" class="form-label">Tax Type</label>
-                             <select class="form-select" id="tax_type" name="tax_type">  
-                              <option value="percentage">Exclusive</option>
-                              <option value="fixed">Inclusive</option>
-                            </select>
+                            <select class="form-select" id="tax_type" name="tax_type">
+                                <option value="exclusive">Exclusive</option>
+                                <option value="inclusive">Inclusive</option>
+                              </select>
                           </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
                 <div class="card">
                     <div class="card-body">
@@ -465,7 +465,7 @@
             </div>
         </form>
     </div>
-</div> 
+</div>
 
 
 
@@ -475,13 +475,15 @@
   if(this.value == "percent") {
     $('#per').show();
     $('#fix').hide();
+    $('#fixed').val('');
   } else {
     $('#per').hide();
     $('#fix').show();
+    $('#tax_percentage').val('');
   }
 });
-    
-    
+
+
     function getDataInput() {
         var getTxtValue = $("#noOfTestScore").val();
         var getTxtValue = parseInt(getTxtValue) + 1;
@@ -598,7 +600,7 @@
                     required: true,
                     maxlength: 300
                 },
-                
+
                 test_scores_name: {
                     required: true,
                     maxlength: 300
@@ -752,7 +754,15 @@
 
                 formData.append('editor1', data);
 
-
+                 //doc requirement
+                 var doc_requirement = new Array();
+                $("#docreq input[type=checkbox]:checked").each(function () {
+                    doc_requirement.push(this.value);
+                });
+                if (doc_requirement.length > 0) {
+                    var total_doc      = doc_requirement.length;
+                    var docrequirement = JSON.stringify(doc_requirement);
+                }
 
                 var program_name = $('input[name="program_name"]').val();
                 var program_college_name = $('input[name="program_college_name"]').val();
@@ -793,13 +803,15 @@
                 status1 = document.getElementById('status1').value;
                 submission_deadline = document.getElementById('submission_deadline').value;
                 earliest_intake_type = document.getElementById('earliest_intake_type').value;
-                
+
+                //comission
                 payment_type     = document.getElementById('payment').value;
                 ptype_fixed      = document.getElementById('fixed').value;
                 ptype_percentage = document.getElementById('percentage').value;
-                tax_type = document.getElementById('fixed').value;
-                taxfixed = document.getElementById('taxfixed').value;
-                tax_type = document.getElementById('tax_type').value;
+                //tax_type        = payment_type;
+                taxfixed        = document.getElementById('taxfixed').value;
+                tax_percentage  = document.getElementById('tax_percentage').value;
+                tax_type        = document.getElementById('tax_type').value;
 
                 formData.append('program_name', program_name);
                 formData.append('program_college_name', program_college_name);
@@ -825,18 +837,21 @@
                 formData.append('tuition_fee_max', tuition_fee_max);
                 formData.append('application_fee_min', application_fee_min);
                 formData.append('application_fee_max', application_fee_max);
+                formData.append('doc_requirement', docrequirement);
+                formData.append('doc_count', total_doc);
 
                 formData.append('first_year_post_secondary_certificate', first_year_post_secondary_certificate);
                 formData.append('first_year_t_level_program_including_a_work_placement', first_year_t_level_program_including_a_work_placement);
                 formData.append('commission_break_down', commission_break_down);
                 formData.append('disclaimer', disclaimer);
+
                 formData.append('commission_type', payment_type);
                 formData.append('ptype_fixed', ptype_fixed);
                 formData.append('amount_percentage', ptype_percentage);
-                formData.append('tax_fixed', tax_type);
-                formData.append('amount_fixed', taxfixed);
-                formData.append('tax_percentage', tax_type);
-                formData.append('tax_type', tax_type);
+
+                formData.append('taxfixed', taxfixed);
+                formData.append('tax_percentage', tax_percentage);
+                formData.append('tax_type', tax_type)
 
                 var minimumLanguageTestScores = $('input[name="noOfTestScore"]').val();
                 var testScores = [];
@@ -871,7 +886,7 @@
                     speaking = speaking + item;
 
 
-                    console.log(item);
+                   // console.log(item);
 
                     testScores.push({
                         "test_scores_name": $(testScoresName).val(),
@@ -882,8 +897,8 @@
                         "speaking": $(speaking).val(),
                     })
                 }
-                console.log(testScores);
-                console.log(formData);
+                // console.log(testScores);
+                // console.log(formData);
                 var jsonString = JSON.stringify(testScores);
 
                 formData.append('minimumTestScores', jsonString);
@@ -903,8 +918,8 @@
                         $('#submit').html('Submit');
                         $("#submit").attr("disabled", false);
                         document.getElementById("addProgramForm").reset();
-                        CKEDITOR.instances.editor1.setData('');
-                        $("#uploadCollegeImages").html("");
+                       CKEDITOR.instances.editor1.setData('');
+                       $("#uploadCollegeImages").html("");
                         $("#success_messae span").html(response.success);
                         $('#success_messae').show();
                         window.setTimeout(function() {
