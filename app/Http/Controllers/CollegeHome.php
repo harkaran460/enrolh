@@ -235,8 +235,6 @@ class CollegeHome extends Controller
         $request->programs_logo->move(public_path('/images'), $imageName);
 
         $rand = substr(str_shuffle("123232434343434344"), 0, 1) . substr(str_shuffle("827382738273823"), 0, 5);
-
-
         $minimumTestScores = json_decode(stripslashes($request->minimumTestScores));
         $post_secondary_discipline = explode(',', $request->post_secondary_discipline);
         $post_secondary_sub_categories = explode(',', $request->post_secondary_sub_categories);
