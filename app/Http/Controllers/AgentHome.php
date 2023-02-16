@@ -904,7 +904,7 @@ class AgentHome extends Controller
             ->join('payments as p', 'a.app_id', '=', 'p.appid')
             ->join('current_status as c', 'c.id', '=', 'a.application_status')
             ->join('payment_status as d', 'd.id', '=', 'a.payment_status')
-            ->where('a.student_id', $student_id)->paginate(10);
+            ->where('a.student_id', $student_id)->paginate(20);
 
         return view('agent.student_payment', $data);
     }

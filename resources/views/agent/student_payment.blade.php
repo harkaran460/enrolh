@@ -60,7 +60,8 @@
 
                     <h3 class="mt-md-4 mb-md-4"><b> Account Balances</b></h3>
 
-                    <div class="main-account-balances">
+
+                    <!--<div class="main-account-balances">
                         <div class="muiBox-root-heading">
                             <h5><b>Commissions</b></h5>
                             <div class="icon ms-2" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="The Blance shows what you owe applyBord. The founds are credited to and recouped form your Commissions account.">
@@ -142,6 +143,8 @@
                             </li>
                         </ul>
                     </div>
+                    </div>-->
+
 
                     <h3 class="mt-md-4 mb-md-4"><b> Payment History <i class="fa-solid fa-filter" id="payments-filter"></i></b></h3>
 
