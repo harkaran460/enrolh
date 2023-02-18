@@ -766,6 +766,7 @@
 
                 var program_name = $('input[name="program_name"]').val();
                 var program_college_name = $('input[name="program_college_name"]').val();
+                var collegeid = $('input[name="collegeid"]').val();
                 var minimum_level_of_education_completed = $('input[name="minimum_level_of_education_completed"]').val();
                 var minimum_gpa = $('input[name="minimum_gpa"]').val();
                 var month_year = $('input[name="month_year"]').val();
@@ -815,6 +816,7 @@
 
                 formData.append('program_name', program_name);
                 formData.append('program_college_name', program_college_name);
+                formData.append('collegeid', collegeid);
                 formData.append('earliest_intake_date', earliest_intake_date);
                 formData.append('earliest_intake_type', earliest_intake_type);
                 formData.append('earliest_intake_price', earliest_intake_price);

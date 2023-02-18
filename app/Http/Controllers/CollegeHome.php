@@ -241,7 +241,7 @@ class CollegeHome extends Controller
 
         $id =  DB::table('college_programs')->insertGetId(
             [
-                'college_id' => Auth::user()->id,
+                'college_id' => $request->collegeid,
                 'program_logo' => $imageName,
                 'programs_name' => $request->program_name,
                 'program_college_name' => $request->program_college_name,
