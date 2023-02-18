@@ -67,9 +67,13 @@
 
     <section class="mainWrapper">
         <aside class="leftSide">
-            <?php $permissions = check_permission()?>
+            <?php $permissions = check_permission();?>
             @foreach ($permissions as $permission)
+            @if(Auth::user()->user_type ==3)
+            <a href="/{{$permission->slug}}"><?php echo $permission->icon;?><span>{{$permission->page_title}}</span></a>
+            @else
             <a href="/{{$permission->slug}}/{{Auth::user()->id}}"><?php echo $permission->icon;?><span>{{$permission->page_title}}</span></a>
+            @endif
             @endforeach
         </aside>
         <section class="wrapperInner">
