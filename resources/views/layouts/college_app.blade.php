@@ -56,6 +56,7 @@
                         <li><a href="/collegeDashboard"><i class="me-2 fa-solid fa-house-chimney-window"></i><span>Home</span></a></li>
                         <li><a href="/addCollege"><i class="me-2 fa-solid fa-building-columns"></i> <span>Add College</span></a></li>
                         <li><a href="/addProgram"><i class="me-2 fa-solid fa-list-check"></i> <span>Programs</span></a></li>
+                        <li><a href="/allPrograms"><i class="me-2 fa-solid fa-list-check"></i> <span>All Programs</span></a></li>
                          <li><a href="/requirement"><i class="me-2 fa-solid fa-list-check"></i> <span>Requirement</span></a></li>
                     </ul>
                 </div>

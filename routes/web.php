@@ -34,6 +34,9 @@ Route::get('/addProgram', [CollegeHome::class, 'addProgram'])->name('addProgram'
 Route::post('/addCollege', [CollegeHome::class, 'addCollegeSubmit'])->name('addCollegeSubmit.post');
 Route::post('/addProgram', [CollegeHome::class, 'addProgramSubmit'])->name('addProgramSubmit.post');
 Route::get('/getCollegeDetails', [CollegeHome::class, 'getCollegeDetails'])->name('getCollegeDetails');
+Route::get('allPrograms', [CollegeHome::class, 'allPrograms'])->name('allPrograms');
+Route::get('viewProgram/{id}', [CollegeHome::class, 'viewProgram'])->name('viewProgram');
+
 Route::get('/student_register', function (Request $request) {
     return view('register.student_register');
 });
@@ -123,6 +126,7 @@ Route::get('/agent-student-profile/{id}', [AgentHome::class, 'agent_student_prof
 Route::post('/agent-student-profile-update/', [AgentHome::class, 'agent_student_profile_update'])->name('agent_student_profile_update');
 Route::get('/agent-student-search-and-apply/{id}', [AgentHome::class, 'agent_student_search_and_apply'])->name('agent_student_search_and_apply');
 Route::post('/student-eligibility-filter', [AgentHome::class, 'get_eligibility_filter'])->name('get_eligibility_filter');
+Route::get('/yearChartReq', [AgentHome::class, 'getYearData'])->name('yearChartReq');
 
 Route::get('/student-profile/{id}', [AgentHome::class, 'agent_student_profile'])->name('student-profile');
 Route::get('/my-reminders/{id}', [AgentHome::class, 'agent_my_reminders'])->name('my-reminders');

@@ -25,7 +25,7 @@ class CollegeHome extends Controller
     {
         return view('college.add_college');
     }
-    
+
       public function requirement()
     {
         return view('college.requirement');
@@ -241,9 +241,9 @@ class CollegeHome extends Controller
 
         $id =  DB::table('college_programs')->insertGetId(
             [
-                'college_id' => $request->collegeid,
+                'college_id' => Auth::user()->id,
                 'program_logo' => $imageName,
-                'programs_name' => $request->program_name, 
+                'programs_name' => $request->program_name,
                 'program_college_name' => $request->program_college_name,
                 'earliest_intake_date' => $request->earliest_intake_date . '-1',
                 'earliest_intake_type' => $request->earliest_intake_type,
@@ -255,25 +255,26 @@ class CollegeHome extends Controller
                 'tuition_fee_max' => $request->tuition_fee_max,
                 'application_fee_min' => $request->application_fee_min,
                 'application_fee_max' => $request->application_fee_max,
-                'program_summary' => $request->editor1, 
+                'program_summary' => $request->editor1,
                 'minimum_level_of_education_completed' => $request->minimum_level_of_education_completed,
-                'minimum_gpa' => $request->minimum_gpa, 
+                'minimum_gpa' => $request->minimum_gpa,
                 'status' => $request->status,
                 'first_year_post_secondary_certificate' => $request->first_year_post_secondary_certificate,
                 'first_year_t_level_program_including_a_work_placement' => $request->first_year_t_level_program_including_a_work_placement,
                 'commission_break_down' => $request->commission_break_down,
                 'disclaimer' => $request->disclaimer,
-                
+
                 'month_year' => $request->month_year .'-01',
                  'open_date' => $request->open_date,
-                'submission_deadline' => $request->submission_deadline, 
+                'submission_deadline' => $request->submission_deadline,
                 'doc_requirement' => $request->doc_requirement,
+                'doc_count' => $request->doc_count,
 
                 'commission_type'  => $request->commission_type,
                 'amount_percentage' =>isset($request->amount_percentage)? $request->amount_percentage:0,
-                'amount_fixed'   => isset($request->amount_fixed)? $request->amount_fixed:0,
-                'tax_fixed'      => $request->tax_fixed,
-                'tax_percentage' => $request->tax_percentage,
+                'amount_fixed'   => isset($request->ptype_fixed)? $request->ptype_fixed:0,
+                'tax_fixed'      => isset($request->taxfixed) ? $request->taxfixed:0 ,
+                'tax_percentage' => isset($request->tax_percentage) ? $request->tax_percentage :0 ,
                 'tax_type'       => $request->tax_type,
 
                 'created_at' => Carbon::now()->toDateTimeString(),
@@ -303,4 +304,23 @@ class CollegeHome extends Controller
 
         return response()->json(['success' => 'College details fetched successfully', 'collegeDetails' => $collegeDetails]);
     }
+
+    public function allPrograms(){
+        $programs['program_list'] = DB::table('users as a')->select('a.id', 'b.user_id', 'c.*')
+        ->join('colleges as b', 'b.user_id', '=', 'a.id')
+        ->join('college_programs as c', 'c.college_id', '=', 'b.id')
+        ->where('a.id', Auth::user()->id)->paginate(10); 
+        // return ($program['program_list']);
+        return view('college/all_programs', $programs);
+    }
+
+    public function viewProgram($id){
+        $program['view_program'] = DB::table('college_programs')->where('id', $id)->first();
+
+        $program['req_doc'] = DB::table('documents_requirment')->get();
+        $program['post_secondary_discipline'] = DB::table('post_secondary_discipline')->get();
+        $program['post_secondary_sub_categories'] = DB::table('post_secondary_sub_categories')->get();
+        return view('college.view_program', $program);
+    }
+
 }
