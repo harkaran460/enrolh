@@ -334,16 +334,16 @@ class AgentHome extends Controller
             $data1 = $data1->where('c.app_id', $appid);
         }
         if ($fname != '') {
-            $data1 = $data1->where('b.first_name', $fname);
+            $data1 = $data1->where('b.first_name', 'LIKE', '%'.$fname.'%');
         }
         if ($lname != '') {
-            $data1 = $data1->where('b.last_name', $lname);
+            $data1 = $data1->where('b.last_name', 'LIKE', '%'.$lname.'%');
         }
         if ($program_name != '') {
-            $data1 = $data1->where('d.programs_name', $program_name);
+            $data1 = $data1->where('d.programs_name', 'LIKE', '%'.$program_name.'%');
         }
         if ($school_name != '') {
-            $data1 = $data1->where('e.college_name', $school_name);
+            $data1 = $data1->where('e.college_name',  'LIKE', '%'.$$school_name.'%');
         }
 
         $data1 = $data1->join('student_profile as b', 'b.user_id', '=', 'a.id');
@@ -1580,14 +1580,14 @@ class AgentHome extends Controller
     public function studentname_autosuggest(Request $request)
     {
         $keyword = $request->keyword;
-        $student_list        =  DB::table('users')->select('id', 'name')->where('user_type', 5)->where('agent_id', Auth::user()->id)->where('name', 'like', '%' . $keyword . '%')->orderBy('name', 'ASC')->get();
+        $student_list        =  DB::table('users')->select('id', 'name','email')->where('user_type', 5)->where('agent_id', Auth::user()->id)->where('name', 'like', '%' . $keyword . '%')->orderBy('name', 'ASC')->get();
         if (!empty($student_list)) {
 ?>
             <ul id="search-res">
                 <?php
                 foreach ($student_list as $list) {
                 ?>
-                    <li onClick="selectStudent('<?php echo $list->name; ?>','<?php echo $list->id; ?>');"><?php echo $list->name; ?></li>
+                    <li onClick="selectStudent('<?php echo $list->name; ?>','<?php echo $list->id; ?>','<?php echo $list->email; ?>');"><?php echo $list->name; ?><br/><span class="stdemail">(<?php echo $list->email; ?>)</span></li>
                 <?php } ?>
             </ul>
         <?php

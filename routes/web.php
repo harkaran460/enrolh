@@ -26,8 +26,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['middleware' => 'prevent-back-history'],function(){
 Auth::routes();
-
 Route::get('/collegeDashboard', [CollegeHome::class, 'index'])->name('collegeDashboard');
 Route::get('/addCollege', [CollegeHome::class, 'addCollege'])->name('addCollege');
 Route::get('/addProgram', [CollegeHome::class, 'addProgram'])->name('addProgram');
@@ -229,3 +229,4 @@ Route::get('admin-application-review/{id}', [SuperAdminController::class, 'admin
 Route::post('update-document-status/', [SuperAdminController::class, 'update_document_status'])->name('update_document_status');
 Route::post('change-document-status/', [SuperAdminController::class, 'change_document_status'])->name('change_document_status');
 Route::post('update-document-status-discription/', [SuperAdminController::class, 'update_document_status_discription'])->name('update_document_status_discription');
+});
