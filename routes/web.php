@@ -231,3 +231,11 @@ Route::post('update-document-status-discription/', [SuperAdminController::class,
 Route::post('/add-notice', [SuperAdminController::class, 'addNotice'])->name('add-notice');
 Route::post('/update-notice', [SuperAdminController::class, 'UpdateNotice'])->name('update-notice');
 Route::get('notice-board', [SuperAdminController::class, 'noticeBoard'])->name('notice-board');
+Route::get('admin-list-of-college', [SuperAdminController::class, 'admin_list_of_college'])->name('admin_list_of_college');
+Route::get('admin-view-college/{id}', [SuperAdminController::class, 'admin_view_college'])->name('admin_view_college');
+Route::get('admin-edit-college/{id}', [SuperAdminController::class, 'admin_edit_college'])->name('admin_edit_college');
+Route::post('update-college-form', [SuperAdminController::class, 'updateCollegeForm'])->name('updateCollegeForm');
+Route::get('admin-list-of-program', [SuperAdminController::class, 'adminListofProgram'])->name('adminListofProgram');
+Route::get('admin-view-program/{id}', [SuperAdminController::class, 'adminViewProgram'])->name('adminViewProgram');
+Route::get('admin-edit-program/{id}', [SuperAdminController::class, 'adminEditProgram'])->name('adminEditProgram');
+Route::post('admin-update-program', [SuperAdminController::class, 'adminUpdateProgram'])->name('adminUpdateProgram');

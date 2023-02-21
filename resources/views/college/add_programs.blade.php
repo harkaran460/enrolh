@@ -381,7 +381,7 @@
                     <div class="card-body">  
                         <div class="form-group">  
                             <div class="col">
-                                <input class="form-check-input" name="certificate_{{$documentsrequirment->id}}[]" type="checkbox" value="{{$documentsrequirment->id}}" id="certificate_{{$documentsrequirment->id}}">
+                                <input class="form-check-input" name="certificate_doc" type="checkbox" value="{{$documentsrequirment->id}}" id="certificate_doc">
                                 <label class="form-check-label" for="certificate">
                                    {{$documentsrequirment->document_name}} 
                                 </label>
