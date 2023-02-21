@@ -361,7 +361,7 @@
                                     <li>
                                         <div class="list-li">
                                             <p>Earliest intake</p>
-                                            <p>{{date('M Y', strtotime($course->earliest_intake_date));}}</p>
+                                            <p>{{date('M Y', strtotime($course->earliest_intake_date))}}</p>
                                         </div>
                                     </li>
                                     <li>

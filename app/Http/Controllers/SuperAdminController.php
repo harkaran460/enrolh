@@ -271,6 +271,7 @@ class SuperAdminController extends Controller
         return "failed";die;
        }
   
+
       }
 
   function addNotice(Request $request)
@@ -287,10 +288,16 @@ class SuperAdminController extends Controller
     $res = DB::table('notices')->insert($value);
     if ($res) {
       Session::flash('notice_submited', 'Notice has been submitted !'); 
-    }
-    return redirect('notice-board'); 
-  }
 
+      } 
+      return redirect('notice-board'); 
+    }
+
+ 
+    // public function admin_list_of_college(){
+    // return view('admin.admin-list-of-college');
+    // }
+ 
  
   function UpdateNotice(Request $request){
     $validated = $request->validate([
