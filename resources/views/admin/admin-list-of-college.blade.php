@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @extends('layouts.admin_app')
 @section('content')
 @php $application_status = getCurrentStatus() @endphp
@@ -153,6 +152,5 @@
     </div>
 </div>
 @endsection
-=======
-<h1>College </h1>
->>>>>>> staging
+ 
+ 
