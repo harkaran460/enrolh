@@ -59,7 +59,7 @@
             <img src="assetsAgent/img/profile.png">
             <a type="button" data-bs-toggle="dropdown">{{Auth::user()->name}} <strong>{{Auth::user()->email}}</strong></a>
             <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="/recruitment_partner_id">Profile</a>
+                <a class="dropdown-item" href="/recruitment_partner_id/{{Auth::user()->id}}">Profile</a>
                 <a class="dropdown-item" href="/logout"><span key="t-logout">Logout</span></a>
             </div>
         </div>
@@ -67,9 +67,13 @@
 
     <section class="mainWrapper">
         <aside class="leftSide">
-            <?php $permissions = check_permission()?>
+            <?php $permissions = check_permission();?>
             @foreach ($permissions as $permission)
+            @if(Auth::user()->user_type ==3)
             <a href="/{{$permission->slug}}"><?php echo $permission->icon;?><span>{{$permission->page_title}}</span></a>
+            @else
+            <a href="/{{$permission->slug}}/{{Auth::user()->id}}"><?php echo $permission->icon;?><span>{{$permission->page_title}}</span></a>
+            @endif
             @endforeach
         </aside>
         <section class="wrapperInner">

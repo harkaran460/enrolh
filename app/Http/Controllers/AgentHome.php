@@ -679,6 +679,7 @@ class AgentHome extends Controller
 
     public function search_and_apply($id)
     {
+
         $data['applications_count'] = DB::table('student_applications as sp')->select('app_id')
             ->where('student_id', $id)->get()->count();
         $student_details = DB::table('users as a')->select('a.id', 'a.email', 'b.first_name', 'b.middle_name', 'b.last_name', 'b.phone_number', 'b.study_permit_visa', 'b.country', 'b.country_of_education', 'b.highest_level_of_education', 'b.grading_scheme', 'b.english_exam_type', 'b.lisenting', 'b.reading', 'b.writing', 'b.speaking')
@@ -731,16 +732,16 @@ class AgentHome extends Controller
         if (!empty($english_exam_type)) {
             if (($english_exam_type == 3) || ($english_exam_type == 4)) {
                 if (!empty($reading)) {
-                    $res = $res->where('c.reading', $reading);
+                    $res = $res->where('c.reading', '>=', $reading);
                 }
                 if (!empty($lisenting)) {
-                    $res = $res->where('c.listening', $lisenting);
+                    $res = $res->where('c.listening','>=', $lisenting);
                 }
                 if (!empty($speaking)) {
-                    $res = $res->where('c.speaking', $speaking);
+                    $res = $res->where('c.speaking','>=', $speaking);
                 }
                 if (!empty($writing)) {
-                    $res = $res->where('c.writing', $writing);
+                    $res = $res->where('c.writing','>=', $writing);
                 }
                 $res = $res->leftjoin('college_programs_test_scores as c', 'c.college_programs_id', '=', 'b.id');
             }
@@ -904,7 +905,7 @@ class AgentHome extends Controller
             ->join('payments as p', 'a.app_id', '=', 'p.appid')
             ->join('current_status as c', 'c.id', '=', 'a.application_status')
             ->join('payment_status as d', 'd.id', '=', 'a.payment_status')
-            ->where('a.student_id', $student_id)->paginate(10);
+            ->where('a.student_id', $student_id)->paginate(20);
 
         return view('agent.student_payment', $data);
     }
@@ -1248,16 +1249,16 @@ class AgentHome extends Controller
 
         if (($examt_ype == 3) || ($examt_ype == 4)) {
             if (!empty($reading)) {
-                $res = $res->where('c.reading', $reading);
+                $res = $res->where('c.reading','>=', $reading);
             }
             if (!empty($listening)) {
-                $res = $res->where('c.listening', $listening);
+                $res = $res->where('c.listening','>=', $listening);
             }
             if (!empty($speaking)) {
-                $res = $res->where('c.speaking', $speaking);
+                $res = $res->where('c.speaking','>=', $speaking);
             }
             if (!empty($writing)) {
-                $res = $res->where('c.writing', $writing);
+                $res = $res->where('c.writing','>=', $writing);
             }
             $res = $res->leftjoin('college_programs_test_scores as c', 'c.college_programs_id', '=', 'b.id');
         }
@@ -1285,10 +1286,10 @@ class AgentHome extends Controller
         if (!empty($examt_ype)) {
             $res = $res->whereJsonContains('a.english_exam_type', [$examt_ype]);
         }
+
         $res = $res->select('a.id')->distinct('a.id');
         $res = $res->where('a.status', 1);
         $res = $res->get();
-
         if ((!empty($res)) && (count($res)) > 0) {
 
             foreach ($res as $ids) {

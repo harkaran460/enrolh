@@ -124,7 +124,8 @@ Route::post('/agent-student-profile-update/', [AgentHome::class, 'agent_student_
 Route::get('/agent-student-search-and-apply/{id}', [AgentHome::class, 'agent_student_search_and_apply'])->name('agent_student_search_and_apply');
 Route::post('/student-eligibility-filter', [AgentHome::class, 'get_eligibility_filter'])->name('get_eligibility_filter');
 
-//Route::get('/student-search-and-apply/{id}', [AgentHome::class, 'student_search_and_apply'])->name('student_search_and_apply');
+Route::get('/student-profile/{id}', [AgentHome::class, 'agent_student_profile'])->name('student-profile');
+Route::get('/my-reminders/{id}', [AgentHome::class, 'agent_my_reminders'])->name('my-reminders');
 
 
 Route::get('/wallet', [AgentHome::class, 'wallet'])->name('wallet');
