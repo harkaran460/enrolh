@@ -241,7 +241,7 @@ class CollegeHome extends Controller
 
         $id =  DB::table('college_programs')->insertGetId(
             [
-                'college_id' => $request->collegeid,
+                'college_id' => Auth::user()->id,
                 'program_logo' => $imageName,
                 'programs_name' => $request->program_name,
                 'program_college_name' => $request->program_college_name,
@@ -304,4 +304,23 @@ class CollegeHome extends Controller
 
         return response()->json(['success' => 'College details fetched successfully', 'collegeDetails' => $collegeDetails]);
     }
+
+    public function allPrograms(){
+        $programs['program_list'] = DB::table('users as a')->select('a.id', 'b.user_id', 'c.*')
+        ->join('colleges as b', 'b.user_id', '=', 'a.id')
+        ->join('college_programs as c', 'c.college_id', '=', 'b.id')
+        ->where('a.id', Auth::user()->id)->paginate(10); 
+        // return ($program['program_list']);
+        return view('college/all_programs', $programs);
+    }
+
+    public function viewProgram($id){
+        $program['view_program'] = DB::table('college_programs')->where('id', $id)->first();
+
+        $program['req_doc'] = DB::table('documents_requirment')->get();
+        $program['post_secondary_discipline'] = DB::table('post_secondary_discipline')->get();
+        $program['post_secondary_sub_categories'] = DB::table('post_secondary_sub_categories')->get();
+        return view('college.view_program', $program);
+    }
+
 }

@@ -217,7 +217,7 @@
                                                 </td>
                                             </tr>
                                         </tfoot>
-<<<<<<< HEAD
+ 
                                        
                                     </table><br>
                                     <div class="pagination"> {{ $aplication_details->appends('page_b', Input::get('page_b',1))->links() }} </div> 
@@ -228,22 +228,9 @@
                          </div>
                         </div>
                          
-=======
+ 
 
-                                    </table>
-                                    <div class="cpagination"> {{ $aplication_details->links() }} </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                         </div>
-                        </div>
-
-
-
-
->>>>>>> 87c91560b9c4001356e47b238fbcc02b9b5eb353
+ 
                         <div class="row overflow-hidden mt-3">
                             <div class="col-md-8">
 
@@ -257,23 +244,14 @@
                                 </div>
                             </div>
                         </div>
-<<<<<<< HEAD
-                         
-=======
-
-
->>>>>>> 87c91560b9c4001356e47b238fbcc02b9b5eb353
+ 
                         <!--SECTION DONE BY KD-->
 
                         <div class="box-holder p-4">
-<<<<<<< HEAD
-                            
-                            <div class="bg-white "> 
-=======
-
+  
                             <div class="bg-white ">
 
->>>>>>> 87c91560b9c4001356e47b238fbcc02b9b5eb353
+ 
                         <div class="row overflow-hidden mt-3">
                             <div class="col-12">
                                 <div class="css-1lgqrjk css-1piu9jy1">

@@ -1,7 +1,8 @@
-@extends('layouts.agent_app')
-@section('content')  
-
-    <div class="page-content college-details">
+@extends('layouts.admin_app')
+@section('content')
+@php $application_status = getCurrentStatus() @endphp
+@php $payment_status = getPaymentStatus() @endphp
+<div class="page-content college-details">
         <div class="container-fluid">
             <div class="row">
                 
@@ -9,23 +10,23 @@
                     <div class="main-programs-content"> 
                         <div class="main-programs-img form-control-lg">
                             <a target="_blank" href="" class="align-self-center">
-                                <img width="80" height="80" src=" {{url('/images/'.$college_details[0]->college_logo)}}">
+                                <img width="80" height="80" src=" {{url('/images/'.$college->college_logo)}}">
                             </a>
                             <div class="ps-3 align-self-md-end"> 
-                                <h2 class="mb-0"><b> {{$college_details[0]->college_name}}</b></h2> 
+                                <h2 class="mb-0"><b> {{$college->college_name}}</b></h2> 
                                 <ul class="college-location-way"> 
                                 
                                     <li class="d-flex align-items-center mb-0 p-1">
                                         <img class="align-self-center" src="{{ asset('assetsAgent/img/flag1.svg')}}" alt="Generic placeholder image" width="30">
                                         <div class="flex-1">
-                                          <h6 class="mb-0 fw-bold text-dark">{{$college_details[0]->college_country}}</h6>
+                                        <h6 class="mb-0 fw-bold text-dark">{{$college->country}}</h6>
                                         </div>
                                     </li>
-                                    <!--<li><img src="{{ asset('assetsAgent/img/flag1.svg')}}" width="30" height="30" alt="">{{$college_details[0]->college_country}}</li>-->
-                                    <li class="d-flex align-items-center mb-0 p-1">
+                                     <li class="d-flex align-items-center mb-0 p-1">
                                         <img class="align-self-center" src="{{ asset('assetsAgent/img/location.svg')}}" width="30" height="30" alt="">
                                         <div class="flex-1">
-                                          <h6 class="mb-0 fw-bold text-dark">{{$college_details[0]->college_address}}</h6>
+                                    
+                                          <h6 class="mb-0 fw-bold text-dark">{{$college->college_address}}</h6>
                                         </div>
                                     </li> 
                                 </ul>
@@ -34,110 +35,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-4 gallery-collage">
-                @if(isset($gallery))
-                @foreach ($gallery as $img )
-                    
-                
-                <div class="col-md-5 gallery-list"> 
-                    <a href="{{url($img->url)}}">
-                        <img src="{{url($img->url)}}" alt="{{$img->name}}" class="img-fluid"> 
-                    </a>
-                </div>
-                <div class="col">
-                    <div class="row">
-                      <div class="col-md-12">
-                    
-                        <div id="mdb-lightbox-ui"></div>
-                    
-                        <div class="mdb-lightbox no-margin row row-cols-4">
-                    
-                          <figure class="col mx-auto">
-                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).webp" data-size="1600x1067">
-                              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).webp"
-                                class="img-fluid">
-                            </a>
-                          </figure>
-                    
-                          <figure class="col mx-auto">
-                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(98).webp" data-size="1600x1067">
-                              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(98).webp"
-                                class="img-fluid" />
-                            </a>
-                          </figure>
-                    
-                          <figure class="col mx-auto">
-                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(131).webp" data-size="1600x1067">
-                              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(131).webp"
-                                class="img-fluid" />
-                            </a>
-                          </figure>
-                    
-                          <figure class="col mx-auto">
-                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(123).webp" data-size="1600x1067">
-                              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(123).webp"
-                                class="img-fluid" />
-                            </a>
-                          </figure>
-                    
-                          <figure class="col mx-auto">
-                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(118).webp" data-size="1600x1067">
-                              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(118).webp"
-                                class="img-fluid" />
-                            </a>
-                          </figure>
-                    
-                          <figure class="col mx-auto">
-                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(128).webp" data-size="1600x1067">
-                              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(128).webp"
-                                class="img-fluid" />
-                            </a>
-                          </figure>
-                    
-                          <figure class="col mx-auto">
-                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(132).webp" data-size="1600x1067">
-                              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(132).webp"
-                                class="img-fluid" />
-                            </a>
-                          </figure>
-                    
-                          <figure class="col mx-auto">
-                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(115).webp" data-size="1600x1067">
-                              <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(115).webp"
-                                class="img-fluid" />
-                            </a>
-                          </figure>
-                    
-                        </div>
-                    
-                      </div>
-                    </div>
-                </div>
-                @break
-                @endforeach
-               @if(count($gallery) > 1)
-                <div class="col-md-5 gallery-list">
-                    <div class="row">
-                        @foreach ($gallery as $img )
-                        
-                        <div class="col-md-6"> 
-                            <a href="{{url($img->url)}}">
-                                <img src="{{url($img->url)}}" alt="{{$img->name}}" class="img-fluid"> 
-                            </a>
-                        </div>
-                        @endforeach
-
-                    </div>
-                   </div>
-                   @endif
-                    @endif
-                    
-                <div class="col-md-12">
-                    <div class="view-more">
-                        <button type="button" class="btn btn-primary rounded-pill px-3">View Photos</button>
-                    </div>
-                </div> 
-            </div>
+             
         </div>
 
         <div class="container-fluid nav-college-list mt-5">
@@ -159,7 +57,7 @@
                             <h3 class="mt-2">About</h3>
                         </div>
                         <div class="bg-white p-3 mt-4">
-                           <p class=""><?php echo  $college_details[0]->college_about_details;?></p>               
+                           <p class=""><?php echo  $college->college_about_details;?></p>               
                         </div> 
                     </div>
                 </div>
@@ -174,19 +72,19 @@
                             <table class="table">
                                 <tr>
                                     <td>Founded</td>
-                                    <td class="text-end">{{$college_details[0]->founded}}</td>
+                                    <td class="text-end">{{$college->founded}}</td>
                                 </tr>
                                 <tr>
                                     <td>School ID</td>
-                                    <td class="text-end">{{$college_details[0]->school_id}}</td>
+                                    <td class="text-end">{{$college->school_id}}</td>
                                 </tr>
                                 <tr>
                                     <td>Provider ID number</td>
-                                    <td class="text-end">{{$college_details[0]->provider_id_number}}</td>
+                                    <td class="text-end">{{$college->provider_id_number}}</td>
                                 </tr>
                                 <tr>
                                     <td>Institution type</td>
-                                    <td class="text-end">{{$college_details[0]->institution_type}}</td>
+                                    <td class="text-end">{{$college->institution_type}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -201,8 +99,8 @@
                                     <i class="fa-solid fa-dollar-sign"></i>
                                 </div>
                                 <div class="duration-content">
-                                    @if($college_details[0]->application_fee !='')
-                                    <p><b> {{$college_details[0]->application_fee}}</b></p>
+                                    @if($college->application_fee !='')
+                                    <p><b> {{$college->application_fee}}</b></p>
                                     @else
                                     <p><b> No data available</b></p>
                                     @endif
@@ -214,8 +112,8 @@
                                     <i class="fa-solid fa-calendar-days"></i>
                                 </div>
                                 <div class="duration-content">
-                                    @if($college_details[0]->average_graduate_program !='')
-                                    <p><b>{{$college_details[0]->average_graduate_program}}</b></p>
+                                    @if($college->average_graduate_program !='')
+                                    <p><b>{{$college->average_graduate_program}}</b></p>
                                     @else
                                     <p><b> No data available</b></p>
                                     @endif
@@ -228,8 +126,8 @@
                                     <i class="fa-solid fa-calendar-days"></i>
                                 </div>
                                 <div class="duration-content">
-                                    @if($college_details[0]->average_undergraduate_program !='')
-                                    <p><b>{{$college_details[0]->average_undergraduate_program}} </b></p>
+                                    @if($college->average_undergraduate_program !='')
+                                    <p><b>{{$college->average_undergraduate_program}} </b></p>
                                     @else
                                     <p><b> No data available</b></p>
                                     @endif
@@ -242,8 +140,8 @@
                                     <i class="fa-solid fa-house-user"></i>
                                 </div>
                                 <div class="duration-content">
-                                    @if($college_details[0]->cost_of_living !='')
-                                    <p><b> {{$college_details[0]->cost_of_living}} / Year </b></p>
+                                    @if($college->cost_of_living !='')
+                                    <p><b> {{$college->cost_of_living}} / Year </b></p>
                                     @else
                                     <p><b> No data available</b></p>
                                     @endif
@@ -255,8 +153,8 @@
                                     <i class="fa-solid fa-landmark-dome"></i>
                                 </div>
                                 <div class="duration-content">
-                                    @if($college_details[0]->tuition !='')
-                                    <p><b> {{$college_details[0]->tuition}} / Year </b></p>
+                                    @if($college->tuition !='')
+                                    <p><b> {{$college->tuition}} / Year </b></p>
                                     @else
                                     <p><b> No data available</b></p>
                                     @endif
@@ -269,124 +167,40 @@
                 </div>
             </div>
 
-            <div class="row mt-5" id="features-details">
-                <div class="col-md-8">
-                    @if(count($question_answer) >0)
-                    <div class="main-features-about">
-                        <div class="home-icon">
-                            <i class="fa-solid fa-clipboard"></i>
-                            <h3 class="mt-2">Features</h3>
-                        </div>
-                        <div class="bg-white p-3 mt-4">
-                            <div class="main-features">
-                                <div class="accordion" id="accordionPanelsStayOpenExample">
-                                    @foreach($question_answer as $qa)
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="panelsStayOpen-featureheadingOne{{$qa->id}}">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-featuresOne{{$qa->id}}" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
-                                                <div class="feature-icon">
-                                                    <i class="fa-solid fa-check"></i>
-                                                </div>    
-                                                {{$qa->feature_questions}}
-                                            </button>
-                                        </h2>
-                                        <div id="panelsStayOpen-featuresOne{{$qa->id}}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-featureheadingOne">
-                                            <div class="accordion-body">
-                                                <p>{{$qa->feature_answer}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                    
-
-                                </div>
-                            </div>
-                            <span>*Information listed is subject to change without notice and should not be construed as a commitment by ApplyBoard Inc.</span>
-                        </div> 
-                         
-                    </div> 
-                    @endif
-                </div>
+            <div class="row mt-5" id="features-details"> 
                 <div class="col-md-4"> 
                     <div class="top-disciplines">
-                        <h4 class=" pb-3">Top Disciplines</h4>
-                        <!--<div class=" p-3">-->
-                        <!--    <div class="row">-->
-                        <!--        <div class="col-md-6">-->
-                        <!--            <h5>Engineering and Technology</h5>-->
-                        <!--        </div>-->
-                        <!--        <div class="col-md-6 m-auto">-->
-                        <!--            <div class="progress">-->
-                        <!--                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="{{$college_details[0]->engineering_and_technology}}" aria-valuemin="0" aria-valuemax="{{$college_details[0]->engineering_and_technology}}">{{$college_details[0]->engineering_and_technology}}%</div>-->
-                        <!--            </div>-->
-                        <!--        </div>-->
-                        <!--    </div>-->
-                        <!--    <hr>-->
-                        <!--    <div class="row">-->
-                        <!--        <div class="col-md-6">-->
-                        <!--            <h5>Health Sciences, Medicine, Nursing, Paramedic and Kinesiology</h5>-->
-                        <!--        </div>-->
-                        <!--        <div class="col-md-6 m-auto">-->
-                        <!--            <div class="progress">-->
-                        <!--                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="{{$college_details[0]->health_sciences_medicine_nursing_paramedic_and_kinesiology}}" aria-valuemin="0" aria-valuemax="{{$college_details[0]->health_sciences_medicine_nursing_paramedic_and_kinesiology}}">{{$college_details[0]->health_sciences_medicine_nursing_paramedic_and_kinesiology}}%</div>-->
-                        <!--            </div>-->
-                        <!--        </div>-->
-                        <!--    </div>-->
-                        <!--    <hr>-->
-                        <!--    <div class="row">-->
-                        <!--        <div class="col-md-6">-->
-                        <!--            <h5>Business, Management and Economics</h5>-->
-                        <!--        </div>-->
-                        <!--        <div class="col-md-6 m-auto">-->
-                        <!--            <div class="progress">-->
-                        <!--                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="{{$college_details[0]->business_management_and_economics}}" aria-valuemin="0" aria-valuemax="{{$college_details[0]->business_management_and_economics}}">{{$college_details[0]->business_management_and_economics}}%</div>-->
-                        <!--            </div>-->
-                        <!--        </div>-->
-                        <!--    </div>-->
-                        <!--    <hr>-->
-                        <!--    <div class="row">-->
-                        <!--        <div class="col-md-6">-->
-                        <!--            <h5>Other</h5>-->
-                        <!--        </div>-->
-                        <!--        <div class="col-md-6 m-auto">-->
-                        <!--            <div class="progress">-->
-                        <!--                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="{{$college_details[0]->other}}" aria-valuemin="0" aria-valuemax="{{$college_details[0]->other}}">{{$college_details[0]->other}}%</div>-->
-                        <!--            </div>-->
-                        <!--        </div>-->
-                        <!--    </div>-->
-                        <!--</div>-->
-                        
-                        
+                        <h4 class=" pb-3">Top Disciplines</h4> 
                                     <div class="card-body bg-white" style="border-radius:10px">
                                         <h5 class="mb-1 mt-0 fw-normal mt-2">Engineering and Technology</h5>
                                         <div class="progress-w-percent">
-                                            <span class="progress-value fw-bold">{{$college_details[0]->other}}% </span>
+                                            <span class="progress-value fw-bold">{{$college->engineering_and_technology}}% </span>
                                             <div class="progress progress-sm">
-                                                <div class="progress-bar" role="progressbar" style="width: {{$college_details[0]->other}}%;" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar" role="progressbar" style="width: {{$college->engineering_and_technology}}%;" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
 
                                         <h5 class="mb-1 mt-0 fw-normal mt-2">Health Sciences, Medicine, Nursing, Paramedic and Kinesiology</h5>
                                         <div class="progress-w-percent">
-                                            <span class="progress-value fw-bold">{{$college_details[0]->other}}% </span>
+                                            <span class="progress-value fw-bold">{{$college->health_sciences_medicine_nursing_paramedic_and_kinesiology}}% </span>
                                             <div class="progress progress-sm">
-                                                <div class="progress-bar" role="progressbar" style="width: {{$college_details[0]->other}}%;" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar" role="progressbar" style="width: {{$college->health_sciences_medicine_nursing_paramedic_and_kinesiology}}%;" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
 
                                         <h5 class="mb-1 mt-0 fw-normal mt-2">Business, Management and Economics</h5>
                                         <div class="progress-w-percent">
-                                            <span class="progress-value fw-bold">{{$college_details[0]->other}}% </span>
+                                            <span class="progress-value fw-bold">{{$college->business_management_and_economics}}% </span>
                                             <div class="progress progress-sm">
-                                                <div class="progress-bar" role="progressbar" style="width: {{$college_details[0]->other}}%;" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar" role="progressbar" style="width: {{$college->business_management_and_economics}}%;" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
 
                                         <h5 class="mb-1 mt-0 fw-normal mt-2">Other</h5>
                                         <div class="progress-w-percent mb-2">
-                                            <span class="progress-value fw-bold">{{$college_details[0]->other}}% </span>
+                                            <span class="progress-value fw-bold">{{$college->other}}% </span>
                                             <div class="progress progress-sm">
-                                                <div class="progress-bar" role="progressbar" style="width: {{$college_details[0]->other}}%;" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar" role="progressbar" style="width: {{$college->other}}%;" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -417,7 +231,7 @@
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
                               
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d8994.981570244534!2d77.38596390640649!3d28.629808676841964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s{{$college_details[0]->map_location}}!5e0!3m2!1sen!2sin!4v1659521298547!5m2!1sen!2sin" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d8994.981570244534!2d77.38596390640649!3d28.629808676841964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s{{$college->map_location}}!5e0!3m2!1sen!2sin!4v1659521298547!5m2!1sen!2sin" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             
                             </div>
                             <div class="tab-pane fade" id="pills-streetview" role="tabpanel" aria-labelledby="pills-streetview-tab">
@@ -426,13 +240,13 @@
                          </div>
 
                          <div class="map-footer">
-                             <p>{{$college_details[0]->map_streetview}}</p>
+                             <p>{{$college->map_streetview}}</p>
                          </div>
 
                     </div>
                 </div>
                 <div class="col-md-4 mt-3">
-                    @if(($college_details[0]->year_post_secondary_certificate !='') && ($college_details[0]->year_undergraduate_diploma !=''))
+                    @if(($college->year_post_secondary_certificate !='') && ($college->year_undergraduate_diploma !=''))
                     <h4 class="mt-2 ms-2">Program Levels</h4>
                    
                     <div class="bg-white p-3 mt-4"> 
@@ -458,7 +272,7 @@
                         <div class="home-icon d-flex">
                             <i class="fa-solid fa-book"></i>
                             <h3 class="mt-2">Programs</h3>
-                            <div class="css-count"><?php if(isset($college_details[0]->courses)){echo count($college_details[0]->courses);}else{echo "0";}?></div>
+                            <div class="css-count"><?php if(isset($college->courses)){echo count($college->courses);}else{echo "0";}?></div>
                         </div>
                         <div class="right-side-filter d-flex">
                             <button class="btn btn-primary" id="filters">
@@ -533,8 +347,8 @@
                     </div>
                     <div id="program_result"></div>
                     <div class="defultdata row justify-content-around gap-5 px-3">
-                    @if(isset($college_details[0]->courses))
-                    @foreach ( $college_details[0]->courses as $course)  
+                    @if(isset($college->courses))
+                    @foreach ( $college->courses as $course)  
                     <div class="program-card bg-white p-3 col"> 
                         <div class="program-card-main">
                             <div class="program-card-img">
@@ -581,58 +395,5 @@
         </div>
     </div>
 
-    <!-- Modal Check Student Eligibility --> 
-    <div class="modal fade" id="check-student-eligibility" tabindex="-1" aria-labelledby="selectstudentLabel" aria-hidden="true">
-        <div class="modal-dialog  modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title text-center m-auto" id="selectstudentLabel">Check Student Eligibility</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h5>Select a student to check their eligibility.</h5>
-                    <form action="" method="POST">
-                        <div class="form-group">
-                            <label> Select</label>
-                            <span class="fas fa-search"></span>
-                            <select name="" class="form-select" aria-label="Default select example">
-                                <option  select>Search students name, email, or ID</option> 
-                            </select>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        var xValues = ["1-Year", "2-Year"];
-        var yValues = [{{$college_details[0]->year_post_secondary_certificate}},{{$college_details[0]->year_undergraduate_diploma}}];
-        var barColors = [
-            "#1e3a8a",
-            "#50a5f1"
-        ];
-        
-        </script>
-        
-        <style>
-            #search{
-                    width: 98%;
-            }
-            .programs-form-search{
-                display:block !important;
-                height:105px !important;
-            }
-            
-            @media (min-width: 300px) and (max-width: 600px)
-            {
-            .defultdata {
-                margin-top: 84px;
-            }
-            #search {
-                    width: 93%;
-            }
-            }
-            
-        </style>
-        
+
 @endsection

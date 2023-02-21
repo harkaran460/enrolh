@@ -34,6 +34,9 @@ Route::get('/addProgram', [CollegeHome::class, 'addProgram'])->name('addProgram'
 Route::post('/addCollege', [CollegeHome::class, 'addCollegeSubmit'])->name('addCollegeSubmit.post');
 Route::post('/addProgram', [CollegeHome::class, 'addProgramSubmit'])->name('addProgramSubmit.post');
 Route::get('/getCollegeDetails', [CollegeHome::class, 'getCollegeDetails'])->name('getCollegeDetails');
+Route::get('allPrograms', [CollegeHome::class, 'allPrograms'])->name('allPrograms');
+Route::get('viewProgram/{id}', [CollegeHome::class, 'viewProgram'])->name('viewProgram');
+
 Route::get('/student_register', function (Request $request) {
     return view('register.student_register');
 });
@@ -123,6 +126,7 @@ Route::get('/agent-student-profile/{id}', [AgentHome::class, 'agent_student_prof
 Route::post('/agent-student-profile-update/', [AgentHome::class, 'agent_student_profile_update'])->name('agent_student_profile_update');
 Route::get('/agent-student-search-and-apply/{id}', [AgentHome::class, 'agent_student_search_and_apply'])->name('agent_student_search_and_apply');
 Route::post('/student-eligibility-filter', [AgentHome::class, 'get_eligibility_filter'])->name('get_eligibility_filter');
+Route::get('/yearChartReq', [AgentHome::class, 'getYearData'])->name('yearChartReq');
 
 Route::get('/student-profile/{id}', [AgentHome::class, 'agent_student_profile'])->name('student-profile');
 Route::get('/my-reminders/{id}', [AgentHome::class, 'agent_my_reminders'])->name('my-reminders');
@@ -229,6 +233,18 @@ Route::get('admin-application-review/{id}', [SuperAdminController::class, 'admin
 Route::post('update-document-status/', [SuperAdminController::class, 'update_document_status'])->name('update_document_status');
 Route::post('change-document-status/', [SuperAdminController::class, 'change_document_status'])->name('change_document_status');
 Route::post('update-document-status-discription/', [SuperAdminController::class, 'update_document_status_discription'])->name('update_document_status_discription');
+ 
 Route::post('/add-notice', [SuperAdminController::class, 'addNotice'])->name('add-notice');
 Route::post('/update-notice', [SuperAdminController::class, 'UpdateNotice'])->name('update-notice');
 Route::get('notice-board', [SuperAdminController::class, 'noticeBoard'])->name('notice-board');
+Route::get('admin-list-of-college', [SuperAdminController::class, 'admin_list_of_college'])->name('admin_list_of_college');
+Route::get('admin-view-college/{id}', [SuperAdminController::class, 'admin_view_college'])->name('admin_view_college');
+Route::get('admin-edit-college/{id}', [SuperAdminController::class, 'admin_edit_college'])->name('admin_edit_college');
+Route::post('update-college-form', [SuperAdminController::class, 'updateCollegeForm'])->name('updateCollegeForm');
+Route::get('admin-list-of-program', [SuperAdminController::class, 'adminListofProgram'])->name('adminListofProgram');
+Route::get('admin-view-program/{id}', [SuperAdminController::class, 'adminViewProgram'])->name('adminViewProgram');
+Route::get('admin-edit-program/{id}', [SuperAdminController::class, 'adminEditProgram'])->name('adminEditProgram');
+Route::post('admin-update-program', [SuperAdminController::class, 'adminUpdateProgram'])->name('adminUpdateProgram');
+ 
+Route::get('admin-list-of-college', [SuperAdminController::class, 'admin_list_of_college'])->name('admin-list-of-college');
+ 

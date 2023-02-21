@@ -271,6 +271,7 @@ class SuperAdminController extends Controller
         return "failed";die;
        }
   
+
       }
 
   function addNotice(Request $request)
@@ -287,10 +288,16 @@ class SuperAdminController extends Controller
     $res = DB::table('notices')->insert($value);
     if ($res) {
       Session::flash('notice_submited', 'Notice has been submitted !'); 
-    }
-    return redirect('notice-board'); 
-  }
 
+      } 
+      return redirect('notice-board'); 
+    }
+
+ 
+    // public function admin_list_of_college(){
+    // return view('admin.admin-list-of-college');
+    // }
+ 
  
   function UpdateNotice(Request $request){
     $validated = $request->validate([
@@ -324,10 +331,254 @@ class SuperAdminController extends Controller
     if(isset($_GET['edit_notice_id'])){
       $editId = $_GET['edit_notice_id'];
       $data['edit_notice_data'] = DB::table('notices')->select('notice_title', 'notice_des')->where('id', $editId)->get();
-       
     }
     return view('admin.admin-notice-board', $data);
    }
+
+   public function admin_list_of_college(){
+    $data['college_list'] = DB::table('colleges as a')->select('a.*', 'b.country')
+    ->join('country as b', 'b.id', '=', 'a.college_country')
+    ->paginate(10);
+    return view('admin.admin-list-of-college', $data);
+   }
+
+   public function admin_view_college($id){
+    $data['college'] = DB::table('colleges as a')->select('a.*', 'b.country')
+    ->join('country as b', 'b.id', '=', 'a.college_country')->where('a.id', $id)->first();
+    return view('admin.admin-view-college', $data);
+   }
+
+   public function admin_edit_college($id){
+      $data['college'] = DB::table('colleges as a')->select('a.*', 'b.id as visa_id', 'b.visa_title', 'c.state_id', 'c.city')
+      ->join('permit_visa as b', 'b.id', '=', 'a.id')
+      ->join('city as c', 'c.id', '=', 'a.id')->where('a.id', $id)->first();
+      $data['college_country'] = DB::table('country')->get();
+    
+      return view('admin.admin-edit-college', $data); 
+   }
+
+   function getVisa($vId){
+    $data['permit_visa'] = DB::table('permit_visa')
+    ->where('id', $vId)->get(); 
+    foreach($data['permit_visa'] as $i)
+    { 
+        return $i;
+    } 
+ 
+   }
+   public function getCountry($cId){
+      $data['countries'] = DB::table('country')->where('id', $cId)->get();
+      foreach($data['countries'] as $country){
+          return $country;
+      }
+   }
+
+   public function getEduCountry($ecId){
+    $data['countries'] = DB::table('country')->where('id', $ecId)->get();
+    foreach($data['countries'] as $country){
+        return $country;
+    }
+ }
+
+public function getEduLevel($elId){
+  $data['eduLevel'] = DB::table('education')->where('id', $elId)->get();
+    foreach($data['eduLevel'] as $level){
+        return $level;
+    }
+}
+
+public function getGradingScheme($gsId){
+  $data['grading_scheme'] = DB::table('grading_scheme')->where('id', $gsId)->get();
+    foreach($data['grading_scheme'] as $gScheme){
+        return $gScheme;
+    }
+}
+
+public function geteExamType($enId){
+  $data['english_exam_type'] = DB::table('english_exam_type')->where('id', $enId)->get();
+    foreach($data['english_exam_type'] as $examType){
+        return $examType;
+    }
+}
+
+public function getState($sId){
+  $data['stateList'] = DB::table('state')->where('id', $sId)->get();
+  foreach($data['stateList'] as $cstate){
+    return $cstate;
+  }
+}
+
+public function getCity($cityId){
+$data['cityList'] = DB::table('city')->where('id', $cityId)->get();
+foreach($data['cityList'] as $curcity){
+  return $curcity;
+}
+}
+ 
+  public function updateCollegeForm(Request $request){
+            $id = $request->id; 
+            $valid_study_permit_visa['visa_type'] = $request->valid_study_permit_visa;
+            $eligible_nationality['eligible_nationality'] =$request->eligible_nationality;
+            $eligible_education_country['eligible_education_country'] = $request->eligible_education_country;
+            $education_level['education_level'] =$request->education_level;
+            $grading_scheme['grading_scheme'] = $request->grading_scheme;
+            $english_exam_type['english_exam_type'] = $request->english_exam_type;
+            $provinces_states = explode(',', $request->provinces_states);
+            $campus_city = explode(',', $request->campus_city);
+            $college_type['type'] = $request->college_type;
+
+          $AllData = array(
+          'college_name'=>$request->college_name,
+          'college_country'=>$request->college_country,
+          'status'=>$request->college_status,
+          'college_address'=>$request->college_address,
+          'college_about_details'=>$request->editor1,
+          'application_fee'=>$request->application_fee,
+          'average_graduate_program'=>$request->average_graduate_program,
+          'average_undergraduate_program'=>$request->average_undergraduate_program,
+          'cost_of_living'=>$request->cost_of_living,
+          'tuition'=>$request->tuition,
+          'founded'=>$request->founded,
+          'school_id'=>$request->school_id,
+          'provider_id_number'=>$request->provider_id_number,
+          'institution_type'=>$request->institution_type,
+          'january_april'=>$request->january_april,
+          'may_august'=>$request->may_august,
+          'september_december'=>$request->september_december,
+          'engineering_and_technology'=>$request->engineering_and_technology,
+          'health_sciences_medicine_nursing_paramedic_and_kinesiology'=>$request->health_sciences_medicine_nursing_paramedic_and_kinesiology,
+          'business_management_and_economics'=>$request->business_management_and_economics,
+          'other'=>$request->other,
+          'year_post_secondary_certificate'=>$request->year_post_secondary_certificate,
+          'year_undergraduate_diploma'=>$request->year_undergraduate_diploma,       
+          'valid_study_permit_visa'=>json_encode($valid_study_permit_visa['visa_type'], true),
+          'eligible_nationality'=>json_encode($eligible_nationality['eligible_nationality'], true),
+          'eligible_education_country'=>json_encode($eligible_education_country['eligible_education_country'] , true),
+          'education_level'=>json_encode($education_level['education_level'], true),
+          'grading_scheme'=>json_encode($grading_scheme['grading_scheme'], true),
+          'english_exam_type'=>json_encode($english_exam_type['english_exam_type'], true),
+          'provinces_states'=>json_encode($provinces_states, true),
+          'campus_city'=>json_encode($campus_city, true),
+          'college_type'=>json_encode($college_type['type'], true),      
+          'work_permit_available'=>$request->work_permit_available,  
+          'map_location'=>$request->map_location,
+          'map_streetview'=>$request->map_streetview
+          );
+                   
+          $data = DB::table('colleges')
+          ->where('id', $id)
+          ->update($AllData);
+         
+   if($data){
+    Session::flash('college_updated', 'College details has been updated !'); 
+    return redirect('admin-list-of-college');
+   }else{
+    Session::flash('college_updated', 'College details has been updated !'); 
+    return redirect('admin-list-of-college');
+   }
+}
+ 
+
+
+
+public function adminListofProgram(){
+  $data['list_of_programs'] = DB::table('college_programs as a')->select('a.id', 'a.college_id', 'a.program_logo', 'a.programs_name', 'a.program_college_name', 'a.earliest_intake_date', 'a.earliest_intake_type', 'a.earliest_intake_price', 'a.post_secondary_discipline', 'a.post_secondary_sub_categories', 'a.include_living_costs', 'a.tuition_fee_min', 'a.tuition_fee_min', 'a.tuition_fee_max', 'a.application_fee_min', 'a.application_fee_max', 'a.program_summary', 'a.minimum_level_of_education_completed', 'a.minimum_gpa', 'a.status', 'a.first_year_post_secondary_certificate', 'a.first_year_t_level_program_including_a_work_placement', 'a.commission_break_down', 'a.disclaimer', 'a.month_year', 'a.open_date', 'a.submission_deadline', 'a.doc_requirement', 'a.doc_count', 'a.commission_type', 'a.amount_percentage', 'a.amount_fixed', 'a.tax_fixed', 'a.tax_percentage', 'a.tax_type', 'b.college_name')
+  ->join('colleges as b', 'a.college_id', '=', 'b.id')
+  ->paginate(10);
+  
+  return view('admin.admin-list-of-programs', $data);
+}
+
+ 
+ 
+public function adminViewProgram($id){
+  $data['programs_detail'] = DB::table('college_programs as a')->select('a.*', 'b.college_name')
+  ->join('colleges as b', 'a.college_id', '=', 'b.id')
+  ->where('a.id', $id)->first();
+  
+  $data['req_doc'] = DB::table('documents_requirment')->get();
+  $data['post_secondary_discipline'] = DB::table('post_secondary_discipline')->get();
+  $data['post_secondary_sub_categories'] = DB::table('post_secondary_sub_categories')->get(); 
+  return view('admin.admin-view-program', $data);
+}
+
+
+public function adminEditProgram($id){
+  $data['program_edit_detail'] = DB::table('college_programs as a')->select('a.*', 'b.college_name', 'b.id as college_id', 'c.college_programs_id', 'c.test_scores_name', 'c.test_scores_number', 'c.reading', 'c.writing', 'c.listening', 'c.speaking')
+  ->join('colleges as b', 'a.college_id', '=', 'b.id')
+  ->join('college_programs_test_scores as c', 'c.college_programs_id', '=', 'a.id')
+  ->where('a.id', $id)->first();
+
+  $data['req_doc'] = DB::table('documents_requirment')->get();
+  $data['post_secondary_discipline'] = DB::table('post_secondary_discipline')->get();
+  $data['post_secondary_sub_categories'] = DB::table('post_secondary_sub_categories')->get(); 
+  return view('admin.admin-edit-program', $data);
+
+}
+
+
+public function adminUpdateProgram(Request $request){
+ $id = $request->id;
+ $post_secondry_discipline['post_secondary_discipline'] = $request->post_secondary_discipline;
+ $post_secondary_sub_categories['post_secondary_sub_categories'] = $request->post_secondary_sub_categories;
+ $certificate_doc['certificate_doc']= $request->certificate_doc;
+
+ $AllData = array(
+  'programs_name' => $request->program_name, 
+  'earliest_intake_date' => $request->earliest_intake_date,
+  'earliest_intake_type' => $request->earliest_intake_type,
+  'earliest_intake_price' => $request->earliest_intake_price,
+  'post_secondary_discipline' => json_encode($post_secondry_discipline['post_secondary_discipline'], true),
+  'post_secondary_sub_categories' => json_encode($post_secondary_sub_categories['post_secondary_sub_categories'], true),
+  'include_living_costs' => $request->include_living_cost,
+  'tuition_fee_min' => $request->tuition_fee_min,
+  'tuition_fee_max' => $request->tuition_fee_max,
+  'application_fee_min' => $request->application_fee_min,
+  'application_fee_max' => $request->application_fee_max,
+  'program_summary' => $request->editor1,
+  'minimum_level_of_education_completed' => $request->minimum_level_of_education_completed,
+  'minimum_gpa' => $request->minimum_gpa,
+
+ 
+
+  'status' => $request->status1,
+  'month_year' => $request->month_year,
+  'open_date' => $request->open_date,
+  'submission_deadline' => $request->submission_deadline,
+  'first_year_post_secondary_certificate' => $request->first_year_post_secondary_certificate,
+  'first_year_t_level_program_including_a_work_placement' => $request->first_year_t_level_program_including_a_work_placement,
+  'commission_break_down' => $request->commission_break_down,
+  'disclaimer' => $request->disclaimer,
+  'doc_requirement' => json_encode($certificate_doc['certificate_doc'], true),
+  'amount_fixed' => $request->payment,
+  'amount_percentage' => $request->percentage,
+  'tax_percentage' => $request->tax_percentage,
+  'tax_fixed' => $request->fixed, 
+  'tax_type' => $request->tax_type
+ );
+ $data = DB::table('college_programs')->where('id', $id)->update($AllData);
+ 
+  $data2 = DB::table('college_programs_test_scores')->where('college_programs_id', $id)->update([
+   'test_scores_name' => $request->test_scores_name,
+    'test_scores_number' => $request->test_scores_number,
+    'reading' => $request->reading, 
+    'writing' => $request->writing,
+    'listening' => $request->listening,
+    'speaking' => $request->speaking,
+  ]);
+ 
+
+ if($data2){
+  Session::flash('program_updated', 'Program details has been updated !'); 
+  return redirect('admin-list-of-program');
+ }else{
+  Session::flash('program_updated', 'Program details has been updated !'); 
+  return redirect('admin-list-of-program');
+ }
+
+ 
+}
+ 
     }
 
    

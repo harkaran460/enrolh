@@ -819,7 +819,7 @@
                 success: function(response) {
                     if (response.data != "") {
                         $('#provinces_states').empty();
-                        $("#provinces_states").prepend($("<option />").val("").text(
+                        $("#provinces_states").prepend($("<option/>").val("").text(
                             "Select Provinces State"));
                         $.each(response.data, function(index) {
                             $("#provinces_states").append($("<option />").val(
@@ -853,7 +853,7 @@
                         $("#campus_city").prepend($("<option />").val("").text(
                             "Select Campus City"));
                         $.each(response.data, function(index) {
-                            $("#campus_city").append($("<option />").val(response
+                            $("#campus_city").append($("<option/>").val(response
                                 .data[index].id).text(response.data[index]
                                 .city));
                         });

@@ -7929,3 +7929,11 @@ height: 400px;
     background: #d2cfff;
     border-radius: 10px; 
 }
+
+/*  college list */
+.c-name{
+    font-size: 20px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+/*  college list */
