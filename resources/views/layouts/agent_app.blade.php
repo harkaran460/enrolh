@@ -51,12 +51,12 @@
     </div>
 
     <header class="mainHeader">
-        <a href="javascript:void(0)" class="brandName"><img src="assetsAgent/img/Enrolhere.png"><img src="assetsAgent/img/eh.png"></a>
-        <a href="javascript:void(0)" class="toggleSide"><img src="assetsAgent/img/bars.png"></a>
+        <a href="javascript:void(0)" class="brandName"><img src="../assetsAgent/img/Enrolhere.png"><img src="../assetsAgent/img/eh.png"></a>
+        <a href="javascript:void(0)" class="toggleSide"><img src="../assetsAgent/img/bars.png"></a>
         <span class="pageTitle">Dashboard</span>
-        <a class="mainHeaderNotify" href="/important_notice"><img src="assetsAgent/img/bell.png"></a>
+        <a class="mainHeaderNotify" href="/important_notice"><img src="../assetsAgent/img/bell.png"></a>
         <div class="dropdown profileLogin">
-            <img src="assetsAgent/img/profile.png">
+            <img src="../assetsAgent/img/profile.png">
             <a type="button" data-bs-toggle="dropdown">{{Auth::user()->name}} <strong>{{Auth::user()->email}}</strong></a>
             <div class="dropdown-menu dropdown-menu-end">
                 <a class="dropdown-item" href="/recruitment_partner_id/{{Auth::user()->id}}">Profile</a>
