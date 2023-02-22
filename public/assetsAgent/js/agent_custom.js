@@ -203,8 +203,8 @@ $(document).ready(function () {
     });
 });
 
-function selectStudent(name, id) {
-    $("#search-dropdwon-main").val(name);
+function selectStudent(name, id,email) {
+    $("#search-dropdwon-main").val(name + '('+email+')');
     $("#student").val(id);
     $("#suggesstionbox").hide();
     let token = $("input[name=_token]").val();
