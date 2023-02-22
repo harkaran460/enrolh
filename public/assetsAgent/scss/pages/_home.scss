@@ -105,7 +105,7 @@ html{
         padding: 0 10px;
         display: flex;
         flex-direction: column;
-        @include transition(0.3s all linear);
+        @include transition(0.3s width linear);
         a{
             min-height: 38px !important;
             font-size: 13px;
@@ -153,6 +153,9 @@ html{
     align-items: center;
     padding: 15px 15px 0;
     .h4{
+        min-height: 36px;
+        display: inline-flex;
+        align-items: center;
         font-size: 17px;
         font-weight: 600;
         color: $dark;
@@ -258,9 +261,23 @@ html{
         display: flex;
         margin-top: 15px;
         justify-content: flex-end;
-        button{
-            &:last-child{
-                margin-left: 15px;
+        &:not(.justify-content-start){
+            .btn{
+                &:last-child{
+                    margin-left: 15px;
+                }
+            }
+        }
+        &.justify-content-start{
+            .btn{
+                &:not(:last-child){
+                    margin-right: 15px;
+                }
+            }
+        }
+        .btn{
+            i{
+                margin-left: 5px;
             }
         }
     }
@@ -295,7 +312,7 @@ html{
 .customTabs{
     border-bottom: #EFF4FF solid 1px;
     li{
-        button{
+        .nav-link{
             border: none !important;
             @include borderRadius(0 !important);
             color: $dark !important;
@@ -696,5 +713,147 @@ html{
         &:first-child{
             margin-right: 10px;
         }
+    }
+}
+.studentProfilePage{
+    padding: 0 15px;
+    .form-switch{
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        input{
+            margin-top: 0;
+            &:checked{
+                background-color: $primary !important;
+            }
+        }
+        label{
+            margin: 0;
+        }
+    }
+    .pHead{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .profileSection{
+        display: flex;
+        padding: 15px 0;
+        align-items: center;
+        .thumb{
+            max-width: 80px;
+            min-width: 80px;
+            height: 80px;
+            overflow: hidden;
+            @include borderRadius(100%);
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .profileInfo{
+            display: flex;
+            flex-direction: column;
+            margin-left: 25px;
+            span{
+                color: $dark;
+                &.name{
+                    font-size: 16px;
+                    font-weight: 600;
+                    margin-bottom: 5px;
+                    display: flex;
+                }
+                a{
+                    color: $primary;
+                    font-weight: 500;
+                    text-decoration: underline !important;
+                }
+            }
+        }
+    }
+    form{
+        .h4{
+            color: #2D3959;
+            font-size: 16px;
+            font-weight: 600;
+            border-top: #EFF4FF solid 1px;
+            display: flex;
+            padding: 25px 15px 15px;
+            margin: 25px -15px 0;
+        }
+    }
+    .formCheckBox{
+        height: 40px;
+        display: flex;
+        align-items: center;
+        .form-check{
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            input{
+                margin-right: 5px;
+                margin-top: 0;
+                &:checked{
+                    background-color: $primary !important;
+                }
+            }
+        }
+    }
+    .form-group{
+        margin-bottom: 15px;
+        .form-control, .form-select{
+            height: 40px;
+        }
+        textarea{
+            &.form-control{
+                height: 100px;
+            }
+        }
+        .select2-container--default .select2-selection{
+            border-color: #ced4da;
+        }
+    }
+    .cardFeature{
+        margin-top: 25px;
+        padding: 25px;
+        @include borderRadius(14px);
+        background-color: #F1F6FF;
+        .h5{
+            font-size: 20px;
+            font-weight: 600;
+            color: $dark;
+            display: flex;
+            margin-bottom: 10px;
+        }
+        >div{
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #2D3959;
+            margin-top: 4px;
+            font-weight: 500;
+            >i{
+                margin-right: 5px;
+                color: #24D049;
+            }
+            strong{
+                font-weight: 500;
+                width: 40%;
+            }
+        }
+    }
+}
+.customAlert{
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    >i{
+        margin-right: 5px;
+    }
+    font-weight: 600;
+    a{
+        margin-left: auto;
+        color: $primary !important;
+        text-decoration: underline !important;
     }
 }
