@@ -313,9 +313,14 @@ class CollegeHome extends Controller
         // return ($program['program_list']);
         return view('college/all_programs', $programs);
     }
-
+    
     public function viewProgram($id){
-        $program['view_program'] = DB::table('college_programs')->where('id', $id)->first();
+        // $program['view_program'] = DB::table('college_programs')->where('id', $id)->first();
+        $program['view_program'] = DB::table('college_programs as a')->select('a.*', 'b.college_name', 'b.id as college_id', 'c.college_programs_id', 'c.test_scores_name', 'c.test_scores_number', 'c.reading', 'c.writing', 'c.listening', 'c.speaking')
+        ->join('colleges as b', 'a.college_id', '=', 'b.id')
+        ->join('college_programs_test_scores as c', 'c.college_programs_id', '=', 'a.id')
+        ->where('a.id', $id)->first();
+
 
         $program['req_doc'] = DB::table('documents_requirment')->get();
         $program['post_secondary_discipline'] = DB::table('post_secondary_discipline')->get();

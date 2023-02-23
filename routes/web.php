@@ -179,6 +179,7 @@ Route::get('/recruitment_partner_id', [AgentHome::class, 'recruitment_partner_id
 Route::get('/student_college_details', [AgentHome::class, 'student_college_details'])->name('student_college_details');
 Route::get('/student_programs_college', [AgentHome::class, 'student_programs_college'])->name('student_programs_college');
 Route::post('/program-filter-on-college-details/', [AgentHome::class, 'program_filter_on_college_details'])->name('program_filter_on_college_details');
+Route::post('/addAccountInfo', [AgentHome::class, 'addAccountInfo'])->name('addAccountInfo');
 
 
 Route::get('/agentProgress', [AgentHome::class, 'agentProgress'])->name('agentProgress');
@@ -233,6 +234,7 @@ Route::get('admin-application-review/{id}', [SuperAdminController::class, 'admin
 Route::post('update-document-status/', [SuperAdminController::class, 'update_document_status'])->name('update_document_status');
 Route::post('change-document-status/', [SuperAdminController::class, 'change_document_status'])->name('change_document_status');
 Route::post('update-document-status-discription/', [SuperAdminController::class, 'update_document_status_discription'])->name('update_document_status_discription');
+Route::post('submitDocs/{id}', [SuperAdminController::class, 'submitDocs'])->name('submitDocs');
 
 Route::post('/add-notice', [SuperAdminController::class, 'addNotice'])->name('add-notice');
 Route::post('/update-notice', [SuperAdminController::class, 'UpdateNotice'])->name('update-notice');

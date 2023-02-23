@@ -29,7 +29,7 @@
         <tr>
             <th scope="row">{{$program->programs_name}}</th>
             <td>{{$program->program_college_name}}</td>
-            <td>{{$program->program_college_name}}</td>
+            <td>{{$program->earliest_intake_date}}</td>
             <td><button><a href="viewProgram/{{$program->id}}">View</a></button></td>
         </tr>
  
@@ -38,7 +38,8 @@
   </tbody>
 </table>
 
- 
+<div class="cpagination">{{$program_list->links('pagination::bootstrap-4')}}</div>
+
             </div>
         </div>
 

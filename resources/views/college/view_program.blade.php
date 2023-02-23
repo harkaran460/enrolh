@@ -244,40 +244,40 @@
                                         <div class="row mb-md-3 mt-md-3">
                                             <div class="col-md-6">
                                                 <label>Test Scores Name </label>
-                                                <input type="text" id="test_scores_name" name="test_scores_name" class="form-control">
+                                                <input type="text" id="test_scores_name" name="test_scores_name" class="form-control" disabled value="{{$view_program->test_scores_name}}">
                                             </div>
                                             <div class="col-md-6">
                                                 <label>Test Scores (Number) </label>
-                                                <input type="text" id="test_scores_number" name="test_scores_number" class="form-control">
+                                                <input type="text" id="test_scores_number" name="test_scores_number" class="form-control" disabled value="{{$view_program->test_scores_number}}">
                                             </div>
                                         </div>
                                         <div class="row mb-md-3 mt-md-3">
                                             <div class="col-md-3">
                                                 <label>Reading </label>
-                                                <input type="text" id="reading" name="reading" class="form-control">
+                                                <input type="text" id="reading" name="reading" class="form-control" disabled value="{{$view_program->reading}}">
                                             </div>
                                             <div class="col-md-3">
                                                 <label>Writing </label>
-                                                <input type="text" id="writing" name="writing" class="form-control">
+                                                <input type="text" id="writing" name="writing" class="form-control" disabled value="{{$view_program->writing}}">
                                             </div>
                                             <div class="col-md-3">
                                                 <label>Listening </label>
-                                                <input type="text" id="listening" name="listening" class="form-control">
+                                                <input type="text" id="listening" name="listening" class="form-control" disabled value="{{$view_program->listening}}">
                                             </div>
                                             <div class="col-md-3">
                                                 <label>Speaking </label>
-                                                <input type="text" id="speaking" name="speaking" class="form-control">
+                                                <input type="text" id="speaking" name="speaking" class="form-control" disabled value="{{$view_program->speaking}}">
                                             </div>
                                         </div>
                                         <hr>
                                     </div>
                                 </div>
-                                <div class="row mt-md-3">
+                                <!-- <div class="row mt-md-3">
                                     <div class="col-md-12">
                                         <button class="btn btn-info js-add--exam-row" onClick="getDataInput();">Add More Feature </button>
                                         <input id="noOfTestScore" name="noOfTestScore" type="hidden" value="0" />
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

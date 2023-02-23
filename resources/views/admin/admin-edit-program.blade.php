@@ -274,12 +274,12 @@
                                         <hr>
                                     </div>
                                 </div>
-                                <div class="row mt-md-3">
+                                <!-- <div class="row mt-md-3">
                                     <div class="col-md-12">
                                         <button class="btn btn-info js-add--exam-row" onClick="getDataInput();">Add More Feature </button>
                                         <input id="noOfTestScore" name="noOfTestScore" type="hidden" value="0" />
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

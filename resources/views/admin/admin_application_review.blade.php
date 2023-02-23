@@ -544,6 +544,12 @@
                                     aria-controls="pills-notes" aria-selected="false"><i
                                         class="fa-solid fa-comments"></i> Notes <!--<div class="css-wyw5m9">1</div>--></button>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="docs-tab2" data-bs-toggle="pill"
+                                    data-bs-target="#pills-doccs2" type="button" role="tab"
+                                    aria-controls="pills-doccs2" aria-selected="false"><i
+                                        class="fa-solid fa-comments"></i> Documents <!--<div class="css-wyw5m9">1</div>--></button>
+                            </li>
                         </ul>
 
 
@@ -707,64 +713,12 @@
                                                                                                                 class="req-desc css-lsgy9k">
                                                                                                                 <div
                                                                                                                     class="wrapped-content-upload">
-                                                                                                                    <p>Please
-                                                                                                                        provide
-                                                                                                                        a
-                                                                                                                        clear
-                                                                                                                        and
-                                                                                                                        legible
-                                                                                                                        photocopy
-                                                                                                                        of
-                                                                                                                        the
-                                                                                                                        applicant's
-                                                                                                                        certificate
-                                                                                                                        which
-                                                                                                                        meets
-                                                                                                                        the
-                                                                                                                        following
-                                                                                                                        requirements:
-                                                                                                                    </p>
+                                                                                                                    <p>Please provide a clear and legible photocopy of the applicant's certificate which meets the following requirements: </p>
                                                                                                                     <ul>
-                                                                                                                        <li>The
-                                                                                                                            acceptable
-                                                                                                                            formats
-                                                                                                                            of
-                                                                                                                            the
-                                                                                                                            photocopy
-                                                                                                                            are
-                                                                                                                            .PDF,
-                                                                                                                            .JPEG
-                                                                                                                            or
-                                                                                                                            .PNG
-                                                                                                                        </li>
-                                                                                                                        <li>The
-                                                                                                                            photocopy
-                                                                                                                            needs
-                                                                                                                            to
-                                                                                                                            be
-                                                                                                                            entire
-                                                                                                                            with
-                                                                                                                            no
-                                                                                                                            cut-off
-                                                                                                                            at
-                                                                                                                            the
-                                                                                                                            edges
-                                                                                                                        </li>
+                                                                                                                        <li>The acceptable formats of the photocopy are .PDF, .JPEG or .PNG </li>
+                                                                                                                        <li>The photocopy needs to be entire with no cut-off at the edges</li>
                                                                                                                     </ul>
-                                                                                                                    <p>Please
-                                                                                                                        be
-                                                                                                                        advised
-                                                                                                                        that
-                                                                                                                        the
-                                                                                                                        file
-                                                                                                                        size
-                                                                                                                        limit
-                                                                                                                        of
-                                                                                                                        the
-                                                                                                                        photocopy
-                                                                                                                        is
-                                                                                                                        20MB.
-                                                                                                                    </p>
+                                                                                                                    <p>Please be advised that the file size limit of the photocopy is 20MB.</p>
 
                                                                                                                     <div class="attached-documents">
                                                                                                                         <div class="row">
@@ -972,7 +926,7 @@
                                                     <!--<input type="text" name="notes_title" id="notes_title" class="form-control"-->
                                                     <!--    placeholder="Enter title here....">-->
                                                         
-                                                    <input type="text" name="editor1" id="notes_title" class="form-control"
+                                                    <input type="hidden" name="editor1" id="notes_title" class="form-control"
                                                         placeholder="Enter title here....">
                                                 </div>
                                             </div>
@@ -983,6 +937,127 @@
                                         </div>
                                     </form>
                                     </div>
+
+
+                                    <!--  ------- documents -------- -->
+                                    <div class="tab-pane fade" id="pills-doccs2" role="tabpanel"
+                                        aria-labelledby="docs-tab2">
+                                        <h2>Upload Documents</h2>
+                                        <?php
+                                            if(Session::get('doc_uploaded') !== null){
+                                                echo '<div class="alert alert-success" role="alert">';
+                                                ?>
+                                                {{Session::get('doc_uploaded')}}
+                                                <?php
+
+                                                echo '</div>';
+                                        
+                                            }
+                                            ?>
+                                        <div class="container"> 
+                                            <form id="docs" action="/submitDocs/{{$student_details->app_id}}" method="post" enctype="multipart/form-data"> 
+                                                @csrf
+                                                <input type="text" name="appid" id="appid" value="<?php echo $student_details->app_id; ?>">
+
+                                            <div class="bg-white p-3">
+                                        <div class="row" tyle="display:inline;">
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Offer Letter:-</P> <input type="file" name="offer_letter">
+                                        </div>
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 2:-</P> <input type="file" name="doc_2">
+                                        </div> 
+                                        </div>  <br>
+
+                                        <div class="row" tyle="display:inline;">
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 3:-</P> <input type="file" name="doc_3">
+                                        </div>
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 4:-</P> <input type="file" name="doc_4">
+                                        </div> 
+                                        </div><br>
+
+                                        <div class="row" tyle="display:inline;">
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 5:-</P> <input type="file" name="doc_5">
+                                        </div>
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 6:-</P> <input type="file" name="doc_6">
+                                        </div> 
+                                        </div><br>
+
+                                        <div class="row" tyle="display:inline;">
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 7:-</P> <input type="file" name="doc_7">
+                                        </div>
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 8:-</P> <input type="file" name="doc_8">
+                                        </div> 
+                                        </div><br>
+
+                                        <div class="row" tyle="display:inline;">
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 9:-</P> <input type="file" name="doc_9">
+                                        </div>
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 10:-</P> <input type="file" name="doc_10">
+                                        </div> 
+                                        </div><br>
+
+                                        <div class="row" tyle="display:inline;">
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 11:-</P> <input type="file" name="doc_11">
+                                        </div>
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 12:-</P> <input type="file" name="doc_12">
+                                        </div> 
+                                        </div><br>
+
+                                        <div class="row" tyle="display:inline;">
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 13:-</P> <input type="file" name="doc_13">
+                                        </div>
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 14:-</P> <input type="file" name="doc_14">
+                                        </div> 
+                                        </div><br>
+
+                                        <div class="row" tyle="display:inline;">
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 15:-</P> <input type="file" name="doc_15">
+                                        </div>
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 16:-</P> <input type="file" name="doc_16">
+                                        </div> 
+                                        </div><br>
+
+                                        <div class="row" tyle="display:inline;">
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 17:-</P> <input type="file" name="doc_17">
+                                        </div>
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 18:-</P> <input type="file" name="doc_18">
+                                        </div> 
+                                        </div><br>
+
+                                        <div class="row" tyle="display:inline;">
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 19:-</P> <input type="file" name="doc_19">
+                                        </div>
+                                        <div class="col-md-6 col-lg-6" style="display:inline;">
+                                            <P style="display:inline;">Upload Document 20:-</P> <input type="file" name="doc_20">
+                                        </div>
+                                         
+                                        </div><br>
+                                        <input type="Submit" class="btn btn-primary" id="upload_docs" value="Submit">
+                                        </div>
+                                            </form>
+                                            </div>
+                                        </div>
+                                        
+                                  
+                                    <!--  ------- documents --------  -->
                                 </div>
                             </div>
                         </div>

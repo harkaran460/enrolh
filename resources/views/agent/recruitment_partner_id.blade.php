@@ -12,7 +12,7 @@
                     </div>
 
                     <hr/>
-
+                    
                     <div class="partner-main-box">
                          
                         <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
@@ -30,7 +30,18 @@
                             <!--    <button class="nav-link" id="commission_policy_tab" data-bs-toggle="pill" data-bs-target="#commission_policy" type="button" role="tab" aria-controls="commission_policy" aria-selected="false">Commission Policy</button>-->
                             <!--</li>-->
                         </ul>
- 
+                        <?php
+                        if(Session::get('account_updated') !== null){
+                            echo '<div class="alert alert-success" role="alert">';
+                            ?>
+                            {{Session::get('account_updated')}}
+                            <?php 
+                            echo '</div>'; 
+                        }
+                        ?>
+
+
+                        
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="general_information" role="tabpanel" aria-labelledby="general_information_tab"> 
                                 <div class="main-partner-box"> 
@@ -395,47 +406,84 @@
                                 <div class="main-partner-box"> 
                                     <div class="partner-content"> 
                                         <h4>Banking Information</h4>
-
-                                        <div class="form-group">
+                                        <form method="post" action="addAccountInfo">
+                                            @csrf
+                                            <input type="hidden" value="">
+                                        <div class="form-group"> 
                                             <label>Bank Name </label>
-                                            <input name="text" type="text" class="form-control"/>
+                                            <input name="bank_name" type="text" class="form-control" />
+                                            <span class="text-danger">
+                                                @error('bank_name')
+                                                {{$message}}
+                                                @enderror
+                                            </span>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Bank Address </label>
-                                            <input name="text" type="text" class="form-control"/>
+                                            <input name="bank_address" type="text" class="form-control"/>
+                                            <span class="text-danger">
+                                            @error('bank_address')
+                                                {{$message}}
+                                                @enderror
+                                            </span>
                                         </div>
  
                                         <div class="form-group">
                                             <label>Ifsc Code / Swift Code </label>
-                                            <input name="text" type="text" class="form-control"/>
+                                            <input name="ifsc_code" type="text" class="form-control"/>
+                                            <span class="text-danger">
+                                            @error('ifsc_code')
+                                                {{$message}}
+                                                @enderror
+                                            </span>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Account Number </label>
-                                            <input name="number" type="text" class="form-control"/>
+                                            <input name="account_number" type="number" class="form-control"/>
+                                            <span class="text-danger">
+                                            @error('account_number')
+                                                {{$message}}
+                                                @enderror
+                                            </span>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Account Holder Name </label>
-                                            <input name="number" type="text" class="form-control"/>
+                                            <input name="account_holder_name" type="text" class="form-control"/>
+                                            <span class="text-danger">
+                                            @error('account_holder_name')
+                                                {{$message}}
+                                                @enderror
+                                            </span>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Institution Number </label>
-                                            <input name="number" type="text" class="form-control"/>
+                                            <input name="institution_number" type="text" class="form-control"/>
+                                            <span class="text-danger">
+                                            @error('institution_number')
+                                                {{$message}}
+                                                @enderror
+                                            </span>
                                         </div>
 
 
                                         <div class="form-group">
                                             <label>Comments </label>
-                                            <input name="text" type="text" class="form-control"/>
+                                            <input name="comments" type="text" class="form-control"/>
+                                            <span class="text-danger">
+                                            @error('comments')
+                                                {{$message}}
+                                                @enderror
+                                            </span>
                                         </div>
  
                                         <div class="d-grid form-group">
                                             <input type="submit" class="btn-primary btn-block" value="Save"/>
                                         </div>
- 
+                                        </form>
                                     </div>
                                 </div>
                             </div>

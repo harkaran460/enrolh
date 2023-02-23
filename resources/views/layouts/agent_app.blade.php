@@ -59,7 +59,7 @@
             <img src="../assetsAgent/img/profile.png">
             <a type="button" data-bs-toggle="dropdown">{{Auth::user()->name}} <strong>{{Auth::user()->email}}</strong></a>
             <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="/recruitment_partner_id/{{Auth::user()->id}}">Profile</a>
+                <a class="dropdown-item" href="/recruitment_partner_id">Profile</a>
                 <a class="dropdown-item" href="/logout"><span key="t-logout">Logout</span></a>
             </div>
         </div>

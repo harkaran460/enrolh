@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use App\Mail\StudentNotes;
 use Illuminate\Support\Facades\Mail;
+use Session;
 
 class AgentHome extends Controller
 {
@@ -953,6 +954,7 @@ class AgentHome extends Controller
         $data['upload_doc_review_count'] = DB::table('student_uploaded_docs')->select('id')->where('app_id', $app_id)->where('is_verified', 0)->count();
         $data['upload_doc_verifiyed_count'] = DB::table('student_uploaded_docs')->select('id')->where('app_id', $app_id)->where('is_verified', 1)->count();
         $data['upload_doc_canciled_count'] = DB::table('student_uploaded_docs')->select('id')->where('app_id', $app_id)->where('is_verified', 2)->count();
+        $data['uploaded_docs'] = DB::table('student_applications as a')->select('a.*')->where('app_id', $app_id)->first();
         //return $missing_doc;
         return view('agent.student_application_review', $data);
     }
@@ -2083,5 +2085,41 @@ class AgentHome extends Controller
       }else{
        return "failed";die;
       }
+    }
+
+    public function addAccountInfo(Request $request){
+        $validated = $request->validate([
+            'bank_name' => 'required',
+            'bank_address' => 'required',
+            'ifsc_code' => 'required',
+            'account_number' => 'required',
+            'account_holder_name' => 'required',
+            'institution_number' => 'required',
+            'comments' => 'required',
+          ]);  
+
+          $value = array(
+            // 'user_id' => Auth::user()->id,
+            'bank_name' => $request->input('bank_name'), 
+            'bank_address' => $request->input('bank_address'), 
+            'ifsc_code' => $request->input('ifsc_code'), 
+            'account_number' => $request->input('account_number'), 
+            'account_name' => $request->input('account_holder_name'), 
+            'institution_number' => $request->input('institution_number'), 
+            'comments' => $request->input('comments')
+          );
+          $id = Auth::user()->id;
+
+          $result = DB::table('my_profile')->where('user_id', $id)->update($value);
+          if($result){
+            Session::flash('account_updated', "Account Details has been updated !");
+            return redirect('recruitment_partner_id');
+          }
+          else{
+            Session::flash('account_not_updated', "Account Details has been updated !");
+            return redirect('recruitment_partner_id');
+          }
+
+
     }
 }
