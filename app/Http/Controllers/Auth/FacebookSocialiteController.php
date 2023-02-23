@@ -35,7 +35,7 @@ class FacebookSocialiteController extends Controller
                     'email' => $user->email,
                     'social_id' => $user->id,
                     'social_type' => 'facebook',
-                    'user_type' => '1',
+                    'user_type' => '4',
                     'password' => encrypt('my-facebook')
                 ]);
 
