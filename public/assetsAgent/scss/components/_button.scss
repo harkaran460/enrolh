@@ -17,22 +17,22 @@
     &:focus{
         box-shadow: none !important;
     }
-    &[disabled]{
-        pointer-events: none;
-        opacity: 0.5;
-    }
+    // &[disabled]{
+    //     pointer-events: none;
+    //     opacity: 0.5;
+    // }
 }
 .btn-secondary{
     color: $primary !important;
     background-color: transparent !important;
     border-color: $primary !important;
-    &[disabled]{
-        border-color: $dark !important;
-        color: $dark !important;
-        i{
-            color: $dark !important;
-        }
-    }
+    // &[disabled]{
+    //     border-color: $dark !important;
+    //     color: $dark !important;
+    //     i{
+    //         color: $dark !important;
+    //     }
+    // }
     &:hover{
         background-color: $primary !important;
         color: $white !important;
