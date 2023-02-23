@@ -548,7 +548,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <div class="form-group">
-                                <button type="submit" id="submit" class="btn btn-primary btn-submit">Add
+                                <button type="submit" id="submit" class="btn btn-primary btn-submit">Update
                                     College</button>
                             </div>
                         </div>

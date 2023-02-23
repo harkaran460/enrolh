@@ -36,7 +36,7 @@
                             <input type="text" class="form-control" name="family_name" placeholder="Family Name">
                         </div>
                         <div class="form-group col">
-                            <input type="text" id="datepicker" name="dob" class="form-control"  placeholder="Birth Date">
+                            <input type="date" id="datepicker" name="dob" class="form-control"  placeholder="Birth Date">
                         </div>
                     </div>
                     <div class="row">

@@ -492,8 +492,9 @@ public function adminListofProgram(){
  
  
 public function adminViewProgram($id){
-  $data['programs_detail'] = DB::table('college_programs as a')->select('a.*', 'b.college_name')
+  $data['programs_detail'] = DB::table('college_programs as a')->select('a.*', 'b.college_name', 'b.id as college_id', 'c.college_programs_id', 'c.test_scores_name', 'c.test_scores_number', 'c.reading', 'c.writing', 'c.listening', 'c.speaking')
   ->join('colleges as b', 'a.college_id', '=', 'b.id')
+  ->join('college_programs_test_scores as c', 'c.college_programs_id', '=', 'a.id')
   ->where('a.id', $id)->first();
   
   $data['req_doc'] = DB::table('documents_requirment')->get();
@@ -579,6 +580,237 @@ public function adminUpdateProgram(Request $request){
  
 }
  
+
+public function submitDocs(Request $request, $app_id){
+  $appid      = $request->input('appid'); 
+
+  $data['get_docs'] = DB::table('student_applications as a')->select('a.offer_letter', 'a.document_2', 'a.document_3', 'a.document_4', 'a.document_5', 'a.document_6', 'a.document_7', 'a.document_8', 'a.document_9', 'a.document_10', 'a.document_11', 'a.document_12', 'a.document_13', 'a.document_14', 'a.document_15', 'a.document_16', 'a.document_17', 'a.document_18', 'a.document_19', 'a.document_20')
+  ->where('app_id', $appid)
+  ->get();
+
+
+  $offerLetter = $request->file('offer_letter');
+  $doc_2 = $request->file('doc_2');  
+  $doc_3 = $request->file('doc_3');
+  $doc_4 = $request->file('doc_4');
+  $doc_5 = $request->file('doc_5');
+  $doc_6 = $request->file('doc_6');
+  $doc_7 = $request->file('doc_7');
+  $doc_8 = $request->file('doc_8');
+  $doc_9 = $request->file('doc_9');
+  $doc_10 = $request->file('doc_10');
+  $doc_11 = $request->file('doc_11');
+  $doc_12 = $request->file('doc_12');
+  $doc_13 = $request->file('doc_13');
+  $doc_14 = $request->file('doc_14');
+  $doc_15 = $request->file('doc_15');
+  $doc_16 = $request->file('doc_16');
+  $doc_17 = $request->file('doc_17');
+  $doc_18 = $request->file('doc_18');
+  $doc_19 = $request->file('doc_19');
+  $doc_20 = $request->file('doc_20');  
+
+  foreach($data['get_docs'] as $doc){
+    if(!empty($offerLetter)){
+      $offerLetter_extension = $offerLetter->getClientOriginalExtension();
+      $offerLetter_filename = 'offer_letter_'.time() . '.' . $offerLetter_extension; 
+      $request->file('offer_letter')->storeAs('public/studentDocs/' . $appid, $offerLetter_filename);
+    }
+    else{
+      $offerLetter_filename = $doc->offer_letter;
+    }
+
+    if(!empty($doc_2)){
+      $doc_2_extension = $doc_2->getClientOriginalExtension();
+      $doc_2_filename = 'doc_2_'.time() . '.' . $doc_2_extension; 
+      $request->file('doc_2')->storeAs('public/studentDocs/' . $appid, $doc_2_filename);
+    }
+    else{
+      $doc_2_filename = $doc->document_2;
+    }
+
+    if(!empty($doc_3)){
+      $doc_3_extension = $doc_3->getClientOriginalExtension();
+      $doc_3_filename = 'doc_3_'.time() . '.' . $doc_3_extension; 
+      $request->file('doc_3')->storeAs('public/studentDocs/' . $appid, $doc_3_filename);
+    }
+    else{
+      $doc_3_filename = $doc->document_3;
+    }
+
+    if(!empty($doc_4)){
+      $doc_4_extension = $doc_4->getClientOriginalExtension();
+      $doc_4_filename = 'doc_4_'.time() . '.' . $doc_4_extension; 
+      $request->file('doc_4')->storeAs('public/studentDocs/' . $appid, $doc_4_filename);
+    }else{
+      $doc_4_filename = $doc->document_4;
+    }
+
+    if(!empty($doc_5)){
+      $doc_5_extension = $doc_5->getClientOriginalExtension();
+      $doc_5_filename = 'doc_5_'.time() . '.' . $doc_5_extension; 
+      $request->file('doc_5')->storeAs('public/studentDocs/' . $appid, $doc_5_filename);
+    }else{
+      $doc_5_filename = $doc->document_5;
+    }
+
+    if(!empty($doc_6)){
+      $doc_6_extension = $doc_6->getClientOriginalExtension();
+      $doc_6_filename = 'doc_6_'.time() . '.' . $doc_6_extension;
+      $request->file('doc_6')->storeAs('public/studentDocs/' . $appid, $doc_6_filename); 
+    }else{
+      $doc_6_filename = $doc->document_6;
+    }
+
+    if(!empty($doc_7)){
+      $doc_7_extension = $doc_7->getClientOriginalExtension();
+      $doc_7_filename = 'doc_7_'.time() . '.' . $doc_7_extension; 
+      $request->file('doc_7')->storeAs('public/studentDocs/' . $appid, $doc_7_filename);
+    }else{
+      $doc_7_filename = $doc->document_7;
+    }
+
+    if(!empty($doc_8)){
+      $doc_8_extension = $doc_8->getClientOriginalExtension();
+      $doc_8_filename = 'doc_8_'.time() . '.' . $doc_8_extension; 
+      $request->file('doc_8')->storeAs('public/studentDocs/' . $appid, $doc_8_filename);
+    }else{
+      $doc_8_filename = $doc->document_8;
+    }
+
+    if(!empty($doc_9)){
+      $doc_9_extension = $doc_9->getClientOriginalExtension();
+      $doc_9_filename = 'doc_9_'.time() . '.' . $doc_9_extension; 
+      $request->file('doc_9')->storeAs('public/studentDocs/' . $appid, $doc_9_filename);
+    }else{
+      $doc_9_filename = $doc->document_9;
+    }
+
+    if(!empty($doc_10)){
+      $doc_10_extension = $doc_10->getClientOriginalExtension();
+      $doc_10_filename = 'doc_10_'.time() . '.' . $doc_10_extension; 
+      $request->file('doc_10')->storeAs('public/studentDocs/' . $appid, $doc_10_filename);
+    }else{
+      $doc_10_filename = $doc->document_10;
+    }
+
+    if(!empty($doc_11)){
+      $doc_11_extension = $doc_11->getClientOriginalExtension();
+      $doc_11_filename = 'doc_11_'.time() . '.' . $doc_11_extension; 
+      $request->file('doc_11')->storeAs('public/studentDocs/' . $appid, $doc_11_filename);
+    }else{
+      $doc_11_filename = $doc->document_11;
+    }
+
+    if(!empty($doc_12)){
+      $doc_12_extension = $doc_12->getClientOriginalExtension();
+      $doc_12_filename = 'doc_12_'.time() . '.' . $doc_12_extension; 
+      $request->file('doc_12')->storeAs('public/studentDocs/' . $appid, $doc_12_filename);
+    }else{
+      $doc_12_filename = $doc->document_12;
+    }
+
+    if(!empty($doc_13)){
+      $doc_13_extension = $doc_13->getClientOriginalExtension();
+      $doc_13_filename = 'doc_13_'.time() . '.' . $doc_13_extension; 
+      $request->file('doc_13')->storeAs('public/studentDocs/' . $appid, $doc_13_filename);
+    }else{
+      $doc_13_filename = $doc->document_13;
+    }
+
+    if(!empty($doc_14)){
+      $doc_14_extension = $doc_14->getClientOriginalExtension();
+      $doc_14_filename = 'doc_14_'.time() . '.' . $doc_14_extension; 
+      $request->file('doc_14')->storeAs('public/studentDocs/' . $appid, $doc_14_filename);
+    }else{
+      $doc_14_filename = $doc->document_14;
+    }
+
+    if(!empty($doc_15)){
+      $doc_15_extension = $doc_15->getClientOriginalExtension();
+      $doc_15_filename = 'doc_15_'.time() . '.' . $doc_15_extension; 
+      $request->file('doc_15')->storeAs('public/studentDocs/' . $appid, $doc_15_filename);
+    }else{
+      $doc_15_filename = $doc->document_15;
+    }
+
+    if(!empty($doc_16)){
+      $doc_16_extension = $doc_16->getClientOriginalExtension();
+      $doc_16_filename = 'doc_16_'.time() . '.' . $doc_16_extension; 
+      $request->file('doc_16')->storeAs('public/studentDocs/' . $appid, $doc_16_filename);
+    }else{
+      $doc_16_filename = $doc->document_16;
+    }
+
+    if(!empty($doc_17)){
+      $doc_17_extension = $doc_17->getClientOriginalExtension();
+      $doc_17_filename = 'doc_17_'.time() . '.' . $doc_17_extension; 
+      $request->file('doc_17')->storeAs('public/studentDocs/' . $appid, $doc_17_filename);
+    }else{
+      $doc_17_filename = $doc->document_17;
+    }
+
+    if(!empty($doc_18)){
+      $doc_18_extension = $doc_18->getClientOriginalExtension();
+      $doc_18_filename = 'doc_18_'.time() . '.' . $doc_18_extension; 
+      $request->file('doc_18')->storeAs('public/studentDocs/' . $appid, $doc_18_filename);
+    }else{
+      $doc_18_filename = $doc->document_18;
+    }
+
+    if(!empty($doc_19)){
+      $doc_19_extension = $doc_19->getClientOriginalExtension();
+      $doc_19_filename = 'doc_19_'.time() . '.' . $doc_19_extension; 
+      $request->file('doc_19')->storeAs('public/studentDocs/' . $appid, $doc_19_filename);
+     }else{
+      $doc_19_filename = $doc->document_19;
+     }
+
+     if(!empty($doc_20)){
+      $doc_20_extension = $doc_20->getClientOriginalExtension(); 
+      $doc_20_filename = 'doc_20_'.time() . '.' . $doc_20_extension;  
+      $request->file('doc_20')->storeAs('public/studentDocs/' . $appid, $doc_20_filename);
+     }else{
+      $doc_20_filename = $doc->document_20;
+     }
+
+  }
+
+ 
+
+ $value = array(
+  'offer_letter' => $offerLetter_filename,
+  'document_2'=> $doc_2_filename,
+  'document_3'=> $doc_3_filename,
+  'document_4'=> $doc_4_filename,
+  'document_5'=> $doc_5_filename,
+  'document_6'=> $doc_6_filename,
+  'document_7'=> $doc_7_filename,
+  'document_8'=> $doc_8_filename,
+  'document_9'=> $doc_9_filename,
+  'document_10'=> $doc_10_filename,
+  'document_11'=> $doc_11_filename,
+  'document_12'=> $doc_12_filename,
+  'document_13'=> $doc_13_filename,
+  'document_14'=> $doc_14_filename,
+  'document_15'=> $doc_15_filename,
+  'document_16'=> $doc_16_filename,
+  'document_17'=> $doc_17_filename,
+  'document_18'=> $doc_18_filename,
+  'document_19'=> $doc_19_filename,
+  'document_20'=> $doc_20_filename
+);
+
+$data['doc_upload'] = DB::table('student_applications')->where('app_id', $appid)->update($value);
+if($data['doc_upload']){
+  Session::flash('doc_uploaded', "Document has been uploaded");
+  return redirect('admin-application-review/'.$appid);
+  // return ($data['get_docs']);
+}
+
+ 
+
+ }
     }
 
    

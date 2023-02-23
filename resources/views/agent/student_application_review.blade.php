@@ -475,6 +475,12 @@
                                     aria-controls="pills-notes" aria-selected="false"><i
                                         class="fa-solid fa-comments"></i> Notes <!--<div class="css-wyw5m9">1</div>--></button>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="docs-tab2" data-bs-toggle="pill"
+                                    data-bs-target="#pills-docs2" type="button" role="tab"
+                                    aria-controls="pills-docs" aria-selected="false"><i
+                                        class="fa-solid fa-comments"></i> Documents by Enrolhere</button>
+                            </li>
                             <li class=" d-flex">
                                                 {{-- <div class="download-all-btn">
                                                     <a href="">
@@ -641,64 +647,11 @@
                                                                                                                 class="req-desc css-lsgy9k">
                                                                                                                 <div
                                                                                                                     class="wrapped-content-upload">
-                                                                                                                    <p>Please
-                                                                                                                        provide
-                                                                                                                        a
-                                                                                                                        clear
-                                                                                                                        and
-                                                                                                                        legible
-                                                                                                                        photocopy
-                                                                                                                        of
-                                                                                                                        the
-                                                                                                                        applicant's
-                                                                                                                        certificate
-                                                                                                                        which
-                                                                                                                        meets
-                                                                                                                        the
-                                                                                                                        following
-                                                                                                                        requirements:
-                                                                                                                    </p>
-                                                                                                                    <ul>
-                                                                                                                        <li>The
-                                                                                                                            acceptable
-                                                                                                                            formats
-                                                                                                                            of
-                                                                                                                            the
-                                                                                                                            photocopy
-                                                                                                                            are
-                                                                                                                            .PDF,
-                                                                                                                            .JPEG
-                                                                                                                            or
-                                                                                                                            .PNG
-                                                                                                                        </li>
-                                                                                                                        <li>The
-                                                                                                                            photocopy
-                                                                                                                            needs
-                                                                                                                            to
-                                                                                                                            be
-                                                                                                                            entire
-                                                                                                                            with
-                                                                                                                            no
-                                                                                                                            cut-off
-                                                                                                                            at
-                                                                                                                            the
-                                                                                                                            edges
-                                                                                                                        </li>
+                                                                                                                    <p>Please provide a clear and legible photocopy of the applicant's certificate which meets the following requirements:</p>                                                                                                                    <ul>
+                                                                                                                        <li>The acceptable formats of the photocopy are .PDF, .JPEG or .PNG </li>
+                                                                                                                        <li>The photocopy needs to be entire with no cut-off at the edges </li>
                                                                                                                     </ul>
-                                                                                                                    <p>Please
-                                                                                                                        be
-                                                                                                                        advised
-                                                                                                                        that
-                                                                                                                        the
-                                                                                                                        file
-                                                                                                                        size
-                                                                                                                        limit
-                                                                                                                        of
-                                                                                                                        the
-                                                                                                                        photocopy
-                                                                                                                        is
-                                                                                                                        20MB.
-                                                                                                                    </p>
+                                                                                                                    <p>Please be advised that the file size limit of the photocopy is 20MB. </p>
 
                                                                                                                     <div class="attached-documents">
                                                                                                                         <div class="row">
@@ -867,6 +820,275 @@
                                         </div>
                                     </form>
                                     </div>
+                                <!--  ------------------------  -->
+                                <div class="tab-pane fade" id="pills-docs2" role="tabpanel"
+                                        aria-labelledby="docs-tab2">
+                                         <div class="container">
+                                            <div class="row">
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Offer Letter</h3> 
+                                                <?php 
+                                                if($uploaded_docs->offer_letter == ""){
+                                                    echo '<p>Offer Letter not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->offer_letter}}" width="200px">
+                                                    <?php
+                                                    }
+                                                    ?>
+                                            </div>
+
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 2</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_2 == ""){
+                                                    echo '<p>Document 2 not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_2}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                        </div>
+
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 3</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_2 == ""){
+                                                    echo '<p>Document 3 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_2}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 4</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_4 == ""){
+                                                    echo '<p>Document 4 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_4}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 5</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_5 == ""){
+                                                    echo '<p>Document 5 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_5}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 6</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_6 == ""){
+                                                    echo '<p>Document 6 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_6}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 7</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_7 == ""){
+                                                    echo '<p>Document 7 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_7}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 8</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_8 == ""){
+                                                    echo '<p>Document 8 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_8}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 9</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_9 == ""){
+                                                    echo '<p>Document 9 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_9}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 10</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_10 == ""){
+                                                    echo '<p>Document 10 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_10}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+                                            
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 11</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_11 == ""){
+                                                    echo '<p>Document 11 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_11}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 12</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_12 == ""){
+                                                    echo '<p>Document 12 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_12}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+                                            
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 13</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_13 == ""){
+                                                    echo '<p>Document 13 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_13}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 14</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_14 == ""){
+                                                    echo '<p>Document 14 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_14}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 15</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_15 == ""){
+                                                    echo '<p>Document 15 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_15}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 16</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_16 == ""){
+                                                    echo '<p>Document 16 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_16}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 18</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_17 == ""){
+                                                    echo '<p>Document 17 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_17}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 18</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_18 == ""){
+                                                    echo '<p>Document 18 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_18}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 19</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_19 == ""){
+                                                    echo '<p>Document 19 is not Available.</p>';
+                                                }else{
+                                                ?> 
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_19}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+
+                                            <div class="col-md-3 col-lg-3">
+                                                <h3>Document 20</h3>
+                                                <?php 
+                                                if($uploaded_docs->document_20 == ""){
+                                                    echo '<p>Document 20 is not Available.</p>';
+                                                }else{
+                                                ?>
+                                                <img src="../storage/studentDocs/{{$student_details->app_id}}/{{$uploaded_docs->document_20}}" width="200px">
+                                                <?php
+                                                    }
+                                                    ?>
+                                            </div>
+                                            </div>  
+                                         </div>
+                                    </div>
+                                <!--  -------------------------  -->
+
+
+
+
                                 </div>
                             </div>
                         </div>
