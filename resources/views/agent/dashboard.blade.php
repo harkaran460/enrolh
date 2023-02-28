@@ -1,706 +1,357 @@
 @extends('layouts.agent_app')
 @section('content')
-<div class="page-content p-15 mx-1">
+<div class="modal fade" id="addNewStudent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form action="">
+        <div class="modal-dialog" style="max-width: 600px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Student</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body " style="height: 600px; overflow-Y: scroll;">
+                    <p>Please provide a legitimate email address for your student that is actively monitored by them. Their country is required to forward applications to our partner schools. Note: ApplyBoard will not communicate with your student via email or other methods.</p>
 
-    <div class="container-fluid">
-        <div class="modal fade" id="addNewStudent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <form action="">
-                <div class="modal-dialog" style="max-width: 600px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add New Student</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body " style="height: 600px; overflow-Y: scroll;">
-                            <p>Please provide a legitimate email address for your student that is actively monitored by them. Their country is required to forward applications to our partner schools. Note: ApplyBoard will not communicate with your student via email or other methods.</p>
+                    <div class="mb-3">
+                        <label class="form-label">CONTACT INFORMATION</label>
+                        <input type="email" class="form-control mb-3" placeholder="Email">
+                        <input type="tel" class="form-control" placeholder="Phone Number">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">PERSONAL INFORMATION</label>
+                        <input type="text" class="form-control mb-3" placeholder="Given Name">
+                        <input type="text" class="form-control mb-3" placeholder="Middle Name">
+                        <input type="text" class="form-control mb-3" placeholder="Family Name">
+                        <input  type="text" id="datepicker" class="form-control mb-3"  placeholder="Birth Date">
+                        <select class="form-select " aria-label="Default select example">
+                            <option selected>Country of Citizenship</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 gndr-ads">
+                        <label class="form-label">Gender</label>
+                        <div class="d-flex flex-row sg">
+                            <div class="w-100 me-3 d-flex align-items-center">
+                                <input class="mt-1 d-none" type="radio" name="select-gender" id="radiomale" checked>
+                                <label class="w-100 pt-3 ps-2" for="radiomale">Male</label>
+                            </div>
+                            <div class="w-100 d-flex align-items-center">
+                                <input class="mt-1 d-none" type="radio" name="select-gender" id="radiofemale">
+                                <label class="w-100 pt-3 ps-2" for="radiofemale">Female</label>
+                            </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">CONTACT INFORMATION</label>
-                                <input type="email" class="form-control mb-3" placeholder="Email">
-                                <input type="tel" class="form-control" placeholder="Phone Number">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">PERSONAL INFORMATION</label>
-                                <input type="text" class="form-control mb-3" placeholder="Given Name">
-                                <input type="text" class="form-control mb-3" placeholder="Middle Name">
-                                <input type="text" class="form-control mb-3" placeholder="Family Name">
-                                <input  type="text" id="datepicker" class="form-control mb-3"  placeholder="Birth Date">
-                                <select class="form-select " aria-label="Default select example">
-                                    <option selected>Country of Citizenship</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </div>
-                            <div class="mb-3 gndr-ads">
-                                <label class="form-label">Gender</label>
-                                <div class="d-flex flex-row sg">
-                                    <div class="w-100 me-3 d-flex align-items-center">
-                                        <input class="mt-1 d-none" type="radio" name="select-gender" id="radiomale" checked>
-                                        <label class="w-100 pt-3 ps-2" for="radiomale">Male</label>
-                                    </div>
-                                    <div class="w-100 d-flex align-items-center">
-                                        <input class="mt-1 d-none" type="radio" name="select-gender" id="radiofemale">
-                                        <label class="w-100 pt-3 ps-2" for="radiofemale">Female</label>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">LEAD MANAGEMENT</label>
-                                <select class="form-select mb-3" aria-label="Default select example">
-                                    <option selected>Status</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                                <select class="form-select mb-3" aria-label="Default select example">
-                                    <option selected>Referral Source</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                                <select class="form-select mb-3" aria-label="Default select example">
-                                    <option selected>Country of Interest</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                                <select class="form-select mb-3" aria-label="Default select example">
-                                    <option selected>Services of Interest</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    I confirm that I have received express written consent from the student whom I am creating this profile for and I can provide proof of their consent upon request. To learn more please refer to the <a href="#">Personal Data Consent</a> article.
-                                </label>
-                            </div>
                         </div>
-                        <div class="modal-footer d-flex flex-row">
-                            <button type="button" class="btn px-4" style="background-color: #FFE5E4;" data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary px-4 bg">Create Student</button>
-                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">LEAD MANAGEMENT</label>
+                        <select class="form-select mb-3" aria-label="Default select example">
+                            <option selected>Status</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                        <select class="form-select mb-3" aria-label="Default select example">
+                            <option selected>Referral Source</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                        <select class="form-select mb-3" aria-label="Default select example">
+                            <option selected>Country of Interest</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                        <select class="form-select mb-3" aria-label="Default select example">
+                            <option selected>Services of Interest</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            I confirm that I have received express written consent from the student whom I am creating this profile for and I can provide proof of their consent upon request. To learn more please refer to the <a href="#">Personal Data Consent</a> article.
+                        </label>
                     </div>
                 </div>
-            </form>
-        </div>
-
-        <div class="row ">
-            <div class="col-xl-9 pe-15">
-                <div class="row pb-15">
-                    <div class="col-md-3">
-                        <div class="card mini-stats-wid shadow-lg" style="border-left: 5px solid #12ee8c;">
-                            <div class="card-body">
-                                <div class="float-end">
-                                    <div class="dashboard-icon">
-                                        <i class="bx bx-archive-in"></i>
-                                    </div>
-                                </div>
-                                <p>All Application</p>
-                                <div class="justify-content-center">
-                                    <h3>@if($totalApplication!=''){{$totalApplication}}@else 0 @endif</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card mini-stats-wid shadow-lg" style="border-left: 5px solid #ff2b27;">
-                            <div class="card-body">
-                                <div class="float-end">
-                                    <div class="dashboard-icon">
-                                        <i class="fa-solid fa-credit-card"></i>
-                                    </div>
-                                </div>
-                                <p>Offers Received</p>
-                                <div class="justify-content-center">
-                                    <h3>@if($totalapproveApplication!=''){{$totalapproveApplication}}@else 0 @endif</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card mini-stats-wid shadow-lg" style="border-left: 5px solid #2a50ef;">
-                            <div class="card-body">
-                                <div class="float-end">
-                                    <div class="dashboard-icon">
-                                        <i class="fa-solid fa-users"></i>
-                                    </div>
-                                </div>
-                                <p>Total Students</p>
-                                <div class="justify-content-center">
-                                    <h3>@if($totalstudent!=''){{$totalstudent}}@else 0 @endif</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card mini-stats-wid shadow-lg" style="border-left: 5px solid #eeaa12;">
-                            <div class="card-body">
-                                <div class="float-end">
-                                    <div class="dashboard-icon">
-                                        <i class="fa-solid fa-money-bill"></i>
-                                    </div>
-                                </div>
-                                <p>Total Payments</p>
-                                <div class="justify-content-center">
-                                    <h3>@if($totalamount!='')Rs. {{$totalamount}}@else 0 @endif</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row pb-15">
-                    <div class="col-md-12">
-                        <div class="card shadow-lg">
-                            <div class="card-body">
-                                <div class="">
-                                    <div class="heading-title border-bottom d-flex">
-                                        <h5 class="font-size-18"><b>Summary</b></h5>
-                                        <div class="ms-auto">
-
-                                        <?php
-                                            echo '<select name="years" id="year">' . PHP_EOL;
-                                            $start_from="2022";
-                                                for($i = $start_from; $i <=date("Y"); $i++){
-
-                                                    echo '<option id="year"'.PHP_EOL;
-                                                    if($i==date("Y")){
-                                                        echo 'selected'.PHP_EOL;
-                                                    }
-                                                    echo 'value="' . $i . '">' . $i . '</option>' . PHP_EOL;
-                                                }
-                                                echo '</select>';
-                                            ?>
-                                        </div>
-                                    </div>
-                                    <ul class="nav nav-pills border-bottom mb-2 paid-all-detalis" id="pills-tab" role="tablist">
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" id="paid-applications-tab" data-bs-toggle="pill" data-bs-target="#paid-applications" type="button" role="tab" aria-controls="paid-applications" aria-selected="true">Paid Applications</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="paid-students-tab" data-bs-toggle="pill" data-bs-target="#paid-students" type="button" role="tab" aria-controls="paid-students" aria-selected="false">Paid Students</button>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content" id="pills-tabContent">
-                                        <div class="tab-pane fade show active" id="paid-applications" role="tabpanel" aria-labelledby="paid-applications-tab">
-                                            <div class="chart-container">
-                                                <canvas id="myChartsd" width="80%"></canvas>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="paid-students" role="tabpanel" aria-labelledby="paid-students-tab">
-                                            <div class="chart-container">
-                                                <canvas id="myChart213" width="80%"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-
-            </div>
-
-            <div class="col-xl-3 res-p-0">
-                <div class="pb-15">
-                    <div class="card overflow-hidden shadow-lg">
-                    <div class="bg-primary bg-soft">
-                        <div class="row">
-                            <div class="col-7">
-                                <div class="p-4">
-                                    <h4 class="mb-0"><b>Welcome back</b></h4>
-                                    <h5 class="mt-0 mb-4">{{$student_list->name}} {{$student_list->lastname}}.</b></h5>
-                                </div>
-                            </div>
-                            <div class="col-5"></div>
-                        </div>
-                    </div>
-                    <div class="card-body pt-0 pb-2">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="avatar-md profile-user-wid mb-4">
-                                    <img src="assetsAgent/img/profile-icon.png" alt="" class="img-thumbnail rounded-circle">
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="pt-3">
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <h5 class="font-size-18 mb-0">@if($totalamount!='')Rs. {{$totalamount}}@else 0 @endif</h5>
-                                            <p class="text-muted mb-0">Revenue</p>
-                                        </div>
-                                        <div class="col-7 res-res-px-0">
-                                            <div class="">
-                                                <a href="javascript: void(0);" class="btn1-primary waves-effect waves-light">View Profile<i class="mdi mdi-arrow-right"></i></a>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-
-                <div class="pb-15">
-                    <div class="card rounded-3 shadow-lg">
-                    <div class="card-body">
-                        <h5 class="mb-1"><b>Monthly Applcations</b></h5>
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <p class="text-muted ">This month</p>
-                                @if(!empty($monthly_income['current_month']))
-                                <h3>Rs. {{$monthly_income['current_month']}}</h3>
-                                @if($monthly_income['current_month'] >= $monthly_income['last_month_revenue'])
-                                <p class="text-muted"><span class="text-success me-2"> {{$monthly_income['percentage']}}% <i class="mdi mdi-arrow-up"></i> </span> From previous </p>
-                                @else
-                                <p class="text-muted"><span class="text-danger me-2"> {{$monthly_income['percentage']}}% <i class="mdi mdi-arrow-down"></i> </span> From previous </p>
-                                @endif
-                                <h3>Rs. {{$monthly_income['last_month_revenue']}}</h3>
-                                @endif
-                                <div class="mb-2 res-mt-15">
-                                    <a href="javascript: void(0);" class=" btn1-primary waves-effect waves-light ">View More  <i class="mdi mdi-arrow-right"></i></a>
-                                </div>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="mt-4 mt-sm-0">
-                                    <div id="school7">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <p class="text-muted mb-0">We craft digital, graphic and dimensional thinking.</p> -->
-                    </div>
-                </div>
-                </div>
-
-                <div class="pb-15">
-                    <div class="card rounded-3 shadow-lg">
-                    <div class="card-body">
-                        <h5 class="font-size-18"><b>Application Status</b></h5>
-
-                        <div class="table-responsive mt-4">
-                            <table class="table align-middle table-nowrap app-status">
-                                <tbody>
-                                    <?php foreach ($statuslist as $key => $value) { ?>
-                                        @if($value >0)
-                                        <tr>
-                                            <td style="width: 80%">
-                                                <p class="mb-0">{{$key}}</p>
-                                            </td>
-                                            <!--<td>-->
-                                            <!--    <div class="progress bg-transparent progress-sm">-->
-                                            <!--        <div class="progress-bar bg-primary rounded" role="progressbar" style="width: {{$value}}%" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100"></div>-->
-                                            <!--    </div>-->
-                                            <!--</td>-->
-                                            <td style="width: 20%">
-                                                <p class="mb-0 font-size-18"><b>{{$value}}</b></p>
-                                            </td>
-                                        </tr>
-                                        @endif
-                                    <?php } ?>
-
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                </div>
-
-
-
-
-
-
-            </div>
-        </div>
-        <div class="row pb-15">
-            <div class="col-xl-9 pe-15">
-                <div class="row">
-                    <div class="col-xl-12">
-
-                        <div class="card p-3 shadow-lg">
-                            <div class="box-holder p-3">
-                                <div class="d-flex pb-3">
-                                <h5 class="font-size-18"><b>Application Reminders</b></h5>
-                            </div>
-                                <div class="card p-3">
-
-
-                                <div class="overflow-auto">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <th>APP ID</th>
-                                            <th>STUDENT NAME</th>
-                                            <th>PROGRAM NAME</th>
-                                            <th>SCHOOL NAME</th>
-                                            <th class="text-center">REQUIEMENTS</th>
-                                        </thead>
-                                        <tbody>
-
-                                            @if(!empty($application_list))
-                                            @foreach ($application_list as $applist)
-                                           @if($applist['totalmissing'] >0)
-                                                <tr>
-                                                <td><a href="#">{{$applist['appid']}}</a></td>
-                                                <td><a href="#">{{$applist['name']}}</a></td>
-                                                <td><a href="#">{{$applist['programs_name']}}</a></td>
-                                                <td><a href="#">{{$applist['program_college_name']}}</a></td>
-                                                <td class="requiements-list">
-                                                    <ul class="text-center">
-                                                        <li>
-                                                            <a href="#">
-                                                                <div class="text-white" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="REQUIEMENTS">{{$applist['totalmissing']}}</div>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            @endif
-                                            @endforeach
-                                            @endif
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="view-all" style="padding: 10px 0 10px 0;">
-                                    <a href="=" class="btn1-primary">View More <i class="mdi mdi-arrow-right"></i></a>
-                                </div>
-                                </div>
-
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 res-p-0">
-                <div class="h-100">
-                    <div class="bg-white p-3 d-flex dashboard-user-size h-100 shadow-lg">
-                        <div class="dashboard-user-img">
-                            <img src="assetsAgent/img/profile-icon.png" alt="">
-                        </div>
-                        <div class="ps-3 dashboard-user-content">
-                            <p><b>{{$student_list->name}}</b></p>
-                            <p>Client Relationship Manager</p>
-                             <div class="icon">
-                                <i class="fa-solid fa-envelope"></i>
-                                <a href="mailto:{{$student_list->email}}">{{$student_list->email}}</a>
-                            </div>
-
-                            <div class="icon">
-                                <i class="fa-solid fa-phone"></i>
-                                <a href="tel:{{$student_list->phone_number}}">{{$student_list->phone_number}}</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="modal-footer d-flex flex-row">
+                    <button type="button" class="btn px-4" style="background-color: #FFE5E4;" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary px-4 bg">Create Student</button>
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="">
-
-                <div class="row pb-15">
-                    <div class="col-xl-4 summary-box pe-15">
-                        <div class="card p-3 shadow-lg">
-
-                            <div class="box-holder p-3">
-                                <h5 class="font-size-18 pb-2"><b>Revenue</b></h5>
-                                <div class="card p-3">
-                                    <div class="main-sale-report-box">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="flex-grow-1">
-                                                <h4 class="fw-medium">Potential Commission</h4>
-                                                <h6 class="mb-0">4</h6>
-                                            </div>
-
-                                            <div class="flex-shrink-0 align-self-center">
-                                                <span class="avatar-title rounded-circle circle-blaccav-main">
-                                                    <i class="fa-solid fa-file-pen font-size-24 ps-2"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <div class="main-sale-report-box">
-                                        <div class="card-body">
-                                            <div class="d-flex">
-                                                <div class="flex-grow-1">
-                                                    <h4 class="fw-medium">Earned</h4>
-                                                    <h6 class="mb-0">0</h6>
-                                                </div>
-
-                                                <div class="flex-shrink-0 align-self-center">
-                                                    <span class="avatar-title rounded-circle circle-blaccav-main">
-                                                        <i class="fa-solid fa-coins font-size-24"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="main-sale-report-box">
-                                        <div class="card-body">
-                                            <div class="d-flex">
-                                                <div class="flex-grow-1">
-                                                    <h4 class="fw-medium">Withdrawn</h4>
-                                                    <h6 class="mb-0">0</h6>
-                                                </div>
-
-                                                <div class="flex-shrink-0 align-self-center">
-                                                    <span class="avatar-title rounded-circle circle-blaccav-main">
-                                                        <i class="fa-solid fa-coins font-size-24"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-xl-8 res-px-0">
-
-                        <div class="card rounded-3 mb-0 h-100 p-3 shadow-lg">
-                            <div class="box-holder position-relative p-3 h-100" style="height:300px !important; overflow:scroll !important;">
-                                <h5 class="pb-2 font-size-18"><b>Team Proformance</b></h5>
-                                <div class="card p-3">
-                                    <div class="overflow-auto">
-                                        <table class="table table-borderless text-center" id="csmTable" role="grid">
-                                            <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Status </th>
-                                                    <th>Students</th>
-                                                    <th>Application</th>
-                                                    <th>Fees Paid</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @if(!empty($team_performance))
-                                                @foreach($team_performance as $team)
-                                                <tr>
-                                                    <td>
-                                                        <div class="d-flex w-100">
-                                                            <div class="image-content">
-                                                                <img src="assetsAgent/img/user-img.png" class="img-fluid" alt="">
-                                                                <h2>{{$team ->name}}</h2>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="deposit-btn">
-                                                            <a href="" class="status-success">{{$team ->status}}</a>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="price-list">
-                                                            NA
-                                                        </div>
-                                                    </td>
-                                                    <td>NA</td>
-                                                    <td>NA</td>
-                                                </tr>
-                                                @endforeach
-                                                @endif
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="text-center btn-team res-mt-15">
-                                    <a href="#" class="btn1-primary position-absolute" style="bottom: 8%; left: 40%;">View More  <i class="mdi mdi-arrow-right"></i></a>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
+    </form>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel cardView">
+                <span class="icon blue"><img src="assetsAgent/img/card1.png"></span>
+                <span class="info">All<strong>Application</strong></span>
+                <span class="count blue">@if($totalApplication!=''){{$totalApplication}}@else 0 @endif</span>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-xl-6 pe-15">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="commissions-by">
-                            <div class="card rounded-3 p-3 mb-0 shadow-lg">
-                                <h5 class="mb-3 font-size-18"><b>Commissions by Quarter</b></h5>
-                                <div id="chartDiv" style="height: 300px;"> </div>
-                                <ul>
-                                    <li><span class="size"></span> USD</li>
-                                    <li><span class="size"></span> CAD</li>
-                                    <li><span class="size"></span> GBP</li>
-                                    <li><span class="size"></span> EUR</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row pt-2 school-section">
-                    <div class="col-md-12 mb-2 pt-2">
-
-                        <div class="bg-white p-3">
-                            <h5 class="font-size-18"><b> School</b></h5>
-                            <div class="my-4 row text-center">
-
-                                <?php if(!empty($college_list ))
-                                {
-                                    foreach ($college_list as $collegename)
-                                     {
-                                        ?>
-                                        <div class="col-md-2 col-6">
-                                            <div id="school1"></div>
-                                            <div class="collage-name">
-                                                <h5><a href="/agent-college-details/{{$collegename->id}}">{{$collegename->college_name}}</a></h5>
-                                            </div>
-                                        </div>
-                                        <?php
-                                     }
-                                }
- 
-                                ?> 
- 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-6 res-p-0 res-mt-15">
-                <div class="card p-3 shadow-lg h-100" style="overflow: scroll;">
-                    <div class="row">
-
-                    <div class="col-xl-6 pe-15">
-                        <div class="mrgt-15 wallet-summary-holder">
-                    <div class="summary-wrap">
-                        <div class="w-100 mrgb-15 wallet-head">
-                            <h5 class="mb-3 font-size-18"><b>Wallet Details</b></h5>
-                        </div>
-                        <div class="w-100 pad10 bdr-r5 mrgb-05 d-flex align-items-center justify-content-between wallet-content ">
-                            <div class="wc-left">
-                                <p class="x16 fw600">CAD</p>
-                            </div>
-                            <div class="wc-rgt">
-                                <p class="x16 fw600">₹ 0</p>
-                            </div>
-                        </div>
-                        <div class="w-100 pad10 bdr-r5 mrgb-05 d-flex align-items-center justify-content-between wallet-content">
-                            <div class="wc-left">
-                                <p class="x16 fw600">EUR</p>
-                            </div>
-                            <div class="wc-rgt">
-                                <p class="x16 fw600">₹ 0</p>
-                            </div>
-                        </div>
-                        <div class="w-100 pad10 bdr-r5 mrgb-05 d-flex align-items-center justify-content-between wallet-content">
-                            <div class="wc-left">
-                                <p class="x16 fw600">AUD</p>
-                            </div>
-                            <div class="wc-rgt">
-                                <p class="x16 fw600">₹ 0</p>
-                            </div>
-                        </div>
-                        <div class="w-100 pad10 bdr-r5 mrgb-05 d-flex align-items-center justify-content-between wallet-content">
-                            <div class="wc-left">
-                                <p class="x16 fw600">USD</p>
-                            </div>
-                            <div class="wc-rgt">
-                                <p class="x16 fw600">₹ 0</p>
-                            </div>
-                        </div>
-                        <div class="w-100 pad10 bdr-r5 mrgb-05 d-flex align-items-center justify-content-between wallet-content">
-                            <div class="wc-left">
-                                <p class="x16 fw600">GBP</p>
-                            </div>
-                            <div class="wc-rgt">
-                                <p class="x16 fw600">₹ 0</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                    </div>
-                    <div class="col-xl-6 res-p-0">
-                        <div class="mrgt-15 wallet-summary-holder" style="height: 305px; overflow: scroll;">
-                        <div class="summary-wrap">
-                        <div class="w-100 mrgb-15 wallet-head">
-                            <h5 class="mb-3 font-size-18"><b>Notice Board</b></h5>
-                        </div>
-                        <?php if(!empty($notice_board))
-                        {
-                            foreach ($notice_board as $list)
-                            { ?>
-
-                                <div class="w-100 pad10 bdr-r5 mrgb-05 d-flex align-items-center justify-content-between wallet-content ">
-                                    <div class="wc">
-                                    <h4 class="notice-title">{{$list->notice_title}}</h4>
-                                <p class="notice-date">{{date('d-M-Y', strtotime($list->created_at))}}</p>
-                                <p style="font-weight: 500;">{{$list->notice_des}}</p>
-
-                                    </div>
-                                </div>
-                            <?php
-                            }
-                        }?>
-
-
-                    </div>
-                </div>
-                    </div>
-                </div>
-
-                </div>
-
-
+        <div class="col-md-3">
+            <div class="panel cardView">
+                <span class="icon green"><img src="assetsAgent/img/card2.png"></span>
+                <span class="info">Offers<strong>Received</strong></span>
+                <span class="count greenText">@if($totalapproveApplication!=''){{$totalapproveApplication}}@else 0 @endif</span>
             </div>
         </div>
-
-        <div id="chartDiv" style="width:50%; height:300px; margin:0; auto;"></div>
-
+        <div class="col-md-3">
+            <div class="panel cardView">
+                <span class="icon orange"><img src="assetsAgent/img/card3.png"></span>
+                <span class="info">Total<strong>Students</strong></span>
+                <span class="count orange">@if($totalstudent!=''){{$totalstudent}}@else 0 @endif</span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel cardView">
+                <span class="icon pink"><img src="assetsAgent/img/card4.png"></span>
+                <span class="info">Total<strong>Payments</strong></span>
+                <span class="count pink">@if($totalamount!='')Rs. {{$totalamount}}@else 0 @endif</span>
+            </div>
+        </div>
     </div>
 </div>
+<div class="dashboardView">
+    <div class="dashboardViewLeft">
+        <div class="panel">
+            <div class="pHead">
+                <span class="h5">Summary</span>
+                <div class="control">
+                    <?php echo '<select class="form-select" name="years" id="year">' . PHP_EOL; $start_from="2022"; for($i = $start_from; $i <=date("Y"); $i++){echo '<option id="year"'.PHP_EOL; if($i==date("Y")){echo 'selected'.PHP_EOL;}echo 'value="' . $i . '">' . $i . '</option>' . PHP_EOL;}echo '</select>';?>
+                </div>
+            </div>
+            <div class="pBody">
+                <ul class="nav nav-tabs customTabs" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation"><button class="nav-link active" id="paid-applications-tab" data-bs-toggle="pill" data-bs-target="#paid-applications">Paid Applications</button></li>
+                    <li class="nav-item" role="presentation"><button class="nav-link" id="paid-students-tab" data-bs-toggle="pill" data-bs-target="#paid-students">Paid Students</button></li>
+                </ul>
+                <div class="tab-content p-4" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="paid-applications" role="tabpanel" aria-labelledby="paid-applications-tab"><div class="chart-container"><canvas id="myChartsd"></canvas></div></div>
+                    <div class="tab-pane fade" id="paid-students" role="tabpanel" aria-labelledby="paid-students-tab"><div class="chart-container"><canvas id="myChart213"></canvas></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="pHead">
+                <span class="h5">Application Reminders</span>
+            </div>
+            <div class="pBody">
+                <div class="table-responsive">
+                    <table class="table tableCustomStudent">
+                        <thead>
+                            <th>APP ID</th>
+                            <th>STUDENT NAME</th>
+                            <th>PROGRAM NAME</th>
+                            <th>SCHOOL NAME</th>
+                            <th class="text-center">REQUIEMENTS</th>
+                        </thead>
+                        <tbody>
+    
+                            @if(!empty($application_list))
+                            @foreach ($application_list as $applist)
+                           @if($applist['totalmissing'] >0)
+                                <tr>
+                                <td><a href="#">{{$applist['appid']}}</a></td>
+                                <td><a href="#">{{$applist['name']}}</a></td>
+                                <td><a href="#">{{$applist['programs_name']}}</a></td>
+                                <td><a href="#">{{$applist['program_college_name']}}</a></td>
+                                <td class="requiements-list">
+                                    <ul class="text-center">
+                                        <li>
+                                            <a href="#">
+                                                <div class="text-white" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="REQUIEMENTS">{{$applist['totalmissing']}}</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            @endif
+                            @endforeach
+                            @endif
+    
+    
+                        </tbody>
+                    </table>
+                </div>
+                <div class="btnGroup justify-content-center">
+                    <a href="=" class="btn btn-secondary">View More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dashboardViewRight">
+        <div class="panel DashProfile">
+            <div class="pHead"></div>
+            <div class="pBody">
+                <div class="profileImg"><img src="assetsAgent/img/profile.jpg"></div>
+                <p class="text"><strong>{{$student_list->name}} {{$student_list->lastname}}</strong><br>Client Relationship Manager <br> @if($totalamount!='')Rs. {{$totalamount}}@else 0 @endif<br><a href="mailto:{{$student_list->email}}"><i class="fa-solid fa-envelope"></i> {{$student_list->email}}</a><br><a href="tel:{{$student_list->phone_number}}"><i class="fa-solid fa-phone"></i>{{$student_list->phone_number}}</a></p>
+                <div class="btnGroup justify-content-start"><a href="javascript: void(0);" class="btn-secondary btn">View Profile</a></div>
+            </div>
+        </div>
 
-<style>
-    .m-w-120 {
-        min-width: 120px;
-    }
-    .form-control{
-    border-radius: 4px !important;
-   }
-   .circle-blaccav-main{
-       background-color:#000 !important;
-   }
-
-
-</style>
-
-
-
-
+        <div class="panel">
+            <div class="pBody">
+                <span class="h5"><strong>Monthly Applcations</strong></span>
+                <p class="text">This month <br><br>
+                    @if(!empty($monthly_income['current_month']))
+                    <strong>Rs. {{$monthly_income['current_month']}}</strong>
+                    @if($monthly_income['current_month'] >= $monthly_income['last_month_revenue']) <br>
+                    <span class="greenColor">{{$monthly_income['percentage']}}% <i class="mdi mdi-arrow-up"></i></span> From previous
+                    @else
+                    <span class="redColor">{{$monthly_income['percentage']}}% <i class="mdi mdi-arrow-down"></i></span> From previous
+                    @endif
+                    <br><br><strong>Rs. {{$monthly_income['last_month_revenue']}}</strong>
+                    @endif
+                </p>
+                <div class="btnGroup justify-content-start">
+                    <a href="javascript: void(0);" class="btn-secondary btn">View More</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="pHead">
+                <span class="h5">Application Status</span>
+            </div>
+            <div class="pBody">
+                <table class="table tableCustomStudent">
+                    <tbody>
+                        <?php foreach ($statuslist as $key => $value) { ?>
+                            @if($value >0)
+                            <tr>
+                                <td><p class="mb-0">{{$key}}</p></td>
+                                <td><p class="mb-0 font-size-18"><b>{{$value}}</b></p></td>
+                            </tr>
+                            @endif
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel">
+                <div class="pHead">
+                    <span class="h5">Commissions by Quarter</span>
+                </div>
+                <div class="pBody commissions-by">
+                    <div id="chartDiv" style="height: 300px;"> </div>
+                    <ul>
+                        <li><span class="size"></span> USD</li>
+                        <li><span class="size"></span> CAD</li>
+                        <li><span class="size"></span> GBP</li>
+                        <li><span class="size"></span> EUR</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="pHead">
+                            <span class="h5">Wallet Details</span>
+                        </div>
+                        <div class="pBody walletView">
+                            <span>CAD <strong>₹ 0</strong></span>
+                            <span>EUR <strong>₹ 0</strong></span>
+                            <span>AUD <strong>₹ 0</strong></span>
+                            <span>USD <strong>₹ 0</strong></span>
+                            <span>GBP <strong>₹ 0</strong></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="pHead">
+                            <span class="h5">Notice Board</span>
+                        </div>
+                        <div class="pBody noticeBoard">
+                            <?php if(!empty($notice_board)) { foreach ($notice_board as $list) { ?><span class=""><strong>{{$list->notice_title}}</strong>{{$list->notice_des}} <span>{{date('d-M-Y', strtotime($list->created_at))}}</span></span><?php } }?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel">
+                <div class="pHead">
+                    <span class="h5">Revenue</span>
+                </div>
+                <div class="pBody revenueView">
+                    <span>Potential Commission <strong>4</strong></span>
+                    <span>Earned <strong>0</strong></span>
+                    <span>Withdrawn <strong>0</strong></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="panel">
+                <div class="pHead">
+                    <span class="h5">Team Proformance</span>
+                </div>
+                <div class="pBody">
+                    <div class="table-responsive">
+                        <table class="table tableCustomStudent" id="csmTable" style="vertical-align: middle;">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Status </th>
+                                    <th>Students</th>
+                                    <th>Application</th>
+                                    <th>Fees Paid</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if(!empty($team_performance))
+                                @foreach($team_performance as $team)
+                                <tr>
+                                    <td>
+                                        <div class="d-flex w-100">
+                                            <div class="image-content">
+                                                <img src="assetsAgent/img/user-img.png" class="img-fluid" alt="">
+                                                <h2>{{$team ->name}}</h2>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="deposit-btn">
+                                            <a href="" class="status-success">{{$team ->status}}</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="price-list">
+                                            NA
+                                        </div>
+                                    </td>
+                                    <td>NA</td>
+                                    <td>NA</td>
+                                </tr>
+                                @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="btnGroup justify-content-center">
+                        <a href="=" class="btn btn-secondary">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-none">
+    <h5 class="font-size-18"><b> School</b></h5>
+    <?php if(!empty($college_list )) { foreach ($college_list as $collegename) { ?> <div class="col-md-2 col-6"><div id="school1"></div><div class="collage-name"><h5><a href="/agent-college-details/{{$collegename->id}}">{{$collegename->college_name}}</a></h5></div></div> <?php } } ?> 
+</div>
     <script src="{{ asset('assetsAgent/js/jquery.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script src="https://code.jscharting.com/2.9.0/jscharting.js"></script>
